@@ -5,6 +5,7 @@
  * @Description TODO
  * @createTime 2022年03月06日 20:21:00
  */
+package com.atguigu.java;
 public class Person extends Creature{
     String name;
     private int age;
@@ -32,5 +33,6 @@ public class Person extends Creature{
   }
 
 
-
+    public void breath() {
+    }
 }

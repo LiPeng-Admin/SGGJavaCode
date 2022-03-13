@@ -22,9 +22,13 @@ public class Cylinder extends Circle{
     }
     public double findVolume(){
 
-        return findArea()*length;
+//        return Math.PI*getRadius()*getRadius()*length;
+        return super.findArea()*getLength();
 
     }
 
-
+    @Override
+    public double findArea() { //返回圆的表面积
+        return Math.PI*getRadius()*getRadius()*2+2*Math.PI*getRadius()*getLength();
+    }
 }

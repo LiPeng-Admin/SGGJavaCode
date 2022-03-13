@@ -5,6 +5,7 @@
  * @Description TODO
  * @createTime 2022年03月06日 20:33:00
  */
+package com.atguigu.java;
 public class Student extends Person{
 //    String name;
 //    int age;

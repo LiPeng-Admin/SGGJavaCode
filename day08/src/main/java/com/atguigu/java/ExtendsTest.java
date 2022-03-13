@@ -31,6 +31,10 @@
 *
 *
 * */
+
+
+package com.atguigu.java;
+
 public class ExtendsTest {
     public static void main(String[] args) {
         Person person=new Person();

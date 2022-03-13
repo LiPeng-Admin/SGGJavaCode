@@ -10,6 +10,7 @@
         <module name="Day01" />
         <module name="day02" />
         <module name="Project2" />
+        <module name="day09" />
         <module name="day08" />
         <module name="day07" />
         <module name="day06" />
@@ -26,6 +27,7 @@
       <module name="day06" target="1.5" />
       <module name="day07" target="1.5" />
       <module name="day08" target="1.5" />
+      <module name="day09" target="1.5" />
       <module name="Project2" target="1.5" />
     </bytecodeTargetLevel>
   </component>

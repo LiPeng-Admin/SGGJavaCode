@@ -37,5 +37,15 @@ public class Person {
      }
      public void walk(int distance){
          System.out.println("走路，走了公里数是："+distance);
+         show();
+     }
+     private void show(){
+         System.out.println("我是一个人");
+     }
+     public Object goRun(){
+         return null;
+     }
+     public double info(){
+         return 1.0;
      }
 }
