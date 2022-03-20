@@ -505,7 +505,7 @@ java中方法参数的传递机制： 值传递机制（重难点）
 * 5:对象的多态性只适用于方法，不适用于属性（编译与运行都看左边）
 
 有了对象的多态性后，内存中实际是加载了子类特有的属性和方法，但是由于变量声明为父类类型，
-        //导致编译时，只能调用父类中生命的属性和方法，子类特有属性和方法不能调用
+        //导致编译时，只能调用父类中声明的属性和方法，子类特有属性和方法不能调用
 
  如何调用子类特有的属性和方法
  向下转型：使用强制类型转换符
@@ -513,13 +513,72 @@ java中方法参数的传递机制： 值传递机制（重难点）
               a instanceof A:判断对象a是否是类A的实例，如果是，返回true ,如果不是，返回false
               使用情境：为了避免向下转型时出现ClassCastException的异常，我们在向下转型之前，进行
               instanceof的判断，一旦返回true,就进行向下转型，如果返回false,不进行向下转型
-                     *
+
               如果a instanceof A,返回true,则 a instanceof B 也返回true (其中，类B是类A的父类)
 
 重载与重写的区别
 1；定义
 2：具体规则
 3：重载：不表现为多态性，重写：表现为多态性
+
+java.lang.Object 类
+1：Object 类是所有java类的父类
+2：如果在类的声明中未使用extends关键字指明其父类，则默认父类为java.lang.Object类
+3:Object 类中的功能（属性，方法）具有通用性
+属性：无
+方法：equals()/toString()/getClass()/hashCode()/clone()/findlize()/wait()/notify()...
+Object类 中只声明了一个空参构造器
+
+面试题：== 与equals（）区别
+一：回顾 == 的使用
+1：可以使用在基本数据类型变量和引用数据类型变量中
+2：如果比较的是基本数据类型变量：比较两个变量保存的数据是否相等（不一定类型要相同）
+   如果比较的是引用数据类型变量：比较两个对象的地址值是否相同，即两个引用是否指向同一个对象实体
+
+二：equals()方法的使用
+1：是一个方法，而非运算符
+2：只能使用引用数据类型
+3:Object 类中equals（）的定义：
+    public boolean equals(Object obj) {
+        return (this == obj);
+    }
+    说明：Object类中定义的equals()方法与== 的作用是相同的，即两个引用是否指向同一个对象实体
+
+4：对于如String,Date,File,包装类等都重写了Object类中的equals()方法，重写以后，比较的不是两个引用
+    的地址是否相同，而是比较两个对象的"实体内容"是否相同
+
+5：通常情况下，我们自定义的类如果使用equals()的话，也通常比较两个对象的"实体内容"是否相同，
+    那么，我们需要重写Object 类中equals()方法
+
+* Object 类中toString ()的使用
+* 1：当我们输出一个对象的引用时，实际上就是调用当前对象的toString()
+* 2：Object 类中toString()的定义：
+*       public String toString() {
+            return getClass().getName() + "@" + Integer.toHexString(hashCode());
+        }
+  3： 对于String,Date,File,包装类等重写了Object 类中的toString ()方法,使得在调用对象的toString()时，返回"实体内容"信息
+
+ * 4：自定义类也可以重写toString()方法，当调用此方法时，返回对象的"实体内容"
+
+ 包装类的使用
+ * java 提供了8种基本数据类型对应的包装类，使得基本数据类型的变量具有类的特征
+ * 掌握的：基本数据类型，包装类，String 三者之间的互相转换
+ 注意：转换时，可能会报NumberFormatException
+
+ 基本数据类型，包装类--->String类型：
+             调用String重载的valueOf(xxx)
+ String 类型--->基本数据类型，包装类:
+              调用包装类的parseXxx()
+
+ Java 5.0新特性：自动装箱与自动拆箱
+ 自动装箱:
+        基本数据类型--->包装类
+ 自动拆箱：
+        包装类--->基本数据类型
+补充：  Interger内部定了IntergerCache结构，IntergerCache
+          * 中定义了Interger[],保存了从-127-128范围的整数，如果我们使用自动装箱的方式，
+          * 给Interger赋值的范围在-128-127范围内时，可以直接数组中的元素，不用再去new了
+          * 目的：提高效率
 
 
 
