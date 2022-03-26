@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -14,16 +15,18 @@
         <module name="day05" />
         <module name="day04" />
         <module name="day03" />
+        <module name="day14" />
         <module name="Day01" />
         <module name="day02" />
+        <module name="day13" />
         <module name="day12" />
         <module name="day11" />
         <module name="day10" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="15">
       <module name="Day01" target="1.5" />
-      <module name="day02" target="1.5" />
+      <module name="day02" target="7" />
       <module name="day03" target="1.5" />
       <module name="day04" target="1.5" />
       <module name="day05" target="1.5" />
@@ -34,6 +37,8 @@
       <module name="day10" target="1.5" />
       <module name="day11" target="1.5" />
       <module name="day12" target="1.5" />
+      <module name="day13" target="8" />
+      <module name="day14" target="1.5" />
       <module name="Project2" target="1.5" />
     </bytecodeTargetLevel>
   </component>
