@@ -12,10 +12,6 @@ package com.atguigu.exer2;
 * private 成员变量year,month,day;
 * toDateString()方法返回日期对应的字符串：xxx年xx月xx日
 *
-*
-*
-*
-*
 * */
 public class MyDate {
     private int year;

@@ -641,11 +641,46 @@ final：最终的
 *               1:私有化类的构造器
 *:              2：内部创建类的对象(要求此对象必须声明为静态的)
 *               3：提供公共的静态方法，返回类的对象
+
+代码：//饿汉式
+   class Bank{
+       //1:私有化类的构造器
+       private Bank(){
+
+       }
+       //2：内部创建类的对象(要求此对象必须声明为静态的)
+       private static Bank instance=new Bank();
+       //3:提供公共的静态方法，返回类的对象
+       public static Bank getInstance(){
+           return instance;
+       }
+
+   }
 *
 *       2:懒汉式:
                 1：私有化类的构造器
                 2:声明当前类对象，未初始化(要求此对象必须声明为静态的)
                 3:声明公共的，static的返回类当前类对象的方法
+
+代码：
+class Order{
+    //1：私有化类的构造器
+    private Order(){
+
+    }
+    //2:声明当前类对象，未初始化(要求此对象必须声明为静态的)
+    private static Order instance=null;
+
+    //3:声明公共的，static的返回类当前类对象的方法
+    public static Order getInstance(){ //-->多线程时在修改
+        if(instance==null){
+            instance=new Order();
+        }
+        return instance;
+
+    }
+}
+
 
   3:区分懒汉式与饿汉式：
   *     饿汉式： 优点：线程是安全的
@@ -653,6 +688,8 @@ final：最终的
   *
   *     懒汉式： 优点：延迟对象的创建
   *             缺点：目前的写法线程是不安全的-->多线程时在修改
+
+
 
 
 类的成员之四：代码块（或初始化块）
@@ -687,6 +724,7 @@ final：最终的
 重点：执行顺序：①-②/⑤-③-④
 
  abstract关键字的使用
+* abstract：抽象的
 * abstract：抽象的
 * abstract可以用来修饰的结构：类，方法
 * abstract修饰类：抽象类
@@ -744,6 +782,13 @@ final：最终的
 知识点5：如何在子类（或实现类）中调用父类，接口被重写的方法
         调用父类：super.方法名
         调用接口：接口名.super.方法名
+
+
+面试题：接口与抽象类的异同
+    相同点：不能实例化；都可以包含抽象方法
+    不同点：通过抽象类和接口的定义，内部结构解释说明
+           类：单继承性，接口：多继承
+           类与接口：多实现
 
 
 类的内部成员之五：内部类
@@ -807,14 +852,188 @@ final：最终的
 *
 * */
 
+注意点：（移动端开发使用场景较多）
+/*
+ *在局部内部类的方法中（如show）如果调用局部内部类所声明的方法（如method）中的
+ * 局部变量（如num）,要求此局部变量声明为final的
+ */
+
+public class InnerClassTest2 {
+    int num=10; //此变量num 声明的是final,不能重新赋值，final省略
+    public void method(){
+        class AA{
+            public void show(){
+                System.out.println(num);
+            }
+
+        }
+    }
+}
+
+异常：
+Error:
+    Java 虚拟机无法解决的严重问题，如：JVM 系统内部错误，资源耗尽等严重情况
+     比如：StackOverflowError和OOM，一般不编写针对性的代码进行处理
+
+         public static void main(String[] args) {
+             //栈溢出：java.lang.StackOverflowError
+     //        main(args);
+             //堆溢出：java.lang.OutOfMemoryError:OOM
+             Integer [] arr=new Integer[1024*1024*1024];
+         }
+
+一：异常体系结构
+* java.lang.Throwable
+*       Error
+*       Exception
+*          编译时异常（checked）
+*             如：   IOException  ClassNotFoundException
+*
+*          运行时异常：(unchecked)
+*             如：   NullPointerException ArrayIndexOutOfBoundsException
+*                   ClassCastException  NumberFormatException
+*                   InputMismatchException  ArithmeticException
+
+public class ExceptionTest {
+
+}
+    //ArithmeticException
+    @Test
+    public void test6(){
+        int a=10;
+        int b=0;
+        System.out.println(a/b);
+    }
+
+     //InputMismatchException
+    @Test
+    public void test5(){
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("请输入你的成绩：");
+        int score=scanner.nextInt();
+        System.out.println(score);
+
+    }
+
+    //NumberFormatException
+    @Test
+    public void test4(){
+        String str="123";
+        str="abc";
+        Integer integer=Integer.parseInt(str);
+
+        System.out.println(integer);
+    }
+
+    //ClassCastException
+    @Test
+    public void test3(){
+        Object o=new Date();
+        String str=(String) o;
+        System.out.println(str);
+    }
+
+    // IndexOutOfBoundsException
+    @Test
+    public void test2(){
+
+        //ArrayIndexOutOfBoundsException
+//        int [] arr=new int[3];
+//        System.out.println(arr[3]);
+
+        //StringIndexOutOfBoundsException
+        String str="abcd";
+        System.out.println(str.charAt(5));
+    }
 
 
+    //NullPointerException
+    @Test
+    public void test1(){
+//        int [] arr=null;
+//        System.out.println(arr[2]);
+        String str="abc";
+        str=null;
+        System.out.println(str.toString());
 
 
+    }
 
+一：异常处理：抓抛模型
+*
+*     过程一："抛"：程序在正常执行的过程中，一旦出现异常，就会在异常代码处生成一个对应异常类的对象，并
+*             将此对象抛出。一旦抛出对象后，其他的代码就不在执行
 
+            关于异常对象的产生：①系统自动生成的异常对象
+            *                ②手动的生成一个异常对象,并抛出（throw）
 
+*     过程二："抓"：可以理解为异常的处理方式：①try-catch-finally,②throws
+*
+*二：异常处理机制方式一：try-catch-finally的使用
+*     try{
+* //可能出现异常的代码
+* }catch(异常类型1 变量名1){
+* //处理异常的方式1
+* }catch(异常类型2 变量名2){
+* //处理异常的方式2
+* }catch(异常类型3 变量名3){
+ * //处理异常的方式3
+ * }
+ * ...
+ *
+ *}finally{
+ * 一定会执行的代码
+ * }
+*说明：
+* 1:finally 是可选的
+* 2:使用try 将可能出现异常的代码包装起来，在执行过程中，一旦出现异常，就会生成一个对应异常类的对象
+*   根据此对象的类型，去catch 中进行匹配
+* 3：一旦try 中的异常对象匹配到某一个catch 时，就进入catch中进行异常的处理，一旦处理完成，跳出当前的
+* try-catch 结构（在没有写finally的情况）继续执行其后的代码
+* 4：若catch中的异常类型没有子父类关系，则谁声明在上，谁声明在下无所谓
+*    若满足子父类关系，则要求子类一定声明在父类上面
+*
+* 5:常用的异常处理方式：①e.getMessage()② e.printStackTrace()
+* 6:在try 结构中定义的变量，在出了try结构以后，不能再被调用
+*
+* 体会1：使用try-catch-finally 处理编译时异常，使得程序在编译时就不在报错，但是运行时仍可能报错，相当于我们是用
+*       try-catch-finally将一个编译时可能出现的异常，延迟到运行时出现
+*
+* 体会2：开发中，由于运行时异常比较常见，所以我们通常不针对运行时异常编写try-catch-finally
+*       针对编译时异常，一定要考虑异常处理
+*
+* finally{
+ * 一定会执行的代码
+ * }
+ * 1:finally 是可选的
+ * 2：finally 中声明的是一定会被执行的代码，即使catch 中又出现异常了，try中又return 语句，catch 中有return语句等情况
+ * 3:对于数据库链接，输入输出流，网络编程socket等资源，jvm 是不能自动回收的我们需要自己手动的资源的释放
+ * 此时的资源释放就需要声明在finally 当中
 
+三：异常处理机制的方式二：throws+异常类型
 
+* 1:throws+异常类型 写在方法的声明处，指明此方法执行时，可能会抛出的类型，一旦当方法体执行时，出现异常，仍会在异常代码处生成
+* 一个异常类的对象。此对象满足throws 后异常类型时，就会被抛出。异常代码后续的代码将不再执行
+* 2：体会：try-catch-finally:真正的将异常处理了
+*         throws+异常类型：只是将异常抛给方法的调用者并没有真正的讲异常处理掉
 
+方法重写的规则之一：
+* 子类重写的方法抛出的异常类型不大于父类被重写的方法的异常类型
+
+四：手动的生成一个异常对象,并抛出（throw）
+ throw new RuntimeException("输入的数据非法"); //手动的生成一个异常对象,并抛出（throw）：运行时异常
+ throw new Exception(); //编译时异常
+
+五：如何自定义异常类：
+    * 1:继承于现有的异常结构：RuntimeException ,Exception
+    * 2:提供全局常量：serialVersionUID
+    * 3：提供重载的构造器
+
+面试题：
+throw 与throws的区别
+throw 表示抛出一个异常类的对象，生成异常对象的过程，声明在方法体内
+throws 属于异常处理的一种方式，声明在方法的声明处
+
+ 命令行输入参数（idea）：
+ ALT + SHIFT + F10，右，Edit，回车键，Tab键，输入命令行行参数，回车
 
