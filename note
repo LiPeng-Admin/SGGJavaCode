@@ -1061,3 +1061,94 @@ throws 属于异常处理的一种方式，声明在方法的声明处
     提高应用程序的响应。对图形化界面更有意义，可增强用户体验。
     提高计算机系统CPU的利用率。
     改善程序结构。将既长又复杂的进程分为多个线程，独立运行，利于理解和修改。
+
+ 多线程的创建：
+* 方式一：继承于Thread类
+*           ①创建一个继承于Thread 类的子类
+*           ②重写Thread 类的run ()方法 -->将此线程执行的操作声明在run()
+*           ③创建Thread类的子类对象
+*           ④通过此对象调用start()方法
+示例代码如下：
+ class PrimeThread extends Thread {
+         long minPrime;
+         PrimeThread(long minPrime) {
+             this.minPrime = minPrime;
+         }
+
+         public void run() {
+             // compute primes larger than minPrime
+              . . .
+         }
+     }
+
+The following code would then create a thread and start it running:
+
+     PrimeThread p = new PrimeThread(143);
+     p.start();
+*
+注意点： //问题1：不能通过调用run()方法的形式启动线程
+//        myThread.run();
+        //问题2：再启动线程，遍历100以内的偶数：不可以还让已经start()的线程去执行，
+        // 会报异常：IllegalThreadStateException
+        //需要重新创建一个线程对象
+
+
+测试Thread 类的常用方法
+* 1：start():启动当前线程；调用当前线程的run()方法
+* 2：run()：通常需要重写Thread类中的此方法，将要创建的线程要执行的操作声明在此方法中
+* 3：currentThread():静态方法，返回执行当前代码的线程
+* 4：getName():获取当前线程的名字
+* 5：setName():设置当前线程的名字
+* 6:yield()释放当前cpu 的执行权
+* 7:join()：在线程A中调用线程B的join(),此时线程A就进入阻塞状态，直到线程B 完全执行完成后，线程A结束阻塞状态
+* 8：stop():已过时，当执行此方法时，强制结束当前线程
+* 9：sleep():让当前线程睡眠指定的millitime 毫秒，在指定的millitime 毫秒时间内，当前线程阻塞状态
+* 10：isAlive():判断当前是否还存活
+*
+* 线程的优先级：
+* 1:
+*   MAX_PRIORITY = 10
+*   NORM_PRIORITY = 5 -->默认优先级
+*   MIN_PRIORITY = 1
+* 2:如何获取和设置当前线程的优先级
+*   getPriority()
+*   setPriority()
+*
+* 说明：高优先级的线程要抢占低优先级线程cpu的执行权，但是只是从概率上讲，高优先级的线程高概率的情况下被执行
+*       并不意味着只有当高优先级的线程执行完成后，低优先级的线程才执行
+
+创建多线程的方式二：实现Runnable接口
+*   1:创建一个实现Runnable接口的类
+*   2：实现类去实现Runnable中的抽象方法run()方法
+*   3:创建实现类的对象
+*   4：将此对象作为参数传递到Thread类的构造器中，创建Thread 类的对象
+*   5：通过Thread 类的对象调用start()方法
+*
+*代码示例如下：
+* class PrimeRun implements Runnable {
+         long minPrime;
+         PrimeRun(long minPrime) {
+             this.minPrime = minPrime;
+         }
+
+         public void run() {
+             // compute primes larger than minPrime
+              . . .
+         }
+     }
+
+//The following code would then create a thread and start it running:
+
+     PrimeRun p = new PrimeRun(143);
+     new Thread(p).start();
+
+Java 中线程的分类：一：守护线程，二：用户线程
+
+两种创建线程的方式比较
+* 开发中，优先选择实现Runnable接口
+*   ①实现的方式没有类的单继承性的限制
+*
+*   ②实现的方式更适合处理多个线程有共享数据的情况
+*
+* 联系：class Thread implements Runnable
+* 相同点：两种方式都需要重写run(),将线程要执行的逻辑声明在run()方法中
