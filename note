@@ -1036,8 +1036,13 @@ throws 属于异常处理的一种方式，声明在方法的声明处
 
  命令行输入参数（idea）：
  ALT + SHIFT + F10，右，Edit，回车键，Tab键，输入命令行行参数，回车
- CTRL+ALT+T -->快捷键调出if /else ,try-catch-finally,synchronized 等
 
+ 常用快捷键
+调出if /else ,try-catch-finally,synchronized 等：CTRL+ALT+T -->
+构造器，getter,setter方法：Alt+Insert
+格式化代码： Ctrl + Alt + L
+向下复制一行：Ctrl+D
+查看方法中需要填写的形参：Ctrl+p
 
 程序：
     是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码
@@ -1527,3 +1532,752 @@ class NumThread implements Callable{
     maximumPoolSize：最大线程数
     keepAliveTime：线程没任务时最多保持多长时间后会终止
 
+实例代码如下：
+ public static void main(String[] args) {
+        //1:提供指定数量的线程池
+        ExecutorService service= Executors.newFixedThreadPool(10);
+//        System.out.println(service.getClass());
+//        ThreadPoolExecutor tp=(ThreadPoolExecutor) service;
+
+        //设置线程池的属性
+//        tp.setCorePoolSize(15);
+//        tp.setKeepAliveTime();
+//2:执行指定线程的操作：需要提供实现Runnable 接口或Callable 接口的实现类的对象
+//        service.submit(); //适合使用Callable
+        service.execute(new NumberThread()); //适合使用Runnable
+        service.execute(new NumberThread1());
+        //3：关闭链接池
+        service.shutdown();
+    }
+}
+class NumberThread implements Runnable{
+
+    @Override
+    public void run() {
+        //打印100以内的偶数
+        for (int i = 0; i <=100; i++) {
+            if(i%2==0)
+            {
+                System.out.println(Thread.currentThread().getName()+":"+i);
+            }
+        }
+    }
+}
+class NumberThread1 implements Runnable{
+
+
+    @Override
+    public void run() {
+        //打印100以内的奇数
+        for (int i = 0; i <=100 ; i++) {
+            if(i %2!=0){
+                System.out.println(Thread.currentThread().getName()+":"+i);
+            }
+
+
+        }
+
+    }
+
+
+/*
+    * String:字符串，使用一对""表示
+    * 1：String 声明为final,不可被继承
+    * 2：String 实现了Serializable 接口，表示字符串是支持序列化的
+    *           实现了Comparable 接口，表示字符串是可以比较大小的
+    * 3：String 内部定义了final char value[]用于存储字符串数据
+    * 4：String:代表不可变的字符序列，简称：不可变性
+    *   体现：1：当对字符串重新赋值时，需要重写指定内存区域赋值，不能使用原有的value 进行赋值，见图字符串1
+    *        2:当对原有的字符串进行连接操作时，也需要重新指定内存区域赋值，不能使用原有的value 进行赋值
+    *        3:当调用String的replace()方法修改指定字符或字符串时，也需要重新指定内存区域赋值，不能使用原有的value 进行赋值
+    *
+    * 5：通过字面量（区别于new ）的方式给一个字符串赋值，此时的字符串值声明在字符串常量池中
+    * 6：字符串常量池中是不会存储相同内容的字符串的
+
+*String 的实例化方式
+    * 方式一：通过字面量的方式：
+     //通过字面量的方式：此时的s1与s2的数据javaEE声明在方法区中的字符串常量池中
+    * 方式二：通过new+构造器的方式
+      //通过new+构造器的方式：此时的s3与s4保存的地址值，是数据在堆空间中开辟空间以后对应的地址值
+    *
+    * 面试题：String s=new String("abc")方式创建了对象，在内存中创建了几个对象？2个
+    * 一个是堆空间中new结构，一个是char[]对应的常量池中的数据："abc"
+
+代码：
+ String s1="javaEE";
+        String s2="hadoop";
+        String s3="javaEEhadoop";
+        String s4="javaEE"+"hadoop";
+        String s5=s1+"hadoop";
+        String s6="javaEE"+s2;
+        String s7=s1+s2;
+        System.out.println(s3 == s4);//true
+        System.out.println(s3 == s5);//false
+        System.out.println(s3 == s6);//false
+        System.out.println(s3 == s7);//false
+        System.out.println(s4 == s5);//false
+        System.out.println(s5 == s7);//false
+        System.out.println(s6 == s7);//false
+
+        String s8=s5.intern(); //返回值得到的s8使用的常量池中已经存在"javaEEhadoop"
+        System.out.println(s3 == s8);//true
+
+*得到结论：
+    * 1：常量与常量的拼接结果是在常量池，且常量池中不会存在相同内容的常量
+    * 2：只要其他有一个是变量，结果就在堆中
+    * 3:如果拼接的结果调用intern()方法，返回值在常量池中
+
+String 常用方法及代码
+ /*
+    *   int length():返回字符串的长度：return value.length
+    *   char charAt(int index)： 返回某索引处的字符 return value[index]
+        boolean isEmpty()：判断是否是空字符串：return value.length == 0
+        String toLowerCase()：使用默认语言环境，将 String 中的所字符转换为小写
+        String toUpperCase()：使用默认语言环境，将 String 中的所字符转换为大写
+        String trim()：返回字符串的副本，忽略前导空白和尾部空白
+        boolean equals(Object obj)：比较字符串的内容是否相同
+        boolean equalsIgnoreCase(String anotherString)：与 equals() 方法类似，忽略大小写
+        String concat(String str)：将指定字符串连接到此字符串的结尾。 等价于用 +
+        int compareTo(String anotherString)：比较两个字符串的大小
+        String substring(int beginIndex)：返回一个新的字符串，它是此字符串的从beginIndex 开始截取到最后的一个子字符串。
+        String substring(int beginIndex, int endIndex) ：返回一个新字符串，它是此字符串从 beginIndex 开始截取到 endIndex (不包含)的一个子字符串。
+
+
+   */
+    @Test
+    public void test1() {
+        String str = "HelloWorld";
+        System.out.println(str.length());//10
+        System.out.println(str.charAt(5)); //w
+        System.out.println(str.isEmpty()); //false
+        String str2 = str.toLowerCase();
+        System.out.println(str);//HelloWorld,str 不可变的，仍为原来的字符串
+        System.out.println(str2);//helloworld
+        System.out.println("****************");
+        String str3 = " he ll o wor ld ";
+        String str4 = str3.trim();
+        System.out.println("-------" + str3 + "---------");
+        System.out.println("-------" + str4 + "---------");
+
+    }
+
+    @Test
+    public void test2() {
+        String str = "HelloWorld";
+        String str2 = "helloworld";
+        System.out.println(str.equals(str2)); //false
+        System.out.println(str.equalsIgnoreCase(str2));//true
+
+        String str3="hello";
+        String str4=str3.concat("world");
+        System.out.println(str4);
+
+        String str5="abc";
+        String str6="ace";
+        System.out.println(str5.compareTo(str6));//比较两个字符串的大小,涉及到字符串排序
+
+        String str7="北京尚硅谷教育";
+
+        //返回一个新的字符串，它是此字符串的从beginIndex 开始截取到最后的一个子字符串。
+        String str8=str7.substring(2);
+        System.out.println(str7);//北京尚硅谷教育
+        System.out.println(str8);//尚硅谷教育
+
+        //返回一个新字符串，它是此字符串从 beginIndex 开始截取到 endIndex (不包含)的一个子字符串。
+        String str9=str7.substring(2,5);
+        System.out.println(str9);//尚硅谷
+
+    }
+    /*
+    *   boolean endsWith(String suffix)：测试此字符串是否以指定的后缀结束
+        boolean startsWith(String prefix)：测试此字符串是否以指定的前缀开始
+        boolean startsWith(String prefix, int toffset)：测试此字符串从指定索引开始的子字符串是否以指定前缀开始
+    * */
+    @Test
+    public void test3(){
+        String str="helloworld";
+
+        //测试此字符串是否以指定的后缀结束
+        boolean str2 = str.endsWith("rld");
+        System.out.println(str2);
+        //测试此字符串是否以指定的前缀开始
+        boolean str3 = str.startsWith("He");
+        System.out.println(str3);
+
+        //测试此字符串从指定索引开始的子字符串是否以指定前缀开始
+        boolean str4 = str.startsWith("o", 4);
+        System.out.println(str4); //true
+
+    }
+
+    /*
+    *
+    *boolean contains(CharSequence s)：当且仅当此字符串包含指定的 char 值序列时，返回 true
+    int indexOf(String str)：返回指定子字符串在此字符串中第一次出现处的索引
+    int indexOf(String str, int fromIndex)：返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始
+    int lastIndexOf(String str)：返回指定子字符串在此字符串中最右边出现处的索引
+    int lastIndexOf(String str, int fromIndex)：返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索
+
+    * indexOf 和 lastIndexOf 方法如果未找到都是返回-1
+    *
+    * 什么情况下，indexOf（str） 与lastIndexOf(str)返回值相同？
+    * 情况一：存在唯一的一个str
+    * 情况二：不存在str
+    *
+
+    * */
+    @Test
+    public void test4(){
+        String str="helloworld";
+        String str2="wo";
+        System.out.println(str.contains(str2));//true
+
+        //返回指定子字符串在此字符串中第一次出现处的索引
+        System.out.println(str.indexOf("lo"));//3
+
+        //返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始
+        System.out.println(str.indexOf("lo", 5));//-1,表示没找到
+
+        //回指定子字符串在此字符串中最右边出现处的索引
+        String str3="hellorworldor";
+        System.out.println(str3.lastIndexOf("or"));//1
+
+        //返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索
+        System.out.println(str3.lastIndexOf("or", 5));//4
+
+    }
+
+
+    /*
+    * 替换：
+    *   String replace(char oldChar, char newChar)：返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所 oldChar 得到的。
+        String replace(CharSequence target, CharSequence replacement)：使用指定的字面值替换序列替换此字符串所匹配字面值目标序列的子字符串。
+        String replaceAll(String regex, String replacement)：使用给定的 replacement 替换此字符串所匹配给定的正则表达式的子字符串。
+        String replaceFirst(String regex, String replacement)：使用给定的 replacement 替换此字符串匹配给定的正则表达式的第一个子字符串。
+      匹配:
+        boolean matches(String regex)：告知此字符串是否匹配给定的正则表达式。
+
+      切片：
+      * String[] split(String regex)：根据给定正则表达式的匹配拆分此字符串。
+        String[] split(String regex, int limit)：根据匹配给定的正则表达式来拆分此字符串，最多不超过limit个，
+        *                                        如果超过了，剩下的全部都放到最后一个元素中。
+    */
+
+    @Test
+    public void test5(){
+        //替换
+        String str="北京尚硅谷教育北京教育";
+        //返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所 oldChar 得到的。
+        String str2 = str.replace('北', '南');
+        System.out.println(str);//北京尚硅谷教育北京教育
+        System.out.println(str2);//南京尚硅谷教育南京教育
+
+        //使用指定的字面值替换序列替换此字符串所匹配字面值目标序列的子字符串
+        String str3=str.replace("北京","上海");
+        System.out.println(str3);//上海尚硅谷教育上海教育
+
+        System.out.println("**********************");
+        String str4="12hello34world5java7891mysql456";
+        //把字符串中的数字替换成"，"
+        String str5 = str4.replaceAll("\\d+", ",");
+        System.out.println(str5);//,hello,world,java,mysql,
+        //如果结果中开头和结尾有"，"的话去掉
+        String str6 = str5.replaceAll("^,|,$", "");
+        System.out.println(str6);//hello,world,java,mysql
+        System.out.println("**********************");
+
+//       匹配:
+//        boolean matches(String regex)：告知此字符串是否匹配给定的正则表达式。
+        String str7="123466789abc";
+        boolean matches1 = str7.matches("\\d+");
+        System.out.println(matches1);
+
+        //判断这是否是一个杭州的固定电话
+        String tel="0571-4534289";
+        boolean tel2 = tel.matches("0571-\\d{7,8}");
+        System.out.println(tel2);
+        System.out.println("*********************");
+
+        // 切片：
+        // String[] split(String regex)：根据给定正则表达式的匹配拆分此字符串。
+        // String[] split(String regex, int limit)：根据匹配给定的正则表达式来拆分此字符串，最多不超过limit个，
+        //        *                                 如果超过了，剩下的全部都放到最后一个元素中。
+
+        String str8="hello|world|java";
+        String [] strs=str8.split("\\|");
+        for (int i = 0; i <strs.length ; i++) {
+            System.out.print(strs[i]+" ");
+
+        }
+        System.out.println();
+        String str9="hello.world.java";
+        String []strs2=str9.split("\\.");
+        for (int i = 0; i < strs2.length; i++) {
+            System.out.print(strs2[i]+" ");
+
+        }
+    }
+ 涉及到String 类与其他结构之间的转换
+ 1） String 与基本数据类型与包装类之间的转换
+      * String -->基本数据类型，包装类：调用包装类的静态方法：parseXxx(str)
+      * 基本数据类型，包装类-->String 类型：调用String重载的valueOf(xxx)
+
+示例代码：
+ public void test1() {
+        String str = "123456";
+        int num = Integer.parseInt(str);
+        System.out.println(num);
+        int num2=123456;
+        String str2 = String.valueOf(num2);
+        System.out.println(str2);
+        //或
+        String str3 =num2+"";
+        System.out.println(str3);
+        System.out.println(str==str3);//false
+
+
+ 2）String 与char[]之间的转换
+    * String --->cha[]:调用String 的toCharArray()
+    * char[]--->String:调用String 的构造器
+
+ 示例代码：
+  public void test2(){
+
+         String str="abcdef";
+         //调用String 的toCharArray()
+         char[] toCharArray = str.toCharArray();
+         for (int i = 0; i < toCharArray.length; i++) {
+             System.out.print(toCharArray[i]+" ");
+
+         }
+         System.out.println();
+
+         char[]arr=new char[]{'h','e','l','l','o'};
+         //char[]--->String:调用String 的构造器
+         String str2 = new String(arr);
+         System.out.println(str2);
+
+     }
+
+
+ 3）String 与byte[]之间的转换
+    * String -->byte[]:调用String的getBytes()
+    * byte[]-->String:调用String的构造器
+    *
+    * 说明：解码时，要求解码使用的字符集与编码时使用的字符集一致，否则会出现乱码
+    *
+    *编码：字符串--》字节
+     解码：字节--》字符串
+
+示例代码：
+ public void test3() throws UnsupportedEncodingException {
+        String str="abcdef";
+        byte[] bytes = str.getBytes();//使用默认的字符集，进行编码
+        System.out.println(Arrays.toString(bytes));
+
+        String str2="abc中国";
+        byte[] gbks = str2.getBytes("gbk");//使用gbk编码集合
+        System.out.println(Arrays.toString(gbks));
+
+        String str3 = new String(bytes);//使用默认的字符集，进行解码
+        System.out.println(str3);
+
+        String str4 = new String(gbks);
+        System.out.println(str4);//会出现乱码，原因：编码集与解码集不一致
+
+        String gbks2 = new String(gbks, "gbk");
+        System.out.println(gbks2);
+
+
+    }
+
+
+*String,StringBuffer,StringBuilder 三者的异同
+
+   相同点：底层使用char[]存储
+   不同点：
+     * String:不可变的字符序列
+     * StringBuffer:可变的字符序列:线程安全的，效率低
+     * StringBuilder:可变的字符序列:线程不安全，效率高
+     *
+     * 源码分析：String str=new String()//char[] value=new char[0];
+     *         String str=new String("abc")//char[] value=new char[]{'a','b','c'}
+     *         StringBuffer sb1=new StringBuffer()//char[] value=new char[16],底层创建了一个长度是16的数组
+     *         sb1.append('a');//value[0]='a';
+     *         sb1.append('b');//value[1]='b';
+     *         StringBuffer sb2=new StringBuffer("abc")//char[] value=new char["abc".length()+16]
+     *
+     * 问题1：  System.out.println(sb2.length()); //3
+     * 问题2：扩容问题：如果要添加的数据底层数组盛装不下了，那就需要扩容底层的数组，默认情况下，扩容为原来容量的2倍+2，
+     *       同时将原有的数组中的 元素复制到新的数组中
+     *
+ 指导意义：开发中建议使用 StringBuffer(int capacity)或StringBuilder(int capacity)
+     *
+ StringBuilder,StringBuffer,String 三者的执行效率
+     * StringBuilder>StringBuffer>String
+   */
+
+String，StringBuffer,StringBuilder之间的转换
+
+String -->StringBuufer,StringBuilder:调用StringBuufer,StringBuilder构造器
+StringBuffer,StringBuilder-->String：①调用String的构造器②调用StringBuffer,StringBuilder的toString()方法
+
+
+ 示例代码：
+    @Test
+    public void test1() {
+
+        String str = new String("def");
+        String str2 = str + "abc";
+        System.out.println(str); //def
+
+        StringBuffer stringBuffer = new StringBuffer("abc");
+        stringBuffer.setCharAt(0, 'm');
+        System.out.println(stringBuffer); //mbc
+
+
+        StringBuffer stringBuffer1=new StringBuffer("abc");
+        System.out.println(stringBuffer1.length());//3
+
+        StringBuffer stringBuffer2=new StringBuffer();
+        System.out.println(stringBuffer2.length());//0
+    }
+
+ StringBuffer 的常用方法：
+    *   StringBuffer append(xxx)：提供了很多的 append() 方法，用于进行字符串拼接
+        StringBuffer delete(int start,int end)：删除指定位置的内容
+        StringBuffer replace(int start, int end, String str)：把[start,end)位置替换为str
+        StringBuffer insert(int offset, xxx)：在指定位置插入xxx
+        StringBuffer reverse() ：把当前字符序列逆转
+
+    @Test
+    public void test2(){
+        StringBuffer s1=new StringBuffer("abc");
+        s1.append(1);
+        s1.append("1");
+        System.out.println(s1);//abc11
+//        s1.delete(1, 3);
+//        System.out.println(s1);//a11
+//        s1.replace(1,3,"hello");
+//        System.out.println(s1);//ahello11
+//        s1.insert(1,false);
+//        System.out.println(s1);//afalsec11
+//        System.out.println(s1.length());//10
+//        s1.reverse();
+//        System.out.println(s1);
+        String str = s1.substring(1, 3);
+        System.out.println(str);
+
+    }
+
+JDK8之前的日期和时间的api测试
+1.System类中的currentTimeMillis()
+示例代码：
+ public void test1(){
+        //获取系统当前时间：System类中的currentTimeMillis()
+        long l = System.currentTimeMillis();
+        //返回当前时间与1970年1月1日0时0分0秒之间以毫秒为单位的时间差。
+        //时间戳
+        System.out.println(l);
+
+    }
+
+2:java.util.Date类
+      *       ---java.sql.Date 类
+      *
+      *
+      * 1：两个构造器的使用
+          *  >构造器一：创建一个对应当前时间的Date对象
+          *  >构造器二：创建指定毫秒数的Date对象
+      * 2：两个方法的使用
+      *       >toString():显示当前的年，月，日，时，分，秒
+      *       >getTime():获取当前Date对象对应的时间戳
+      *
+      * 3:java.sql.Date :对应着数据库中的日期类型的变量
+      *       >如何实例化
+      *
+      *       >util.Date对象--->sql.Date对象
+      *            Date date5=new Date();
+                   java.sql.Date date6=new java.sql.Date(date5.getTime());
+      }
+ 示例代码：
+       public void test2(){
+              //构造器一：创建一个对应当前时间的Date对象
+              Date date = new Date();
+              System.out.println(date.toString());//Tue Apr 05 10:07:32 CST 2022
+              System.out.println(date.getTime());//1649124588465
+
+             //构造器二：创建指定毫秒数的Date对象
+              Date date1 = new Date(1649124588465L);
+              System.out.println(date1.toString());
+
+          //创建java.sql.Date对象
+              java.sql.Date date2 = new java.sql.Date(1649125636025L);
+              System.out.println(date2.toString());
+
+              //如何将java.util.Date对象转换为java.sql.Date对象
+              //方式一：
+      //        Date date3=new java.sql.Date(1649125636025L);
+      //        java.sql.Date date4= (java.sql.Date) date3;
+
+              //方式二：
+              Date date5=new Date();
+              java.sql.Date date6=new java.sql.Date(date5.getTime());
+          }*
+
+jdk 8 之前的日期时间的API测试
+ * 1：System类中currentTimeMillis();
+ * 2:java.util.Date和子类java.sql.Date
+ * 3:SimpleDateFormat
+ * 4:Calendar
+
+SimpleDateFormat的使用：
+    SimpleDateFromat对日期Date类的格式化和解析
+1：两个操作：
+     * 1.1：格式化：日期-->字符串
+
+    ①实例化SimpleDateFormat:使用默认的构造器
+    示例代码：
+
+        SimpleDateFormat sdf = new SimpleDateFormat();
+
+            //格式化：日期--->字符串
+                Date date = new Date();
+        //        System.out.println(date);//Tue Apr 05 23:42:05 CST 2022
+                String format = sdf.format(date);
+                System.out.println(format);//22-4-5 下午11:42
+
+        1.2：解析：格式化的逆过程，字符串-->日期
+     示例代码：
+      //解析：字符串-->日期
+             String str = "22-4-5 下午11:46";
+             Date parse = sdf.parse(str);
+             System.out.println(parse);//Tue Apr 05 23:46:00 CST 2022
+
+
+    //②实例化SimpleDateFormat：自定义
+
+     示例代码：
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+             //格式化：日期--->字符串
+             Date date1 = new Date();
+             String format1 = sdf1.format(date1);
+             System.out.println(format1); //2022-04-05 11:55:34
+
+            //解析:字符串-->日期:
+             // 要求字符串必须是符合SimpleDateFormat识别的格式(通过构造器参数体现),
+             String str2 = "2022-04-05 11:55:34";
+             Date parse1 = sdf1.parse(str2);
+             System.out.println(parse1);//Tue Apr 05 11:55:34 CST 2022
+
+Calendar 日历类的使用
+        //1:实例化
+        //方式一：创建其子类的对象
+
+        //方式二：调用其静态方法getInstance()
+         Calendar calendar = Calendar.getInstance();
+
+       //2:常用方法： get(),set(),add(),
+                    getTime():日历类--->Date,setTime():Date--->日历类
+       示例代码：
+       //
+       //        get()
+               int i =calendar.get(Calendar.DAY_OF_MONTH);
+               System.out.println(i);
+               int i1 = calendar.get(Calendar.DAY_OF_YEAR);
+               System.out.println(i1);
+
+               //set()
+              calendar.set(Calendar.DAY_OF_MONTH,7);
+               System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+
+               //add()
+               calendar.add(Calendar.DAY_OF_MONTH,3);
+               System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+
+               //getTime():日历类--->Date
+               Date time = calendar.getTime();
+               System.out.println(time);
+
+               //setTime():Date--->日历类
+               Date date = new Date();
+               calendar.setTime(date);
+               i=calendar.get(Calendar.DAY_OF_MONTH);
+               System.out.println(i);
+
+           }
+
+ LocalDate,LocalTime,LocalDateTime
+        //now():获取当前日期，时间，日期+时间
+        示例代码：
+              LocalDate localDate = LocalDate.now();
+              LocalTime localTime = LocalTime.now();
+              LocalDateTime localDateTime = LocalDateTime.now();
+
+              System.out.println(localDate);
+              System.out.println(localTime);
+              System.out.println(localDateTime);
+
+        //of():设置指定的年，月，日，时，分，秒，没有偏移量
+        示例代码：
+         LocalDateTime of = LocalDateTime.of(2022, 4, 7, 15, 31, 40);
+                System.out.println(of);
+
+        //getXxx
+        示例代码：
+         LocalDateTime localDateTime1=LocalDateTime.now();
+          System.out.println(localDateTime1.getDayOfMonth());//7
+          System.out.println(localDateTime1.getDayOfWeek());//THURSDAY
+
+         //plusXxx:加
+                 LocalDateTime localDateTime3 = localDateTime1.plusDays(3);
+                 System.out.println(localDateTime1);
+                 System.out.println(localDateTime3);//2022-04-10T16:26:42.941
+
+         //minusXxx:减
+                 LocalDateTime localDateTime4 = localDateTime1.minusDays(5);
+                 System.out.println(localDateTime4);//2022-04-02T16:26:42.941
+
+DateTimeFormatter
+    *① 格式化或解析日期、时间
+    * ② 类似于 SimpleDateFormat
+
+// 方式一：预定义的标准格式。
+        // 如：ISO_LOCAL_DATE_TIME;ISO_LOCAL_DATE;ISO_LOCAL_TIME
+        DateTimeFormatter time = DateTimeFormatter.ISO_DATE_TIME;
+        //格式化：日期--->字符串
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String str= time.format(localDateTime);
+        System.out.println(localDateTime);
+        System.out.println(str);
+
+        //解析：字符串--->日期
+        TemporalAccessor parse = time.parse("2022-04-07T19:50:19.769");
+        System.out.println(parse);
+        System.out.println("***************************");
+
+ //  方式二：
+        // ①本地化相关的格式。如：ofLocalizedDateTime()
+        // FormatStyle.LONG / FormatStyle.MEDIUM / FormatStyle.SHORT :适用于LocalDateTime
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+        //格式化
+        LocalDateTime localDateTime1=LocalDateTime.now();
+        String format = dateTimeFormatter.format(localDateTime1);
+        System.out.println(format);
+
+        // ②本地化相关的格式。如：ofLocalizedDate()
+        // FormatStyle.FULL / FormatStyle.LONG / FormatStyle.MEDIUM / FormatStyle.SHORT : 适用于LocalDate
+
+        DateTimeFormatter dateTimeFormatter1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+        LocalDate localDate=LocalDate.now();
+        //格式化:日期--->字符串
+        String str2 = dateTimeFormatter1.format(localDate);
+        System.out.println(str2);
+
+ //重点： 方式三：自定义的格式。如：ofPattern(“yyyy-MM-dd hh:mm:ss”)
+
+        DateTimeFormatter dateTimeFormatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+        LocalDateTime localDateTime2=LocalDateTime.now();
+        //格式化：日期--->字符串
+        String str3 = dateTimeFormatter2.format(localDateTime2);
+        System.out.println(str3);
+        //解析：字符串-->日期
+        TemporalAccessor parse1 = dateTimeFormatter2.parse("2022-04-07 08:12:04");
+        System.out.println(parse1);
+
+}
+
+一：说明：java中的对象，正常情况下，只能进行比较：==或！=，不能使用>，<
+        但是在开发场景中，我们需要对多个对象进行排序，言外之意，就需要比较对象的大小，
+        如何实现？使用两个接口的任何一个：Comparable,Comparator
+
+二：Comparable接口的使用：
+ /*
+     * Comparable 接口的使用举例:自然排序
+     * 1：如String,包装类等实现了Comparable接口，重写了compareTo(obj)方法，给出了比较两个对象大小的方式
+     * 2：像 String 或包装类重写 compareTo() 方法以后，进行了从小到大的排列
+     * 3：：重写compareTo(obj)的规则：
+
+     *  如果当前对象this大于形参对象obj，则返回正整数，
+     *  如果当前对象this小于形参对象obj，则返回负整数，
+     *  如果当前对象this等于形参对象obj，则返回零
+     *
+     * 4:对于自定义类来说，如果需要排序，我们可以让自定义类实现Comparable接口，重写compareTo(obj)方法
+     *   在compareTo(obj)方法中指明如何排序
+
+示例代码：
+        自定义类：
+          public int compareTo(Object o) {
+
+                if (o instanceof Goods) {
+                    Goods goods = (Goods) o;
+                    if (this.price > goods.price) {
+                        return 1;
+                    } else if (this.price < goods.price) {
+                        return -1;
+                    } else {
+        //                return 0;
+                        return this.name.compareTo(goods.name);
+                    }
+
+                    //方式二：
+        //            return Double.compare(this.price,goods.price);
+
+                }
+                throw new RuntimeException("传入的数据类型不一致");
+            }
+
+
+*
+三：Comparator接口的使用
+
+ /*
+     *Comparator接口的使用：定制排序
+     * 1：背景：
+     * 当元素的类型没有实现java.lang.Comparable接口而又不方便修改代码
+     * 或者实现了java.lang.Comparaable接口的排序规则不适合当前的操作
+     * 那么可以考虑使用Comparator的对象来进行排序
+     * 2：重写compare（Object o1,Object o2）方法，比较o1,与o2的大小：
+     * 如果方法返回正整数，则表示o1大于o2
+     * 如果返回负数，表示o1小于o2
+     * 如果返回0，表示o1等于o2
+
+     * */
+
+ 示例代码：
+         自定义类
+          public void test4() {
+
+                 Goods[] goods = new Goods[6];
+                 goods[0] = new Goods("lenovoMouse", 34);
+                 goods[1] = new Goods("huaweiMouse", 24);
+                 goods[2] = new Goods("xiaomiMouse", 54);
+                 goods[3] = new Goods("dellMouse", 25);
+                 goods[4] = new Goods("hongjiMouse", 24);
+                 goods[5] = new Goods("xiaomiMouse", 64);
+
+                 Arrays.sort(goods, new Comparator() {
+
+                     @Override
+                     public int compare(Object o1, Object o2) {
+
+                         //指明商品比较大小的方式:照产品名称从低到高排序,再照价格从高到低排序
+
+                         if (o1 instanceof Goods && o2 instanceof Goods) {
+                             Goods goods1 = (Goods) o1;
+                             Goods goods2 = (Goods) o2;
+                             if (goods1.getName().equals(goods2.getName())) {
+
+                                 return -Double.compare(goods1.getPrice(), goods2.getPrice());
+
+                             } else {
+                                 return goods1.getName().compareTo(goods2.getName());
+                             }
+                         }
+                         throw new RuntimeException("传入的数据类型不一致！");
+                     }
+                 });
+                 System.out.println(Arrays.toString(goods));
+             }
