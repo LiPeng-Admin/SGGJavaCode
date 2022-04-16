@@ -1,4 +1,4 @@
-package com.atguigu.java1;
+package com.atguigu.java2;
 
 import java.util.Objects;
 
@@ -7,13 +7,13 @@ import java.util.Objects;
  * @version 1.0.0
  * @ClassName User.java
  * @Description TODO
- * @createTime 2022年04月10日 22:01:00
+ * @createTime 2022年04月13日 23:23:00
  */
-public class User implements  Comparable{
+public class User implements Comparable{
     private String name;
     private int age;
 
-    public User() {
+    public User(String s) {
     }
 
     public User(String name, int age) {
@@ -33,16 +33,17 @@ public class User implements  Comparable{
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     @Override
@@ -58,18 +59,19 @@ public class User implements  Comparable{
         return Objects.hash(name, age);
     }
 
-    //按照姓名从小到大排序,年龄从小到大排列
     @Override
     public int compareTo(Object o) {
-        if(o instanceof  User){
+        if (o instanceof User){
             User user=(User) o;
-            int compare= this.name.compareTo(user.name);
-            if(compare !=0){
+            int compare = this.name.compareTo(user.name);
+            if(compare!=0){
                 return compare;
+
             }else {
                 return Integer.compare(this.age,user.age);
             }
+
         }
-        throw  new RuntimeException("数据输出有误");
+        throw  new RuntimeException("输入的数据类型不匹配");
     }
 }

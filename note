@@ -2468,4 +2468,990 @@ DateTimeFormatter
             ElementType.TYPE_PARAMETER 表示该注解能写在类型变量的声明语句中（如：泛型声明。）
             ElementType.TYPE_USE 表示该注解能写在使用类型的任何语句中。
 
+一：集合框架的概述
+* 1：集合，数组都是对多个数据进行存储操作的结构，简称java容器
+*  说明：此时的存储，主要指的是内存层面的存储，不涉及持久化的存储
+* 2：数组在存储多个数据方面的特点
+* 1：一旦初始化以后，其长度就确定了
+* 2：数组一旦定义好，其元素的类型也就确定了，我们也就只能操作指定类型的数据了
+*                 如：String [] arr;int[] arr1;Object[] arr2;
+*
+*2：数组在存储多个数据方面的缺点：
+    * 1：一旦初始化以后，其长度就不可修改
+    * 2：数组中提供的方法非常有限，对于添加，删除，插入数据等操作，非常不便，同时效率不高
+    * 3：获取数组中实际元素的个数需求，数组中没有现成的属性或方法可用
+    * 4：数组中的数据的特点：有序，可重复的，对于无序，不能重复的需求，不能满足
+    *
+    *
+二：集合框架
+*   |---Collection接口：单列集合，用来存储一个一个对象
+*       |--List接口：存储有序，可重复的数据     --动态数组
+*           |--ArrayList,LinkedList,Vector
+*       |--Set接口：存储无序，不可重复的数据    ---集合
+*           |--HashSet,LinkedSet,TreeSet
+*
+*   |---Map 接口：双列集合，用来存储一对（key-value）一对的数据    ---类似函数y=f(x)
+*       |--HashMap,LinkedMap,TreeMap,Hashtable,Properties
+*
+* 三：Collection 接口中方法的使用及示例代码
+   @Test
+    public void test1() {
+        Collection coll = new ArrayList();
+        //1：add(Object e):将元素e到coll集合中
+        coll.add("AA");
+        coll.add("BB");
+        coll.add(123);//自动装箱
+        coll.add(new Date());
 
+        //2：size():获取添加元素的个数
+
+        System.out.println(coll.size());//4
+        // 3：addAll():将coll1集合中的元素添加到当前集合中
+        Collection collection = new ArrayList();
+        collection.add("CC");
+        collection.add(456);
+        coll.addAll(collection);
+        System.out.println(coll.size());
+        System.out.println(coll.toString());
+
+        //4：clear():清空集合中的元素
+        coll.clear();
+
+        //5：isEmpty()判断当前集合是否为空
+        System.out.println(coll.isEmpty());
+    }
+
+    @Test
+    public void test2() {
+        Collection coll = new ArrayList();
+
+        coll.add(123);
+        coll.add(new String("Tom"));
+        coll.add(new Person("Jery", 25));
+        coll.add(456);
+        coll.add(false);
+        // System.out.println(coll.size());
+        //6:contains(Object o):判断当前集合中是否包含obj
+        //我们在判断时会调用obj对象所在类的equals()
+        boolean contains = coll.contains(456);
+        System.out.println(contains);//true
+
+        System.out.println(coll.contains(new String("Tom")));//true-->调用String 重写的的equals()方法
+
+        //自定义的类，若没有重写equals方法，默认调用是Object 的equals,比较的是==，
+        // 若重写，则调用的是重写后的方法，比较的是实体内容
+        System.out.println(coll.contains(new Person("Jery", 25)));//false-->true
+        //7: conatainsAll(Collection coll1):判断形参coll1 中的所有元素是否都在当前集合中
+        Collection coll1 = Arrays.asList(123, 456);
+        boolean b = coll.containsAll(coll1);
+        System.out.println(b); //true
+
+    }
+
+    @Test
+    public void test3() {
+        Collection collection = new ArrayList();
+        collection.add(123);
+        collection.add("456");
+        collection.add(false);
+        collection.add(new String("Tom"));
+        collection.add(new Person("Jery", 28));
+        collection.add(123.8);
+
+        //8：remove(Object o):差集：从当前集合中移除obj元素
+        boolean remove = collection.remove(123.8);
+        System.out.println(remove);
+        System.out.println(collection);
+
+        //9：removeAll(Collection collection1):从当前集合中移除collection1中所有元素
+        Collection collection1 = Arrays.asList(123, "456");
+        boolean b = collection.removeAll(collection1);
+        System.out.println(b);//true
+        System.out.println(collection);
+    }
+
+    @Test
+    public void test4() {
+        Collection collection = new ArrayList();
+        collection.add(123);
+        collection.add(456);
+        collection.add("789");
+        collection.add(new String("Tom"));
+        collection.add(false);
+        collection.add(new Person("Jery", 26));
+
+        Collection collection1 = Arrays.asList(123, 456, 789);
+
+        //10:retainAll(Collection collection1):获取当前集合与collection1集合的交集，并返回给当前集合
+        collection.retainAll(collection1);
+        System.out.println(collection);
+
+        //11:equals(Object obj)
+        Collection collection2 = Arrays.asList(123, 456, "789");
+
+        Collection collection3 = new ArrayList();
+        collection3.add(123);
+        collection3.add(456);
+        collection3.add("789");
+        System.out.println(collection2.equals(collection3));
+
+    }
+
+    @Test
+    public void test5() {
+        Collection collection = new ArrayList();
+        collection.add(123);
+        collection.add(456);
+        collection.add(false);
+        collection.add("789");
+        collection.add(new String("Tom"));
+        collection.add(new Person("Jery", 29));
+        //12:hashCode():返回当前对象的哈希值
+        System.out.println(collection.hashCode());
+
+        //13:集合-->数组:toArray()
+        Object[] objects = collection.toArray();
+        for (int i = 0; i < objects.length; i++) {
+            System.out.print(objects[i]+" ");
+
+        }
+        System.out.println();
+        //14:拓展:数组-->集合: 调用Arrays的静态方法asList()
+        List<String> stringList = Arrays.asList(new String[]{"AA", "BB", "VV"});
+        System.out.println(stringList);
+
+        //注意事项
+        List ints = Arrays.asList(new int[]{133, 456});
+        System.out.println(ints.size());//1,不是2
+        List integerList = Arrays.asList(123, 456);
+        System.out.println(integerList.size());//2
+        System.out.println(integerList);//[123, 456]
+
+        List integerList1 = Arrays.asList(new Integer[]{123, 456});
+        System.out.println(integerList1);//[123, 456]
+        System.out.println(integerList1.size());//2
+
+
+    }
+    //15:iterator():返回Iterator接口的实例，用于遍历集合元素--详见：IteratorTest.java
+
+*
+*   3.1:向Collection接口的实现类的对象中添加数据obj时，要求obj所在类要重写equals()
+
+1；List接口框架：
+*  |---Collection接口：单列集合，用来存储一个一个对象
+ *       |--List接口：存储有序，可重复的数据     --动态数组,替换原有的数组
+ *           |--ArrayList：作为list接口的主要实现类(jdk 1.2)；线程不安全，效率高；底层使用Object[] elementData存储
+ *           |--LinkedList:对于频繁的插入，删除操作，使用此类比ArrayList效率高；底层使用双向链表存储
+ *           |--Vector:作为list接口的古老实现类（jdk 1.0）：线程安全，效率低;底层使用Object[] elementData存储
+ *：
+ * 2：ArrayList 的源码分析：
+ *   jdk 7情况
+ *   ArrayList list=new ArrayLit();//底层创建了长度是10的Object[]数组elementData
+ *            list.add(123);//elementData[0]=new Integer(123)
+ *            ...
+ *            list.add(11);//如果此次添加的导致底层elementData数组容量不够，则扩容，
+ *            默认情况下，扩容为原来的1.5倍，同时需要将原有的数组中的元素复制到新的数组中
+ *
+ *            结论：建议开发使用带参的构造器：ArrayList list=new ArrayList(int initialCapacity)
+ *   jdk 8情况：
+ *   ArrayList list=new ArrayLit();//底层Object[] elementData 初始化为{}，没有创建了长度是10的Object[]数组elementData
+ *             list.ad(123);//第一次调用add()时，底层才创建了长度为10的数组，并将数据123添加到elementData[0]中
+ *             ...
+ *            后续的添加和扩容与jdk7相同
+ *
+ *            结论：jdk7中的ArrayList 的对象的创建类似于单例模式的饿汉式，jdk8中的ArrayList的对象的创建
+ *                  类似于单例模式的懒汉式，延迟了数组的创建，节省了内存
+ *
+ *3：LinkedList
+ *   LinkedList linkedList=new LinkedList();内部声明了Node类型的first和last属性，默认值为null
+ *              linkedList.add(123);//将123封装到Node 中，创建了Node 对象
+ *
+ *              其中，Node定义为：体现为LinkedList的双向链表的说法
+             *    private static class Node<E> {
+                        E item;
+                        Node<E> next;
+                        Node<E> prev;
+
+                        Node(Node<E> prev, E element, Node<E> next) {
+                            this.item = element;
+                            this.next = next;
+                            this.prev = prev;
+                        }
+                    }
+                    *
+  4：Vector的源码分析：jdk7与jdk8中通过Vector()构造器创建对象时，底层都创建了长度为10的数组
+  *                 在扩容方面，默认扩容为原来的数组长度的2倍
+  *
+ * 面试题：ArrayList,LinkList,Vector三者异同：
+ * 相同点：三个类都实现了List接口，存储数据的特点相同：存储有序，可重复的数据
+ * 不同点： |--ArrayList：作为list接口的主要实现类(jdk 1.2)；线程不安全，效率高；底层使用Object[] elementData存储
+ *         |--LinkedList:对于频繁的插入，删除操作，使用此类比ArrayList效率高；底层使用双向链表存储
+ *         |--Vector:作为list接口的古老实现类（jdk 1.0）：线程安全，效率低;底层使用Object[] elementData存储
+
+ * 5：list接口的常用方法
+ *       List除了从 Collection集合继承的方法外，List集合里添加了一些根据索引来操作集合元素的方法。
+
+         void add(int index, Object ele):在index位置插入ele元素
+         boolean addAll(int index, Collection eles):从index位置开始将eles中的所有元素添加进来
+         Object get(int index):获取指定index位置的元素
+         int indexOf(Object obj):返回obj在集合中首次出现的位置
+         int lastIndexOf(Object obj):返回obj在当前集合中末次出现的位置
+         Object remove(int index):移除指定index位置的元素，并返回此元素
+         Object set(int index, Object ele):设置指定index位置的元素为ele
+         List subList(int fromIndex, int toIndex):返回从fromIndex到toIndex位置的左闭右开子集合
+         *
+      常用方法总结：
+      * 增：add(Object e)
+      * 删:remove(int index)/remove(Object o)
+      * 改:set(int index, Object ele)
+      * 查:get(int index)
+      * 插:add(int index, Object ele)
+      * 长度:size()
+      * 遍历:
+          * 1:Iterator迭代器，
+          * 2：foreach,
+          * 3:普通循环
+
+
+示例代码：
+    @Test
+    public void test1() {
+        ArrayList list = new ArrayList();
+        list.add(123);
+        list.add(456);
+        list.add(new Person("Tom", 28));
+        list.add(false);
+        list.add("Jack");
+        list.add(456);
+
+        System.out.println(list);
+        //void add(int index, Object ele):在index位置插入ele元素
+        list.add(1, "BB");
+        System.out.println(list);
+        List list1 = Arrays.asList(1, 2, 3);
+
+        //boolean addAll(int index, Collection eles):从index位置开始将eles中的所有元素添加进来
+        list.addAll(list1);
+        System.out.println(list.size());//9
+
+        // Object get(int index):获取指定index位置的元素
+        System.out.println(list.get(1));//BB
+
+        //int indexOf(Object obj):返回obj在集合中首次出现的位置,如果不存在，返回-1
+        int i = list.indexOf(456);
+        System.out.println(i);//2
+
+        // int lastIndexOf(Object obj):返回obj在当前集合中末次出现的位置
+        int i1 = list.lastIndexOf(456);
+        System.out.println(i1);//6
+
+        // Object remove(int index):移除指定index位置的元素，并返回此元素
+        Object obj = list.remove(4);
+        System.out.println(obj); //false
+        System.out.println(list);
+
+        // Object set(int index, Object ele):设置指定index位置的元素为ele
+        list.set(0, "1234");
+        System.out.println(list);
+
+        //List subList(int fromIndex, int toIndex):返回从fromIndex到toIndex位置的左闭右开子集合
+        List list2 = list.subList(0, 2);
+        System.out.println(list2);//[1234, BB]
+        System.out.println(list);
+        System.out.println("*******************");
+
+        //遍历
+        //方式一：Iterator迭代器
+        Iterator iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+        System.out.println();
+
+        //方式二：foreach
+        for (Object o : list) {
+            System.out.print(o + " ");
+
+        }
+        System.out.println();
+        //方式三：普通for 循环
+        for (int j = 0; j < list.size(); j++) {
+            System.out.print(list.get(j)+" ");
+
+        }
+    }*
+
+ jdk5.0新增了foreach循环，用于遍历集合，数组
+
+ 示例代码：
+  @Test
+     public void test1() {
+         Collection collection = new ArrayList();
+         collection.add(123);
+         collection.add(456);
+         collection.add("Tom");
+         collection.add(new String("Jack"));
+         collection.add(new Person("Jery", 32));
+         collection.add(false);
+
+         //foreach
+         //格式：for(集合元素的类型 局部变量：集合对象)
+         for (Object o : collection) {
+             System.out.println(o);
+
+         }
+     }
+
+
+* 集合元素的遍历操作，使用迭代器Iterator接口
+     *
+     * Iterator对象称为迭代器(设计模式的一种)，主要用于遍历 Collection 集合中的元素。
+     *  GOF给迭代器模式的定义为：提供一种方法访问一个容器(container)对象中各个元素，而又不需暴露该对象的内部细节。
+     *  迭代器模式，就是为容器而生。
+     *
+     * 1:内部的方法：hasNext()和next()
+     * 2:集合对象每次调用iterator()方法都得一个全新的迭代器对象，
+     *      默认游标都在集合的第一个元素之前
+     * 3:Iterator可以删除集合的元素，但是是遍历过程中通过迭代器对象的
+     * remove 方法，不是集合对象的remove方法
+
+ 示例代码：
+ @Test
+    public void test1(){
+        Collection collection=new ArrayList();
+        collection.add(123);
+        collection.add(456);
+        collection.add("789");
+        collection.add(new String("Tom"));
+        collection.add(new Person("Jery",30));
+        collection.add(false);
+
+        Iterator iterator = collection.iterator();
+        //方式一：
+        //next():
+//        System.out.println(iterator.next());//123
+//        System.out.println(iterator.next());//456
+//        System.out.println(iterator.next());//789
+//        System.out.println(iterator.next());//Tom
+//        System.out.println(iterator.next());//Person{name='Jery', age=30}
+//        System.out.println(iterator.next());//false
+//
+//        //报异常:.NoSuchElementException
+//        System.out.println(iterator.next());
+
+        //方式二：不推荐
+        for (int i = 0; i <collection.size() ; i++) {
+            System.out.println(iterator.next());
+
+        }
+        //方式三：推荐
+        //hasNext():判断是否还下一个元素
+        while (iterator.hasNext()){
+
+            //①指针下移 ②将下移以后集合位置上的元素返回
+            System.out.println(iterator.next());
+        }
+    }
+    @Test
+    public void test2(){
+
+        Collection collection=new ArrayList();
+        collection.add(123);
+        collection.add(456);
+        collection.add("Tom");
+        collection.add(new String("Jery"));
+        collection.add(new Person("Jack",31));
+        collection.add(false);
+
+        //删除集合中"Tom"
+        //如果还未调用 next() 或在上一次调用 next() 方法之后已经调用了 remove() 方法，
+        // 再调用 remove 都会报 IllegalStateException。
+        //内部定义了 remove(),可以在遍历的时候，删除集合中的元素。此方法不同于集合直接调用remove()
+        Iterator iterator = collection.iterator();
+       while (iterator.hasNext()){
+           Object obj = iterator.next();
+           if("Tom".equals(obj)){
+               iterator.remove();
+           }
+       }
+       iterator=collection.iterator();
+       while (iterator.hasNext()){
+           System.out.println(iterator.next());
+       }
+
+    }
+
+Set框架结构
+*   |---Collection接口：单列集合，用来存储一个一个对象
+ *       |--Set接口：存储无序，不可重复的数据    ---集合
+ *           |--HashSet：Set接口的主要实现类；线程不安全的；可以存储null值
+                |--LinkedSet：作为HashSet的子类；遍历其内部数据时，可以按照添加的顺序遍历
+                *            对于频繁的操作，LinkedHashSet 效率高于HashSet
+             |-- TreeSet：可以按照添加对象的指定属性，进行排序
+
+* 1： Set接口没有额外定义新的方法，使用的都是Collection 中声明过的方法
+* 2： 要求：向Set 中添加的数据，其所在的类一定要重写hashCode()和equals()
+*     要求：重写的hashCode()和equals()尽可能保持一致性：相等的对象必须具有相等的散列码
+
+
+一：Set:存储无序，不可重复的数据
+    * 以HashSet为例说明：
+    * 1：无序性：不等于随机性，存储的数据在底层数组中并非按照数组索引的顺序添加，而是根据数据的哈希值
+    * 2：不可重复:保证添加的元素按照equals()判断，不能返回true,即：相同元素只能添加一个
+
+
+    二：添加元素的过程：以HashSet为例
+    * 我们向HashSet中添加元素a,首先调用元素a所在类的hashCode（）方法，计算元素a 的哈希值，此
+    * 哈希值接着通过某种算法计算出在HashSet底层数组中的存放位置（即为：索引位置）,判断数组此位置上
+    * 是否已经有元素
+    *   如果此位置没有其他元素，则元素a添加成功  ---》情况一
+    *   如果此位置上有其他元素b(或以链表形式存在的多个元素)，则比较元素a与元素b 的hash值：
+    *       如果hash值不相同，则元素a添加成功  ---》情况二
+    *       如果hash值相同，进而需要调用元素a所在类的equals（）方法：
+    *           equals()返回true，元素a 添加失败
+    *           equals()返回false,则元素a 添加成功  --》情况三
+    *
+    * 对于添加成功的情况2和情况3而言，元素a与已经存在指定位置上数据一链表的形式存储
+    *
+    * HashSet底层：数组+链表的结构
+
+
+示例代码：
+   @Test
+      public void test1() {
+          Set set = new HashSet();
+          set.add(123);
+          set.add(456);
+          set.add("AA");
+          set.add(new User("Tom", 18));
+          set.add(new User("Tom", 18));
+          set.add(129);
+          set.add(456);
+          Iterator iterator = set.iterator();
+          while (iterator.hasNext()) {
+              System.out.println(iterator.next());
+          }
+      }
+
+   //LinkedHashSet的使用
+     //LinkedHashSet 作为HashSet 的子类，再添加数据的同时，每个数据还维护了两个引用，记录此数据的
+     //前一个数据 和后一个数据
+     //优点：对于频繁的操作，LinkedHashSet 效率高于HashSet*
+
+    示例代码：
+       @Test
+         public void test2() {
+             Set set = new LinkedHashSet();
+             set.add(123);
+             set.add(456);
+             set.add("789");
+             set.add(new User("Jery", 12));
+             set.add(new User("Jery", 12));
+             set.add(false);
+             set.add("AA");
+             Iterator iterator = set.iterator();
+             while (iterator.hasNext()) {
+                 System.out.println(iterator.next());
+             }
+         }
+
+ //TreeSet的使用
+     /*
+     1:向TreeSet 中添加数据，要求是相同类的对象
+     2：两种排序方式：自然排序，定制排序
+     3：自然排序：比较两个对象是否相同的标准为：compareTo()返回是0，不再是equals()
+     4: 定制排序：比较两个对象是否相同的标准为：compare(),返回0，不在是equals()
+示例代码：
+@Test
+    public void test3() {
+        TreeSet treeSet = new TreeSet();
+        //举例一：
+//        treeSet.add(123);
+//        treeSet.add(456);
+//        treeSet.add(789);
+//        treeSet.add(-123);
+//        treeSet.add(-456);
+
+        //举例二：
+        treeSet.add(new User("Tom", 15));
+        treeSet.add(new User("Jameson", 18));
+        treeSet.add(new User("Jack", 25));
+        treeSet.add(new User("Jim", 35));
+        treeSet.add(new User("Mark", 5));
+        treeSet.add(new User("Jameson", 15));
+
+
+        Iterator iterator = treeSet.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+//        treeSet.add("789");//添加数据，要求是相同类的对象: ClassCastException
+    }
+
+  @Test
+     public void test4() {
+
+         Comparator comparator = new Comparator() {
+             @Override
+             public int compare(Object o1, Object o2) {
+                 if (o1 instanceof User && o2 instanceof User){
+
+                     return Integer.compare(((User) o1).getAge(),((User) o2).getAge());
+                 }
+                 throw new RuntimeException("输入的数据不合理");
+             }
+         };
+
+         TreeSet treeSet = new TreeSet(comparator);
+         treeSet.add(new User("Tom", 25));
+         treeSet.add(new User("Jack", 28));
+         treeSet.add(new User("Jim", 28));
+         treeSet.add(new User("Jim", 30));
+         treeSet.add(new User("Mark", 17));
+
+         Iterator iterator = treeSet.iterator();
+         while (iterator.hasNext()) {
+             System.out.println(iterator.next());
+         }
+
+     }
+
+*一：
+* |---Map：双列数据，存储key-value对的数据
+*   |---HashMap:作为Map的主要实现类；线程不安全的，效率高；可以存储null的key和value
+*
+*       |---LinkedHashMap:保证在遍历map元素时，可以按照添加的顺序实现遍历（原因：在原有的HashMap 底层结构基础上，
+*                         添加了一对指针，指向前一个和后一个）
+*                         对于频繁的遍历操作，此类执行效率高于HashMap
+*
+*   |---TreeMap：保证按照添加的key-value对进行排序，实现排序遍历，此时考虑key的自然排序或定制排序
+*                底层使用红黑树
+*
+*   |---Hashtable：作为Map的古老实现类；线程安全的，效率低;不能存储null的key和value
+*       |---Properties:常用来处理配置文件.key-value都是String 类型
+*
+*  HashMap的底层：数组+链表（jdk7及之前）
+*               数组+链表+红黑树（jdk 8）
+*
+* 二：map结构的理解
+* map的key:无序，不可重复的，使用Set存储所有的key--->key 所在的类要重写equals()和hashCode()(以HashMap为例)
+* map中的value:无序，可重复的，使用Collection 存储所有的value--<value 所在的类要重写equals()
+* 一个键值对：key-value 构成了一个Entry对象
+* map的entry：无序，不可重复的，使用Set 存储所有的entry
+*
+* 三：HashMap的底层实现原理
+    * HashMap map=new HashMap();
+    * 在实例化以后，底层创建了长度是16 的一维数组Entry[] table
+    * ...可能已经执行过多次put...
+    *  map.put(key1,value1);
+    * 首先，调用key1所在类的hashCode(),计算key1哈希值，此哈希值经过某种算法以后，得到在entry[]的存放位置
+    * 如果此位置上的数据为空，则key1-value1 添加成功   ---情况1
+    * 如果此位置上的数据不为空（此位置存在一个或多个数据（以链表的形式存在）），比较key1和已经存在的一个或多个数据
+    * 的哈希值：
+    *       如果key1的哈希值与已经存在的数据的哈希值都不相同，此时key1-value1 添加成功  ---情况2
+    *       如果key1的哈希值与已经存在的某一个数据（key2-value2）的哈希值相同，继续比较：调用key1 所在类的equals(key2)方法,比较
+    *          如果equals()返回false,则此时key1-value1添加成功   ------情况3
+    *          如果equals()返回true,使用value1替换value2
+    *
+    *   补充：关于情况2和情况3：此时key1-value1和原来的数据以链表的方式存储
+    *
+    * 在不断添加的过程中，会涉及到扩容问题，默认的扩容方式：扩容为原来的2倍，并将原有的数据复制过来
+    *
+   jdk8相较于jdk7在底层实现方面的不同
+    * 1：new HashMap();底层没哟创建一个长度为16的数组
+    * 2:JDK8底层的数组 是:Node[],而非Entry[]
+    * 3:首次调用put()方法时，底层创建长度为16的数组
+    * 4：jdk7底层结构只有：数组+链表，jdk8底层结构：数组+链表+红黑树
+    *    当数组的某一个索引位置上的元素以链表形式存在的数据个数>8且当前数组长度>64,
+    *    此时此索引位置上的所有数据改为使用红黑树存储
+    *
+    *
+ 4  HashMap底层典型属性的属性的说明：
+
+        DEFAULT_INITIAL_CAPACITY : HashMap的默认容量，16
+        DEFAULT_LOAD_FACTOR：HashMap的默认加载因子：0.75
+        threshold：扩容的临界值，= 容量*填充因子：16 * 0.75 => 12
+        TREEIFY_THRESHOLD：Bucket中链表长度大于该默认值，转化为红黑树:JDK 8.0引入
+        MIN_TREEIFY_CAPACITY：桶中的Node被树化时最小的hash表容量:64
+        *
+四：LinkedHashMap的底层实现原理(了解)
+    * LinkedHashMap底层使用的结构与HashMap相同，因为LinkedHashMap继承于HashMap.
+    区别就在于：LinkedHashMap内部提供了Entry，替换HashMap中的Node.
+    与Linkedhash Set类似，LinkedHashMap可以维护Map的迭代顺序：迭代顺序与Key-value对的插入顺序一致
+    *
+        HashMap中内部类Node源码：
+        static class Node<K,V> implements Map.Entry<K,V>{
+            final int hash;
+            final K key;
+            V value;
+            Node<K,V> next;
+        }
+        *
+        LinkedHashM中内部类Entry源码：
+        static class Entry<K,V> extends HashMap.Node<K,V> {
+            Entry<K,V> before, after;//能够记录添加的元素的先后顺序
+            Entry(int hash, K key, V value, Node<K,V> next) {
+                super(hash, key, value, next);
+            }
+        }
+        *
+五：map 中定义的方法
+  ①添加、删除、修改操作：
+
+    Object put(Object key,Object value)：将指定key-value添加到(或修改)当前map对象中
+    void putAll(Map m):将m中的所有key-value对存放到当前map中
+    Object remove(Object key)：移除指定key的key-value对，并返回value
+    void clear()：清空当前map中的所有数据
+  ②元素查询的操作：
+  *
+  * Object get(Object key)：获取指定key对应的value
+    boolean containsKey(Object key)：是否包含指定的key
+    boolean containsValue(Object value)：是否包含指定的value
+    int size()：返回map中key-value对的个数
+    boolean isEmpty()：判断当前map是否为空
+    boolean equals(Object obj)：判断当前map和参数对象obj是否相等
+    *
+  ③元视图操作的方法：
+  *
+    Set keySet()：返回所有key构成的Set集合
+    Collection values()：返回所有value构成的Collection集合
+    Set entrySet()：返回所有key-value对构成的Set集合
+    *
+
+总结：常用方法：
+
+    添加：put(Object key,Object value)
+    删除：remove(Object key)
+    修改：put(Object key,Object value)
+    查询：get(Object key)
+    长度：size()
+    遍历：keySet() / values() / entrySet()
+
+
+常用方法实例代码：
+ @Test
+    public void test1() {
+        HashMap map = new HashMap();
+//        map.put(null,123);
+        map.put(null, null);
+        System.out.println(map);
+
+    }
+
+    @Test
+    public void test2() {
+        Map map = new LinkedHashMap();
+        map.put(123, "AA");
+        map.put(456, "BB");
+        map.put(789, "CC");
+        System.out.println(map);
+    }
+
+
+    /*
+    ①添加、删除、修改操作：
+
+    Object put(Object key,Object value)：将指定key-value添加到(或修改)当前map对象中
+    void putAll(Map m):将m中的所有key-value对存放到当前map中
+    Object remove(Object key)：移除指定key的key-value对，并返回value
+    void clear()：清空当前map中的所有数据
+     */
+
+    @Test
+    public void test3() {
+        Map map = new HashMap();
+        map.put("AA", 123);
+        map.put("BB", 456);
+        map.put("CC", 789);
+        map.put("AA", 12);
+        System.out.println(map);
+
+        Map map1 = new HashMap();
+        map1.put("DD", "father");
+        map1.put("EE", "mother");
+
+        map.putAll(map1);
+        System.out.println(map);
+
+        //remove(Object key)
+        Object dd = map.remove("DD");
+        System.out.println(dd);
+        System.out.println(map);
+
+        //clear():不同于map=null
+        map.clear();
+        System.out.println(map.size());
+
+    }
+
+    @Test
+    public void test4() {
+//        ②元素查询的操作：
+//  *
+//  *     Object get(Object key)：获取指定key对应的value
+//        boolean containsKey(Object key)：是否包含指定的key
+//        boolean containsValue(Object value)：是否包含指定的value
+//        int size()：返回map中key-value对的个数
+//        boolean isEmpty()：判断当前map是否为空
+//        boolean equals(Object obj)：判断当前map和参数对象obj是否相等
+
+        Map map = new HashMap();
+        map.put("AA", 123);
+        map.put("BB", 456);
+        map.put("CC", 789);
+        map.put("DD", 123);
+
+        //Object get(Object key)：获取指定key对应的value
+        System.out.println(map.get("DD"));
+
+        //boolean containsKey(Object key)：是否包含指定的key
+        boolean bb = map.containsKey("BB");
+        System.out.println(bb);//true
+
+        boolean b = map.containsValue(123);
+        System.out.println(b);//true
+
+        map.clear();
+        System.out.println(map.isEmpty());//true
+
+    }
+
+    /*
+    *
+     ③元视图操作的方法：
+  *
+    Set keySet()：返回所有key构成的Set集合
+    Collection values()：返回所有value构成的Collection集合
+    Set entrySet()：返回所有key-value对构成的Set集合
+    *
+    * */
+    @Test
+    public void test5() {
+        Map map = new HashMap();
+        map.put("AA",123);
+        map.put("BB",456);
+        map.put("CC",789);
+        map.put(45,"DD");
+        map.put(null,"EE");
+
+   //Set keySet()：返回所有key构成的Set集合
+        Set set = map.keySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+        System.out.println("*******************");
+
+        //Collection values()：返回所有value构成的Collection集合
+        Collection values = map.values();
+
+        for (Object o:values) {
+            System.out.println(o);
+        }
+        System.out.println("******************");
+
+        // Set entrySet()：返回所有key-value对构成的Set集合
+        Set set1 = map.entrySet();
+        Iterator iterator2 = set1.iterator();
+        while (iterator2.hasNext()){
+            Object obj = iterator2.next();
+            Map.Entry entry=(Map.Entry)obj;
+            System.out.println(entry.getKey()+"-->"+entry.getValue());
+        }
+
+
+    }
+
+* 面试题：
+* 1：HashMap的底层实现原理？
+* 2：HashMap与Hashtable的异同？
+
+
+向TreeMap中添加key-value，要求key必须是由同一个类创建的对象 要照key进行排序：自然排序 、定制排序
+
+示例代码：
+
+    @Test
+    public void test1(){
+        //自然排序：按照姓名从小到大排序,年龄从小到大排列
+        User user=new User("Tom",18);
+        User user1=new User("Jerry",20);
+        User user2=new User("Jack",21);
+        User user3=new User("Mark",16);
+        User user4=new User("Rose",20);
+        TreeMap map=new TreeMap();
+
+        map.put(user,98);
+        map.put(user1,67);
+        map.put(user2,78);
+        map.put(user3,59);
+        map.put(user4,87);
+
+        //自然排序
+        Set set = map.entrySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            Object obj = iterator.next();
+            Map.Entry entry=(Map.Entry)obj;
+            System.out.println(entry.getKey() + "-->" + entry.getValue());
+        }
+    }
+    @Test
+    public void test2(){
+
+        //定制排序：按照年龄大小排
+        TreeMap map=new TreeMap(new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if (o1 instanceof User && o2 instanceof User){
+                    User user=(User) o1;
+                    User user1=(User) o2;
+                    //    按照年龄大小排
+                    return Integer.compare(user.getAge(),user1.getAge());
+                }
+                throw new RuntimeException("输入的数据有误！");
+            }
+        });
+        User user=new User("Tom",18);
+        User user1=new User("Jerry",20);
+        User user2=new User("Jack",21);
+        User user3=new User("Mark",16);
+        User user4=new User("Rose",20);
+        map.put(user,54);
+        map.put(user1,65);
+        map.put(user2,78);
+        map.put(user3,89);
+        map.put(user4,92);
+
+        Set set = map.entrySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            Object obj = iterator.next();
+            Map.Entry entry=(Map.Entry)obj;
+            System.out.println(entry.getKey() + "----->" + entry.getValue());
+        }
+
+    }
+
+//Properties:常用来处理配置文件.key-value都是String 类型
+
+@Test
+    public void test() throws FileNotFoundException {
+        FileInputStream fis = null;
+        try {
+            Properties pro = new Properties();
+            fis = new FileInputStream("E:\\java_code\\SGGJavaCode\\jdbc.properties");
+            pro.load(fis);//加载流对应的文件
+
+            String name = pro.getProperty("name");
+            String password = pro.getProperty("password");
+
+            System.out.println("name:" + name + "," + "password:" + password);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+ Collections:
+ * 作用：Collections是一个操作Set、Lit和Map等集合的工具类
+        Collections中提供了一系列静态的方法对集合元素进行排序、査询和修改等操作，还提供了对集合对象设置不可变、对集合对象实现同步控制等方法
+   常用方法：
+         排序操作：
+         reverse(List)：反转 List 中元素的顺序
+         shuffle(List)：对 List 集合元素进行随机排序
+         sort(List)：根据元素的自然顺序对指定 List 集合元素升序排序
+         sort(List，Comparator)：根据指定的 Comparator 产生的顺序对 List 集合元素进行排序
+         swap(List，int， int)：将指定 list 集合中的 i 处元素和 j 处元素进行交换
+
+         查找、替换：
+         Object max(Collection)：根据元素的自然顺序，返回给定集合中的最大元素
+         Object max(Collection，Comparator)：根据 Comparator 指定的顺序，返回给定集合中的最大元素
+         Object min(Collection)
+         Object min(Collection，Comparator)
+         int frequency(Collection，Object)：返回指定集合中指定元素的出现次数
+         void copy(List dest,List src)：将src中的内容复制到dest中
+         boolean replaceAll(List list，Object oldVal，Object newVal)：使用新值替换 List 对象的所旧值
+         同步控制：
+         Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将指定集合包装成线程同步的集合，
+         从而可以解决多线程并发访问集合时的线程安全问题
+
+
+        示例代码：
+         @Test
+            public void test1() {
+                ArrayList list = new ArrayList();
+                list.add(123);
+                list.add(99);
+                list.add(60);
+                list.add(-10);
+                list.add(0);
+                list.add(50);
+                list.add(123);
+                System.out.println(list);
+                // reverse(List)：反转 List 中元素的顺序
+        //        Collections.reverse(list);
+
+        //       shuffle(List)：对 List 集合元素进行随机排序
+        //        Collections.shuffle(list);
+
+                // sort(List)：根据元素的自然顺序对指定 List 集合元素升序排序
+        //        Collections.sort(list);
+
+                //swap(List，int， int)：将指定 list 集合中的 i 处元素和 j 处元素进行交换
+        //        Collections.swap(list,1,2);
+
+                // int frequency(Collection，Object)：返回指定集合中指定元素的出现次数
+                int frequency = Collections.frequency(list, 123);
+                System.out.println(frequency);
+
+
+        //        System.out.println(list);
+
+  @Test
+    public void test2(){
+        //void copy(List dest,List src)：将src中的内容复制到dest中
+        ArrayList list = new ArrayList();
+        list.add(123);
+        list.add(456);
+        list.add(45);
+        list.add(20);
+        list.add(-20);
+        //会报异常：IndexOutOfBoundsException
+
+//        List  dest=new ArrayList();
+//        Collections.copy(dest,list);
+//        System.out.println(dest);
+
+        List dest = Arrays.asList(new Object[list.size()]);
+        System.out.println(dest.size());
+        Collections.copy(dest,list);
+        System.out.println(dest);
+
+
+    }
+    @Test
+    public void test3(){
+//        Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将指定集合包装成线程同步的集合，
+//        从而可以解决多线程并发访问集合时的线程安全问题
+        ArrayList list = new ArrayList();
+        list.add(123);
+        list.add(456);
+        list.add(45);
+        list.add(20);
+
+
+        List list1 = Collections.synchronizedList(list);
+        System.out.println(list1);
+
+    }
