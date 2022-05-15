@@ -1,7 +1,5 @@
 package com.atguigu.exer1;
 
-import java.util.*;
-
 /**
  * @Description
  * @Author lipeng

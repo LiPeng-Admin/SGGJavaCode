@@ -2,8 +2,6 @@ package com.atguigu.java2;
 
 import org.junit.Test;
 
-import java.util.*;
-
 /**
  * @author admin
  * @version 1.0.0

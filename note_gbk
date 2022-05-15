@@ -1,0 +1,3503 @@
+计算机语言发展迭代史
+机器语言->机器语言->高级语言(面向过程，面向对象)
+计算机底层都以补码的方式来存储数据
+对于正数而言：原码，补码，反码三码合一
+对于负数来说，原码除符号位不同(1:表示负数)其他相同
+            反码是除符号位与负数的符号位相同外，其他都是反的（负数原码的0变为1,1变为0）
+            补码=反码+1
+java
+在领域的应用：
+企业级应用，Android平台应用，大数据平台开发
+语言特性：
+是一个纯粹的 面向对象 的程序设计语言，继承了C++语言面向对象技术的核心，
+舍弃了C语言中容易引起错误的指针，增加了垃圾回收器功能
+语言特点：
+1、面向对象：
+两个基本概念：类，对象
+三大特性：封装，继承，多态
+2、健壮性：
+吸收了C/C++语言的优点，去掉了其影响程序健壮性的部分(如指针，内存的申请与释放)，
+                     提供了一个相对安全的内存管理和访问机制
+3：跨平台性：
+通过java语言编写的应用程序在不同的系统平台上都可以运行
+原理：只需要运行java 应用程序的操作系统上，先安装一个Java 虚拟机(JVM Java Virtual Machine)即可
+由JVM 负责Java程序在该系统中的运行
+
+核心机制：
+java 虚拟机（JVM）
+垃圾收集机制
+
+JDK(Java Development Kit Java 开发工具包)
+包含了java 的开发工具和JRE
+开发工具：
+        编译工具（javac.exe）打包工具（jar.exe）等
+JRE：
+        Java Runtime Environment Java 运行环境
+        包括Java虚拟机和Java 程序所需的核心类库等，如果想要运行一个开发好的Java程序，
+        计算机中只需要安装安装JRE即可
+开发程序：
+将java 代码编写到扩展名为.java 的文件中
+通过javac 命令对该java 文件进行编译(字节码文件)
+通过 java 命令对生成的class 文件进行运行
+在一个java 源文件中可以声明多个class ,但是最多有一个类声明为public
+且要求声明为public类的类型必须与源文件名相同
+每一行执行语句都以";"结束
+
+Java 注释类型
+单行注释： //
+多行注释：/*  */
+单行注释和多行注释特点：不参与编译
+文档注释(java特有)：/** */
+文档注释特点：注释内容可以被jdk 提供的工具javadoc 解析，
+            生成一套以网页文件形式体现的该程序的说明文档
+            操作方式：javadoc -d mydoc -author -version HelloWorld.java
+
+Java API 的文档
+API（Application Programming Interface）是java 提供的基本编程接口
+应用程序=算法+数据结构（主要用于提效）
+
+关键字与保留字
+java保留字：现有java 版本尚未使用，但以后版本可能会作为关键字使用，命令标识符要避免使用这些保留字
+          如goto ,const
+
+标识符： 定义： java 对各种变量，方法，和类等要素命名时使用的字符序列称为标识符
+        技巧： 凡是自己可以起名字的地方都叫标识符
+        规则（主要）：由26个英文字母大小写，0-9，_或 $组成
+                    数字不可以开头
+                    不可以使用关键字和保留字
+                    严格区分大小写，长度无限制
+                    不能包含空格
+         规范：包名：多单词组成时所有字母都小写：xxxyyy
+              类名、接口名：多单词组成时，所有单词的首字母大写：XxxYyyZzz
+              变量名，方法名：多单词组成时，第一个单词首字母小写，第二个单词开始每个单子首字母大写
+                            xxxYyyZzz
+              常量名：所有字母都大写，多单词时每个单词用下划线链接:XXX_YYY_ZZZ
+Java 中的变量
+              是程序中最基本的存储单元，包含变量类型，变量名和存储的值
+
+Java 中的数据类型
+               基本数据类型：
+                           数值型：整数类型:byte,short,int,long
+                                  浮点类型:float,double
+                           字符型：char
+                           布尔型:boolean
+               引用数据类型：
+                            类：class  (字符串再这里)
+                            接口：interface
+                            数组：array
+
+Java 中的运算符
+算术运算符，赋值运算符，比较运算符（关系运算符ja），逻辑运算符，位运算符，三元运算符
+
+分支结构
+if-else
+switch-case
+
+循环结构
+for
+while
+do-while
+四个组成部分
+初始化部分，
+循环条件部分
+循环体部分
+迭代部分
+
+数组
+数组是有序排列的
+是多个相同类型数据按一定顺序排列的集合，并使用一个名字命名
+数组本身是引用数据类型，而数组中的元素可以是任何数据类型，包括基本数据类型和引用数据类型
+创建的数组对象会在内存中开辟一整块连续的空间
+数组的长度一旦确定，就不能修改
+
+获取某个范围的随机数[a,b]:(int)(Math.random()*(b-a+1)+a)
+
+
+* 数组本身是引用数据类型，而数组中的元素可以是任何数据类型，
+* 包括基本数据类型和引用数据类型
+* 创建的数组对象会在内存中开辟一整块连续的空间
+*数组的长度一旦确定，就不能修改
+*
+* 一维数组的使用
+* 1：一维数组的声明和初始化
+* 2：如何调用数组的指定位置的元素
+* 3：如何获取数组的长度
+* 4：如何遍历数组
+* 5：数组元素的默认初始化值
+一维数组：
+        数组元素是整型：0
+        数组元素是浮点型:0.0
+        数组元素是char型：0，非'0'
+        数组元素是布尔型：false
+
+        数组元素是引用类型：null
+
+二维数组：
+        针对初始化方式一：如 int[][]ints=new int[4][3]
+        外层元素的初始化值为：地址值
+        内层元素的初始化为：整型：0，浮点型：0.0，char型：0,布尔型：false,String 或引用数据类型：null
+        针对初始化方式二：如 int[][]ints=new int[4][]
+        外层元素的初始化值为：null
+        内层元素的初始化：npe 异常
+
+* 6：数组的内存解析
+
+数组中的常见异常
+1：数组索引越界的异常
+2：空指针异常
+
+算法的常见考查（数组）：
+        求数值型数组中元素的最大值，最小值，平均数，总和等
+        数组的复制，反转，查找（线性查找,二分法查找）
+
+
+补充部分
+数据结构
+1：数据与数据之间的逻辑关系：集合，一对一，一对多，多对多
+2：数据的存储结构
+线性表：顺序表（如:数组）,链表，栈，队列
+树形结构：二叉树
+图形结构：
+
+算法：
+排序算法
+搜索算法
+
+面向对象三条主线
+1：java 类及类的成员
+2：面向对象的三大特征
+3：其他关键字
+
+类和对象是面向对象的核心概念
+类是对一类事物的描述，是抽象的，概念上的定义
+对象是实际存在的该类事物的每个个体，因而也称为实例
+
+1:设计类，其实就是设计类的成员
+    属性=成员变量=field=域、字段
+    方法=成员方法=函数=method
+    创建类的对象=类的实例化=实例化类
+*
+2:类和对象的使用
+1：创建类，设计类的成员
+2：创建类的对象
+3：通过"对象.属性"或"对象.方法"调用对象的结构
+
+3:若创建一个类的多个对象，则每个对象都独立的拥有一套类的属性(非static )
+    若修改了一个对象的属性a,不影响另外一个对象属性a 的值
+
+
+类中属性的使用
+ 属性（成员变量）vs 局部变量
+ 1： 相同点：
+        1.1：定义变量的格式：数据类型 变量名=变量值
+        1.2：先声明，后使用
+        1.3：变量都有其对应的作用域
+ 2：不同点：
+        2.1:在类中声明的位置不同
+        属性（成员变量）：直接定义在类的一对{}内
+        局部变量：声明在方法内，方法形参，代码块内，构造器形参，构造器内部的变量
+        2.2关于权限修饰符的不同
+        属性：可以在声明属性时，指明其权限，使用权限修饰符
+        常用的权限修饰符：private,public,缺省,protected,（不写默认是缺省的）==>封装性
+        局部变量是不可以使用权限修饰符的
+        2.3默认初始化值的情况
+        属性：类的属性，根据其类型，都有默认初始化值
+              整型：0
+              浮点：0.0
+              字符型：0
+              布尔型：false
+              引用数据类型(类，接口，数组)：null
+
+        局部变量:没有默认初始化值，需要显示赋值
+                注意:形参在调用时，需要赋值
+
+         2.4 在内存中加载的位置
+         属性：加载在堆空间中（非static）
+         局部变量：加载在栈空间
+
+
+类中方法的声明和使用
+方法：描述类应该具有的功能
+比如：Math类：sqrt()\random()\...
+     Scanner类：nextInt()...
+     Arrays类：toString()\equals()\...
+     1:举例
+     public void eat(){}
+     public void sleep(int hour){}
+     public String getName(){}
+     public String getNation(String nation){}
+
+     2:方法的声明：权限修饰符 返回值类型 方法名（形参列表）{
+     方法体
+     }
+     注意：static,final,abstract 来修饰的方法，详见后面
+
+     3：说明：
+     3.1关于权限修饰符
+        Java规定的4个权限修饰符：private,public,缺省，protected
+     3.2返回值类型：有返回值 vs 没有返回值
+            3.2.1  如果方法有返回值，则必须在方法声明时，指定返回值的类型，
+                    同时，方法中需要使用return 关键字来返回指定类型的变量或常量
+                    若方法没有返回值，则方法声明时，使用void来表示，通常，没有返回值的方法中，
+                    不需要使用return ，但是，若使用的话，只能只用"return;"来表示结束此方法的意思
+
+            3.2.2 我们定义方法需不需要返回值？
+                    1：需求
+                    2：经验
+
+       3.3 方法名：属性标识符
+       3.4形参列表：方法可以声明0或1个或多个
+       格式：数据类型1 形参1,数据类型2 形参2,....
+
+       3.5方法体
+
+      4： return 关键字的作用
+       1：适用范围:使用在方法体中
+       2：作用：11:结束方法
+               22：针对有返回值类型的方法，使用"return 数据"方法返回所要的语句
+               33：return 关键字后面不可以声明执行语句
+
+       5:方法的使用中，可以调用当前类的属性和方法
+                    特殊的：方法A中又调用了方法A :递归方法
+                   方法中不可以定义方法
+
+
+JVM内存结构
+    编译完程序以后，生成一个或多个字节码文件
+    我们使用JVM 中的类的加载器和解释器对生成的字节码文件进行解释运行。
+    意味着，需要将字节码文件对应的类加载到内存中，涉及到内存解析
+
+    虚拟机栈：即平时提到的栈结构。局部变量存在在栈结构中
+    堆：     将new 出来的结构（如数组，对象）加载在堆空间中。
+            补充：对象的属性（非static）加载在堆空间中
+    方法区：  类的加载信息，常量池，静态域
+
+一：理解”万事万物皆对象“
+    1：在Java语言范畴中，我们都将功能，结构等封装到类中，通过类的实例化。来调用具体结构的功能结构
+    2：涉及到Java 语言与前端Html，后端的数据库交互时，前后端的结构在Java 层面交互时，都体现为类，对象
+
+二：内存解析的说明
+    1：引用类型的变量，只可能存储两类值：null或地址值（含变量的类型）
+
+三：匿名对象
+    理解：创建的对象，没有显示的付给一个变量名；
+          直接 new Phone().属性、方法
+    特征： 匿名对象只能调用一次
+    使用：
+
+方法
+   方法的重载
+   *   定义：在同一个类中，允许存在一个以上的同名方法，只要它们的参数个数或参数类型不同即可
+   *         "两同一不同"：同一个类，相同方法名
+   *                     参数列表不同：参数个数不同，参数类型不同
+   *   举例：
+   *        Arrays类中重载的sort()/binarySearch()
+   *
+   *   判断是否是重载：
+   *         与方法的权限修饰符，返回值类型，形参变量名，方法体没有关系
+    示例：
+    //返回连个整数的和
+    int add(int x,int y){
+    return x+y;
+    }
+    //返回三个整数的和：
+    int add(int x,int y,int z){
+    return x+y+z
+    }
+    //返回两个小数的和：
+    double add(double x,double y){
+    return x+y;
+    }
+
+    可变形参的方法
+        javaSE5,允许直接定义能和多个实参相匹配的形参。
+        1：可变形参的格式：数据类型 ... 变量名
+        2:当调用可变个数形参的方法时，传入的参数可以是：0,1,2,。。。
+        3:可变个数形参的方法与本类中方法名相同，形参不同的方法之间构成重载
+        4：可变个数形参的方法与本类中方法名相同，形参类型也相同的数组之间不构成重载
+        5:可变个数形参在方法的形参中，必须声明在末尾
+        6：可变个数形参在方法的形参中，最多只能声明一个可变形参
+
+
+java中方法参数的传递机制： 值传递机制（重难点）
+     方法的形参的传递机制：值传递
+     * 1：形参：方法定义时，声明在小括号内的参数
+     *    实参：方法调用时，实际传递给形参的数据
+     *
+     * 2：值传递机制
+     *   如果参数是基本数据类型，此时实参赋给形参的是实参真实存储的数据值
+     *   如果参数是引用数据类型，此时实参赋给形参的是实参存储数据的地址值
+
+     推广：
+     关于变量的赋值
+          如果变量是基本数据类型，此时赋值的是变量所保存的数据值
+          如果变量是引用数据类型，此时复制的是变量所保存的数据地址值
+
+
+递归方法
+    使用
+        1：递归方法：一个方法内调用它本身
+        2：方法递归包含了一种隐式的循环，它会重复执行某段代码，但这种重复执行无需循环控制，
+           递归一定要向已知方向递归，否则这种递归就变成了无穷递归，类似于死循环
+
+
+
+* 面向对象的特征一：封装与隐藏
+* 一：问题的引入
+    * 当我们创建一个类的对象以后，我们可以通过“对象.属性”的方式，对对象的属性进行赋值，
+    * 这里，赋值操作受到属性的数据类型和存储范围的制约，除此之外，没有其他制约条件。
+    * 但是，在实际问题中，我们往往需要给属性赋值加入额外的限制条件，这个条件就不能再属性声明时
+    * 体现，我们只能通过方法进行限制条件的添加，（如setLegs），同时我们需要避免用户在使用"对象.属性"
+    * 的方式来对属性进行赋值，需要将属性声明为私有的（private）->此时，针对于属性就体现为封装性
+
+* 二：封装性的体现
+    * 我们将类的属性私有化xxx（private）,同时，提供公共的（public）方法来获取（getXxx）和设置(setXxx)此属性的值
+    *   拓展：属性的私有化，方法的私有化，单例模式。。。。
+
+* 三：封装性的体现，需要权限修饰符的配合
+    * 1：Java 规定的4种权限（从小到大）：private,缺省,protected,public
+    * 2:4种权限可以用来修饰类及类的内部结构：属性，方法，构造器，内部类
+    * 3：具体的，4种权限都可以用来修饰符类的内部结构：属性，方法，构造器，内部类
+    *           修饰类：只能使用：缺省，public
+
+
+类的结构之三：构造器（或构造方法）的使用: Constructor
+ * 一：构造器的使用
+     * 创建对象
+     * 给对象初始化
+   二：说明
+   * 1：如果没哟显示的定义类的构造器的话，则系统默认提供一个空参的构造器
+   * 2：定义构造器的格式：
+   * 权限修饰符 类名（形参列表）{
+   * }
+   * 3：类中可以定个多个构造器，彼此构成重载
+   * 4：一旦我么定义了类的构造器之后，系统就不在提供了默认的空参构造器
+   * 5：一个类中，至少会有一个构造器
+
+ 属性赋值
+   1：默认初始化
+   2：显示初始化
+   3：构造器中赋值
+   4：通过"对象.方法"或"对象.属性"的方式赋值
+赋值 先后顺序 1->2->3->4
+
+ JavaBean 是一种Java 语言写成的可重用组件（符合如下标准的Java 类）
+    类是公共的
+    有一个无参的公共的构造器
+     有属性且有对应的get,set 方法
+
+ this 关键字的使用
+ * 1：this 可以用来修饰：属性，方法，构造器
+ * 2: this 修饰符属性和方法
+     *this理解为：当前对象 或当前正在创建的对象
+     *      2.1：在类的方法中，我们可以使用"this.属性"或"this.方法"的方式，来调用当前对象的属性或方法
+     *      但是通常情况下，我们会省略"this.",特殊情况下，如果方法的形参与类的属性同名是，我们必须
+     *      显示的使用"this.变量"的方式，表明此变量时属性，非形参
+     *
+
+      *     2.2在类的构造器中，我们可以使用"this.属性"或"this.方法"的方式，来调用当前正在创建的对象的属性或方法
+      *     但是通常情况下，我们会省略"this.",特殊情况下，如果构造器的形参与类的属性同名是，我们必须
+      *     显示的使用"this.变量"的方式，表明此变量时属性，非形参
+ *3:this   修饰或调用构造器
+ *          3.1:我们在类的构造器中，可以显示的使用“this(形参列表)” 方式，调用本类中的其他构造器
+ *          3.2:构造器中不能通过“this(形参列表)”方式调用自己
+ *          3.3：如果一个类中有n 个构造器，则最多有n-1 构造器使用了“this(形参列表)”
+ *          规定：“this（形参列表）“必须声明在当前构造器的首行
+
+一:package 关键字的使用
+    * 1：使用package 声明类或接口所属的包，声明在源文件的首行
+    * 2：包，属于标识符，遵循标识符的命名规则
+    * 3：每"."一次，代表一层文件目录
+
+二：import 关键字的使用
+    * 1：在源文件中显式的使用import 结构导入指定包下的类，接口
+    * 2：声明在包的声明和类的声明之间
+    * 3：如果使用的类或接口是 java.lang 包下定义的，则可以省略import 结构
+    * 4：如果使用的类或接口是本包下定义的，则可以省略 import 结构
+    * 5：如果在源文件中，使用不同包下的同名的类，则必须至少有一个类需要以全类名(包含包名的类名)的方式显示
+    *6：import static：导入指定类或接口中的静态结构:属性或方法
+
+面向对象的特征之二：继承性
+* 一：继承性的优势：
+* 1：减少代码的冗余，提高了代码的复用性
+* 2：便于功能的扩展
+* 3：为之后的多态性的使用，提供了前提
+* 二：继承性的格式：class A extends B{}
+* A:子类，派生类
+* B：父类，超类，基类
+*     2.1体现：一旦子类A 继承了父类B 以后，子类A中就获取了父类B 中声明的结构：属性，方法
+*      特别的，父类中声明为privated 的属性和方法，子类继承父类后，仍然认为获取了父类中私有的结构
+*      只是因为封装性的影响，使得子类不能直接调用父类的结构而已
+*    2.2 子类继承父类以后。还可以声明自己特有的属性或方法，实现功能的扩展
+*     子类和父类的关系，不同于子集和集合的关系
+*
+* 三：java 中关于继承性的规定
+* 1：一个类可以被多个子类继承
+* 2：java 中的单继承性：一个类只有一个父类
+* 3：子父类是相对的概念
+* 4：子类继承父类，也就继承直接或间接父类中声明的所有属性和方法
+*
+*四：1:如果我么没有显式的声明一个类的父类，则此类继承于java.lang.Object 类
+*   2：所有的java 类（java.lang.Object 类）,都直接或间接的继承于java.lang.Object类
+
+*方法的重写（override/overwrite）
+* 1：重写：子类继承父类以后，可以对父类中同名同参数的方法，进行覆盖操作
+* 2：应用：重写以后，当创建子类对象以后，通过子类对象调用父类中的同名同参数的方法时，实际执行的是子类重写父类的方法
+* 3：重写的规定：
+*           方法的声明：权限修饰符 返回值类型 方法名（形参列表）throws 异常类型{
+                    方法体
+                    }
+                    约定俗成：子类中的叫重写的方法，父类中的叫被重写的方法
+                    * 1：:子类重写的方法名与形参列表与父类被重写的方法名与形参列表相同
+
+                    * 2：权限修饰符：子类重写的方法权限修饰符不小于父类被重写的方法的权限修饰符
+
+                    *              特殊情况：子类不能重写父类中声明为private权限的方法
+
+                    * 3：返回值类型：
+                    *               若父类被重写的方法的返回值类型时void ，则子类重写的方法返回值类型也是void
+                    *               若父类被重写的方法的返回值类型是A类，则子类重写的方法返回值类型是A类或A类的子类
+                    *               若父类被重写的方法的返回值类型是基本数据类型，则子类重写的方法返回值必须是相同的基本数据类型
+
+                    * 4：子类重写的方法抛出的异常类型不大于父类被重写的方法抛出的异常类型
+                    *
+                    * 额外的：子类和父类的同名同参数的要么声明为非static(考虑重写),要么生命为static(不是重写)
+
+ super关键字的使用
+* 1：super理解：父类的
+* 2：super可以用来调用属性，方法，构造器
+* 3：super 的使用:属性和方法
+* 3.1 我们可以在子类的方法或构造器中，通过使用"super.属性"或"super.方法"的方式显示调用
+*      父类声明的属性或方法，但是通常情况会省略"super."
+* 3.2 特殊情况：当子类和父类中定义了同名的属性时，我们想在子类中调用父类中声明的属性，则必须
+*      显示的使用"super.属性"的方式，表明调用的是父类中声明的属性
+* 3.3 特殊情况：当子类重写了父类中的方法以后，我们想在子类的方法中调用父类中被重写的方法时，必须
+*      显示的使用"super.方法"的方式，表明调用的是父类中声明的方法
+*
+* 4：super 的使用：构造器
+* 4.1 在子类的构造器中显示的使用"super(形参列表)"的方式，调用父类中声明的指定的构造器
+* 4.2 "super（形参列表）"的使用，必须声明在子类构造器的首行
+* 4.3 我们在类的构造器中，针对于"this（形参列表）"或super(形参列表)"只能二选一，不能同时出现
+* 4.4 在构造器的首行，没有显示的声明"this(形参列表)"或"super(形参列表)"，则默认调用的是 父类中空参的构造器：super()
+* 4.5 在类的构造器中，至少有一个类的构造器中使用了"super(形参列表)"，调用了父类的构造器
+
+
+子类对象实例化的全过程
+* 1：从结果来看（继承性）
+*       子类继承父类以后，就获取父类中升到属性和方法
+*       创建子类的对象，在堆空间中，就会加载所有父类中声明的属性
+* 2：从过程来看
+*       当我们通过子类的构造器创建子类对象时，我么一定会直接或间接的调用其父类的构造器
+        进而调用父类的父类的构造器。。，直到调用了java.lang.Object类中空间的构造器，正因为
+        加载了所以父类的结构，所以才看到内存中父类的结构，子类对象才可以考虑进行调用
+*
+
+面向对象之三：多态性
+* 1:理解多态性：可以理解为一个事物的多种形态
+* 2:何为多态性：
+*       对象多态性：父类的引用指向子类的对象（或子类的对象赋给父类的引用）
+* 3：多态的使用：虚拟方法调用
+*       有了对象的多态性以后，我们在编译期，只能调用父类中声明的方法，但是在运行期，我们实际执行的是子类重写父类的方法
+*       总结：编译，看左边；运行，看右边
+* 4：多态性使用的前提
+*        1：类的继承关系，2：方法的重写
+*
+* 5:对象的多态性只适用于方法，不适用于属性（编译与运行都看左边）
+
+有了对象的多态性后，内存中实际是加载了子类特有的属性和方法，但是由于变量声明为父类类型，
+        //导致编译时，只能调用父类中声明的属性和方法，子类特有属性和方法不能调用
+
+ 如何调用子类特有的属性和方法
+ 向下转型：使用强制类型转换符
+         instanceof关键字的使用
+              a instanceof A:判断对象a是否是类A的实例，如果是，返回true ,如果不是，返回false
+              使用情境：为了避免向下转型时出现ClassCastException的异常，我们在向下转型之前，进行
+              instanceof的判断，一旦返回true,就进行向下转型，如果返回false,不进行向下转型
+
+              如果a instanceof A,返回true,则 a instanceof B 也返回true (其中，类B是类A的父类)
+
+重载与重写的区别
+1；定义
+2：具体规则
+3：重载：不表现为多态性，重写：表现为多态性
+
+java.lang.Object 类
+1：Object 类是所有java类的父类
+2：如果在类的声明中未使用extends关键字指明其父类，则默认父类为java.lang.Object类
+3:Object 类中的功能（属性，方法）具有通用性
+属性：无
+方法：equals()/toString()/getClass()/hashCode()/clone()/findlize()/wait()/notify()...
+Object类 中只声明了一个空参构造器
+
+面试题：== 与equals（）区别
+一：回顾 == 的使用
+1：可以使用在基本数据类型变量和引用数据类型变量中
+2：如果比较的是基本数据类型变量：比较两个变量保存的数据是否相等（不一定类型要相同）
+   如果比较的是引用数据类型变量：比较两个对象的地址值是否相同，即两个引用是否指向同一个对象实体
+
+二：equals()方法的使用
+1：是一个方法，而非运算符
+2：只能使用引用数据类型
+3:Object 类中equals（）的定义：
+    public boolean equals(Object obj) {
+        return (this == obj);
+    }
+    说明：Object类中定义的equals()方法与== 的作用是相同的，即两个引用是否指向同一个对象实体
+
+4：对于如String,Date,File,包装类等都重写了Object类中的equals()方法，重写以后，比较的不是两个引用
+    的地址是否相同，而是比较两个对象的"实体内容"是否相同
+
+5：通常情况下，我们自定义的类如果使用equals()的话，也通常比较两个对象的"实体内容"是否相同，
+    那么，我们需要重写Object 类中equals()方法
+
+* Object 类中toString ()的使用
+* 1：当我们输出一个对象的引用时，实际上就是调用当前对象的toString()
+* 2：Object 类中toString()的定义：
+*       public String toString() {
+            return getClass().getName() + "@" + Integer.toHexString(hashCode());
+        }
+  3： 对于String,Date,File,包装类等重写了Object 类中的toString ()方法,使得在调用对象的toString()时，返回"实体内容"信息
+
+ * 4：自定义类也可以重写toString()方法，当调用此方法时，返回对象的"实体内容"
+
+ 包装类的使用
+ * java 提供了8种基本数据类型对应的包装类，使得基本数据类型的变量具有类的特征
+ * 掌握的：基本数据类型，包装类，String 三者之间的互相转换
+ 注意：转换时，可能会报NumberFormatException
+
+ 基本数据类型，包装类--->String类型：
+             调用String重载的valueOf(xxx)
+ String 类型--->基本数据类型，包装类:
+              调用包装类的parseXxx()
+
+ Java 5.0新特性：自动装箱与自动拆箱
+ 自动装箱:
+        基本数据类型--->包装类
+ 自动拆箱：
+        包装类--->基本数据类型
+补充：  Interger内部定了IntergerCache结构，IntergerCache
+          * 中定义了Interger[],保存了从-127-128范围的整数，如果我们使用自动装箱的方式，
+          * 给Interger赋值的范围在-128-127范围内时，可以直接数组中的元素，不用再去new了
+          * 目的：提高效率
+
+static 关键字的使用
+* 1:static:静态的
+* 2：static可以用来修饰：属性，方法，代码块，内部类
+* 3：使用static修饰属性；静态变量/属性
+*   3.1属性：按照是否使用static修饰分为：静态属性/变量(或类变量) vs 非静态属性/变量（实例变量）
+*
+*   实例变量：我们创建了类的多个对象。每个对象都独立的拥有一套类中的非静态属性。当修改其中一个对象的非静态属性时，
+*           不会导致其他对象中同样的属性值的修改
+*   静态变量：我们创建了类的多个对象，多个对象共享了同一个静态属性（变量），当通过某一个对象修改静态变量时，会导致
+*           其他对象调用此静态变量时，是修改过了的
+*
+*  3.2使用static修饰属性的其他说明
+*           1:静态变量随着类的加载而加载，可以通过"类.静态变量"方式进行调用
+*           2:静态变量的加载早于对象的创建
+*           3:由于类只会加载一次，则静态变量在内存中也只会存在一份：存在方法区的静态域中
+*
+*  3.3 静态属性的举例：System.out,Math.PI
+*
+*
+* 4：使用static修饰方法：静态方法
+*           1：随着类的加载而加载，可以通过"类.静态方法"的方式进行调用
+*           2:       静态方法     非静态方法
+*               类    yes           no
+*
+*               对象   yes           yes
+*
+*           3:静态方法中，只能调用静态的方法或属性
+*             非静态方法中，既可以调用非静态的方法或属性，也可以调用静态的方法或属性
+*
+* 5：static注意点：
+*          在静态的方法内，不能使用this,super 关键字
+*
+* 6:    在开发中，如何确定一个属性是否声明为static？
+*           属性是可以被多个对象所共享的，不会随着对象的不同而不同的
+*
+*       在开发中，如何确定一个方法是否声明为static？
+*           操作静态属性的方法，通常设置为static
+*           工具类中的方法，习惯上声明为static,如：Math,Arrays,Collections
+
+
+final：最终的
+* 1：final可以用来修饰的结构：类，方法，变量
+* 2：final 用来修饰类：此类不能被其他类继承，如String,System,StringBuffer等类
+* 3：final 用来修饰方法，表名此方法不可以被重写,如Object类中getClass();
+* 4:final用来修饰变量：此时的“变量”就称为一个常量
+*   4.1:final修饰属性：可以考虑赋值的位置有：显示初始化，代码块初始化,构造器初始化
+*   4.2：final修饰局部变量：尤其是使用final修饰形参时，表明此形参是一个常量，当我们调用
+*                         此方法时，给常量形参赋一个实参，一旦赋值以后，就只能在方法体内使用此形参，
+*                         但不能进行重新赋值
+*
+* static final 用来修饰属性，方法
+*                  修饰属性：全局常量
+
+*
+单例设计模式：
+* 1：所谓类的单例设计模式，就是采取一定的方法保证在整个的软件系统中，对某个类只能存在一个对象实例
+* 2：如何实现？
+*       1：饿汉式：
+*               1:私有化类的构造器
+*:              2：内部创建类的对象(要求此对象必须声明为静态的)
+*               3：提供公共的静态方法，返回类的对象
+
+代码：//饿汉式
+   class Bank{
+       //1:私有化类的构造器
+       private Bank(){
+
+       }
+       //2：内部创建类的对象(要求此对象必须声明为静态的)
+       private static Bank instance=new Bank();
+       //3:提供公共的静态方法，返回类的对象
+       public static Bank getInstance(){
+           return instance;
+       }
+
+   }
+*
+*       2:懒汉式:
+                1：私有化类的构造器
+                2:声明当前类对象，未初始化(要求此对象必须声明为静态的)
+                3:声明公共的，static的返回类当前类对象的方法
+
+代码：
+class Order{
+    //1：私有化类的构造器
+    private Order(){
+
+    }
+    //2:声明当前类对象，未初始化(要求此对象必须声明为静态的)
+    private static Order instance=null;
+
+    //3:声明公共的，static的返回类当前类对象的方法
+    public static Order getInstance(){ //-->多线程时在修改
+        if(instance==null){
+            instance=new Order();
+        }
+        return instance;
+
+    }
+}
+
+
+  3:区分懒汉式与饿汉式：
+  *     饿汉式： 优点：线程是安全的
+  *             缺点：对象家在的时间过长
+  *
+  *     懒汉式： 优点：延迟对象的创建
+  *             缺点：目前的写法线程是不安全的-->多线程时在修改
+
+
+
+
+类的成员之四：代码块（或初始化块）
+* 1：代码块的作用：用来初始化类，对象
+* 2:代码块如果有修饰，只能使用static
+* 3:分类：静态代码块与非静态代码块
+* 4：静态代码块
+*       1：内部可以有输出语句
+*       2:随着类的加载而执行,而且只会执行一次
+*       3：初始化类的信息
+*       4：如果一个类中定义了多个静态代码块，则按照声明的先后顺讯执行
+*       5：静态代码块的执行早于非静态代码块的执行
+*       6:静态代码块只能调用静态的属性，方法，不能调用非静态的属性和方法
+* 5：非静态代码块
+*       1：内部可以有输出语句
+*       2:随着对象的创建而执行，每创建一个对象就会执行一次非静态代码块
+*       3:作用：可以在创建对象时，对对象的属性等进行初始化
+*       4：如果一个类中定义了多个非静态代码块，则按照声明的先后顺讯执行
+*       5:非静态代码块即能调用非静态的属性，方法，也能调用静态的属性和方法
+*
+
+总结：执行顺序：由父及子，静态先行
+
+
+* 对属性可以赋值的位置
+* 1：默认初始化
+* 2：显示初始化
+* 3：构造器中初始化
+* 4：有了对象以后，可以通过"对象.属性"或"对象.方法"的方式，进行赋值
+* 5：代码块中赋值
+
+重点：执行顺序：①-②/⑤-③-④
+
+ abstract关键字的使用
+* abstract：抽象的
+* abstract：抽象的
+* abstract可以用来修饰的结构：类，方法
+* abstract修饰类：抽象类
+*         此类不能实例化
+*         抽象类中一定有构造器，便于子类实例化时调用（涉及：子类对象实例化的全过程）
+*         开发中，都会提供抽象类的子类，让子类对象实例化，完成相关的操作
+*
+* abstract修饰方法：抽象方法
+*           抽象方法只有方法的声明，没有方法体
+*           包含抽象方法的类，一定是抽象类。反之，抽象类中可以没有抽象方法
+*           若子类重写了父类中的所有的抽象方法后，此子类方可实例化
+*           若子类没有重写父类中的所有的抽象方法，则子类也是一个抽象类，需要使用abstract修饰
+*
+* 注意点：
+    *       abstract 不能用来修饰：属性，构造器等结构
+    *       abstract 不能用来修饰私有方法，静态方法，final 的方法，final类
+
+接口的使用
+
+*1：接口使用interface来定义
+*2:java中接口和类是并列的两个结构
+*3：如何定义接口：接口中的成员
+*       3.1：jdk7及以前：只能定义全局常量和抽象方法
+*           全局常量：public static final(可以省略)
+*           抽象方法：public abstract
+*       3.2: jdk8及以后：除了定义全局常量及抽象方法外，还可以定义静态方法和默认方法（略）
+*
+* 4：接口中不能定义构造器，意味这不能实例化
+* 5：java开发中，接口通过类去实现（implements）的方式来使用
+*           如果实现类覆盖了接口中的所有抽象方法，则此实现类就可以实例化
+*           如果实现类没有覆盖接口中的所有抽象方法，则此实现类仍为抽象类
+*
+* 6:java类可以实现多个接口 -->弥补了java 单继承的局限性
+*
+*   格式：class AA extends BB implements CC,DD,EE
+*
+* 7:接口与接口之间可以继承，而且可以多继承
+* *******************
+* 8:接口的具体使用，体现多态性
+* 9：接口，实际上是一种规范
+
+
+知识点1：接口中定义的静态方法，只能通过接口来调用
+
+知识点2：通过实现类的对象，可以调用接口中的默认方法
+如果实现类重写了接口中的默认方法，则调用是重写的方法
+
+知识点3；如果子类（或实现类）继承的父类和实现的接口声明了同名同参数的方法
+那么子类在没有重写此方法的情况下，默认调用的是父类中的同名同参数的方法 --类优先原则
+
+知识点4：如果实现类实现了多个接口，而这多个接口中定义了同名同参数的默认方法，
+那么在实现类没有重写此方法的情况下，报错  --》接口冲突
+需要在实现类中重写此方法
+
+知识点5：如何在子类（或实现类）中调用父类，接口被重写的方法
+        调用父类：super.方法名
+        调用接口：接口名.super.方法名
+
+
+面试题：接口与抽象类的异同
+    相同点：不能实例化；都可以包含抽象方法
+    不同点：通过抽象类和接口的定义，内部结构解释说明
+           类：单继承性，接口：多继承
+           类与接口：多实现
+
+
+类的内部成员之五：内部类
+* 1：java 中允许将一个类A声明在另一个类B中，则类A就是内部类，类B是外部类
+* 2：内部类的分类：成员内部类 vs 局部内部类（方法类，代码块内，构造器内）
+* 3:成员内部类：
+*      一方面,作为外部类的成员：
+*         调用外部类的结构
+*         可以被static修饰
+*         可以被4种不同的权限修饰
+*
+*     另一方面,作为一个类：
+*          可以定义属性，方法，构造器等
+*          可以用final修饰，表明此类不能被继承
+*          可以被abstract 修饰，表明此类不能被实例化
+*
+* 4:关注如下的3个问题
+*   4.1：如何实例化成员内部的对象
+*       //创建Man实例（静态的成员内部类）
+        Person.Man man=new Person.Man("张三",28);
+       man.show();
+
+       //创建Woman实例（非静态的成员内部类）
+        Person person=new Person();
+        Person.Woman woman=person.new Woman();
+        woman.washHand();
+        woman.display("王道乾");
+*
+*   4.2：如何在成员内部类中区分调用外部类的结构
+*             System.out.println(name); //方法的形参
+              System.out.println(this.name); //内部类的属性
+              System.out.println(Person.this.name); //外部内的属性
+*
+*   4.3：开发中局部内部类的使用
+*       代码如下：
+            * public class InnerClassTest1 {
+                //开发中常使用：返回一个实现了Comparable接口的类的对象
+
+                public Comparable getComparable(){
+
+                    //方式一：
+                    //创建一个实现了Comparable接口的类：局部内部类
+            //        class MyComparable implements  Comparable{
+            //            public int compareTo(Object o) {
+            //                return 0;
+            //            }
+            //        }
+            //        return  new MyComparable();
+            *
+                    //方式二：
+                    return new Comparable() {
+                        public int compareTo(Object o) {
+                            return 0;
+                        }
+                    };
+
+                }
+            }
+
+*
+*
+* */
+
+注意点：（移动端开发使用场景较多）
+/*
+ *在局部内部类的方法中（如show）如果调用局部内部类所声明的方法（如method）中的
+ * 局部变量（如num）,要求此局部变量声明为final的
+ */
+
+public class InnerClassTest2 {
+    int num=10; //此变量num 声明的是final,不能重新赋值，final省略
+    public void method(){
+        class AA{
+            public void show(){
+                System.out.println(num);
+            }
+
+        }
+    }
+}
+
+异常：
+Error:
+    Java 虚拟机无法解决的严重问题，如：JVM 系统内部错误，资源耗尽等严重情况
+     比如：StackOverflowError和OOM，一般不编写针对性的代码进行处理
+
+         public static void main(String[] args) {
+             //栈溢出：java.lang.StackOverflowError
+     //        main(args);
+             //堆溢出：java.lang.OutOfMemoryError:OOM
+             Integer [] arr=new Integer[1024*1024*1024];
+         }
+
+一：异常体系结构
+* java.lang.Throwable
+*       Error
+*       Exception
+*          编译时异常（checked）
+*             如：   IOException  ClassNotFoundException
+*
+*          运行时异常：(unchecked)
+*             如：   NullPointerException ArrayIndexOutOfBoundsException
+*                   ClassCastException  NumberFormatException
+*                   InputMismatchException  ArithmeticException
+
+public class ExceptionTest {
+
+}
+    //ArithmeticException
+    @Test
+    public void test6(){
+        int a=10;
+        int b=0;
+        System.out.println(a/b);
+    }
+
+     //InputMismatchException
+    @Test
+    public void test5(){
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("请输入你的成绩：");
+        int score=scanner.nextInt();
+        System.out.println(score);
+
+    }
+
+    //NumberFormatException
+    @Test
+    public void test4(){
+        String str="123";
+        str="abc";
+        Integer integer=Integer.parseInt(str);
+
+        System.out.println(integer);
+    }
+
+    //ClassCastException
+    @Test
+    public void test3(){
+        Object o=new Date();
+        String str=(String) o;
+        System.out.println(str);
+    }
+
+    // IndexOutOfBoundsException
+    @Test
+    public void test2(){
+
+        //ArrayIndexOutOfBoundsException
+//        int [] arr=new int[3];
+//        System.out.println(arr[3]);
+
+        //StringIndexOutOfBoundsException
+        String str="abcd";
+        System.out.println(str.charAt(5));
+    }
+
+
+    //NullPointerException
+    @Test
+    public void test1(){
+//        int [] arr=null;
+//        System.out.println(arr[2]);
+        String str="abc";
+        str=null;
+        System.out.println(str.toString());
+
+
+    }
+
+一：异常处理：抓抛模型
+*
+*     过程一："抛"：程序在正常执行的过程中，一旦出现异常，就会在异常代码处生成一个对应异常类的对象，并
+*             将此对象抛出。一旦抛出对象后，其他的代码就不在执行
+
+            关于异常对象的产生：①系统自动生成的异常对象
+            *                ②手动的生成一个异常对象,并抛出（throw）
+
+*     过程二："抓"：可以理解为异常的处理方式：①try-catch-finally,②throws
+*
+*二：异常处理机制方式一：try-catch-finally的使用
+*     try{
+* //可能出现异常的代码
+* }catch(异常类型1 变量名1){
+* //处理异常的方式1
+* }catch(异常类型2 变量名2){
+* //处理异常的方式2
+* }catch(异常类型3 变量名3){
+ * //处理异常的方式3
+ * }
+ * ...
+ *
+ *}finally{
+ * 一定会执行的代码
+ * }
+*说明：
+* 1:finally 是可选的
+* 2:使用try 将可能出现异常的代码包装起来，在执行过程中，一旦出现异常，就会生成一个对应异常类的对象
+*   根据此对象的类型，去catch 中进行匹配
+* 3：一旦try 中的异常对象匹配到某一个catch 时，就进入catch中进行异常的处理，一旦处理完成，跳出当前的
+* try-catch 结构（在没有写finally的情况）继续执行其后的代码
+* 4：若catch中的异常类型没有子父类关系，则谁声明在上，谁声明在下无所谓
+*    若满足子父类关系，则要求子类一定声明在父类上面
+*
+* 5:常用的异常处理方式：①e.getMessage()② e.printStackTrace()
+* 6:在try 结构中定义的变量，在出了try结构以后，不能再被调用
+*
+* 体会1：使用try-catch-finally 处理编译时异常，使得程序在编译时就不在报错，但是运行时仍可能报错，相当于我们是用
+*       try-catch-finally将一个编译时可能出现的异常，延迟到运行时出现
+*
+* 体会2：开发中，由于运行时异常比较常见，所以我们通常不针对运行时异常编写try-catch-finally
+*       针对编译时异常，一定要考虑异常处理
+*
+* finally{
+ * 一定会执行的代码
+ * }
+ * 1:finally 是可选的
+ * 2：finally 中声明的是一定会被执行的代码，即使catch 中又出现异常了，try中又return 语句，catch 中有return语句等情况
+ * 3:对于数据库链接，输入输出流，网络编程socket等资源，jvm 是不能自动回收的我们需要自己手动的资源的释放
+ * 此时的资源释放就需要声明在finally 当中
+
+三：异常处理机制的方式二：throws+异常类型
+
+* 1:throws+异常类型 写在方法的声明处，指明此方法执行时，可能会抛出的类型，一旦当方法体执行时，出现异常，仍会在异常代码处生成
+* 一个异常类的对象。此对象满足throws 后异常类型时，就会被抛出。异常代码后续的代码将不再执行
+* 2：体会：try-catch-finally:真正的将异常处理了
+*         throws+异常类型：只是将异常抛给方法的调用者并没有真正的讲异常处理掉
+
+方法重写的规则之一：
+* 子类重写的方法抛出的异常类型不大于父类被重写的方法的异常类型
+
+四：手动的生成一个异常对象,并抛出（throw）
+ throw new RuntimeException("输入的数据非法"); //手动的生成一个异常对象,并抛出（throw）：运行时异常
+ throw new Exception(); //编译时异常
+
+五：如何自定义异常类：
+    * 1:继承于现有的异常结构：RuntimeException ,Exception
+    * 2:提供全局常量：serialVersionUID
+    * 3：提供重载的构造器
+
+面试题：
+throw 与throws的区别
+throw 表示抛出一个异常类的对象，生成异常对象的过程，声明在方法体内
+throws 属于异常处理的一种方式，声明在方法的声明处
+
+ 命令行输入参数（idea）：
+ ALT + SHIFT + F10，右，Edit，回车键，Tab键，输入命令行行参数，回车
+
+ 常用快捷键
+调出if /else ,try-catch-finally,synchronized 等：CTRL+ALT+T -->
+构造器，getter,setter方法：Alt+Insert
+格式化代码： Ctrl + Alt + L
+向下复制一行：Ctrl+D
+查看方法中需要填写的形参：Ctrl+p
+查看源码：Ctrl+N
+
+程序：
+    是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码
+进程：
+    程序的一次执行过程，或是正在运行的一个程序。 说明：进程作为资源分配的单位，系统在运行时会为每个进程分配不同的内存区域
+线程：
+    进程可进一步细化为线程，是一个程序内部的一条执行路径。 说明：线程作为调度和执行的单位，
+    每个线程拥独立的运行栈和程序计数器(pc)，线程切换的开销小。
+
+进程可以细化为多个线程。 每个线程，拥有自己独立的：栈、程序计数器 多个线程，共享同一个进程中的结构：方法区、堆。
+
+一个Java应用程序java.exe，其实至少三个线程：main()主线程，gc()垃圾回收线程，异常处理线程。
+当然如果发生异常，会影响主线程
+
+并行：
+    多个CPU同时执行多个任务。比如：多个人同时做不同的事。
+
+并发：
+    一个CPU(采用时间片)同时执行多个任务。比如：秒杀、多个人做同一件事
+
+多线程程序的优点：
+    提高应用程序的响应。对图形化界面更有意义，可增强用户体验。
+    提高计算机系统CPU的利用率。
+    改善程序结构。将既长又复杂的进程分为多个线程，独立运行，利于理解和修改。
+
+ 多线程的创建：
+* 方式一：继承于Thread类
+*           ①创建一个继承于Thread 类的子类
+*           ②重写Thread 类的run ()方法 -->将此线程执行的操作声明在run()
+*           ③创建Thread类的子类对象
+*           ④通过此对象调用start()方法
+示例代码如下：
+ class PrimeThread extends Thread {
+         long minPrime;
+         PrimeThread(long minPrime) {
+             this.minPrime = minPrime;
+         }
+
+         public void run() {
+             // compute primes larger than minPrime
+              . . .
+         }
+     }
+
+The following code would then create a thread and start it running:
+
+     PrimeThread p = new PrimeThread(143);
+     p.start();
+*
+注意点： //问题1：不能通过调用run()方法的形式启动线程
+//        myThread.run();
+        //问题2：再启动线程，遍历100以内的偶数：不可以还让已经start()的线程去执行，
+        // 会报异常：IllegalThreadStateException
+        //需要重新创建一个线程对象
+
+
+测试Thread 类的常用方法
+* 1：start():启动当前线程；调用当前线程的run()方法
+* 2：run()：通常需要重写Thread类中的此方法，将要创建的线程要执行的操作声明在此方法中
+* 3：currentThread():静态方法，返回执行当前代码的线程
+* 4：getName():获取当前线程的名字
+* 5：setName():设置当前线程的名字
+* 6:yield()释放当前cpu 的执行权
+* 7:join()：在线程A中调用线程B的join(),此时线程A就进入阻塞状态，直到线程B 完全执行完成后，线程A结束阻塞状态
+* 8：stop():已过时，当执行此方法时，强制结束当前线程
+* 9：sleep():让当前线程睡眠指定的millitime 毫秒，在指定的millitime 毫秒时间内，当前线程阻塞状态
+* 10：isAlive():判断当前是否还存活
+*
+* 线程的优先级：
+* 1:
+*   MAX_PRIORITY = 10
+*   NORM_PRIORITY = 5 -->默认优先级
+*   MIN_PRIORITY = 1
+* 2:如何获取和设置当前线程的优先级
+*   getPriority()
+*   setPriority()
+*
+* 说明：高优先级的线程要抢占低优先级线程cpu的执行权，但是只是从概率上讲，高优先级的线程高概率的情况下被执行
+*       并不意味着只有当高优先级的线程执行完成后，低优先级的线程才执行
+
+创建多线程的方式二：实现Runnable接口
+*   1:创建一个实现Runnable接口的类
+*   2：实现类去实现Runnable中的抽象方法run()方法
+*   3:创建实现类的对象
+*   4：将此对象作为参数传递到Thread类的构造器中，创建Thread 类的对象
+*   5：通过Thread 类的对象调用start()方法
+*
+*代码示例如下：
+* class PrimeRun implements Runnable {
+         long minPrime;
+         PrimeRun(long minPrime) {
+             this.minPrime = minPrime;
+         }
+
+         public void run() {
+             // compute primes larger than minPrime
+              . . .
+         }
+     }
+
+//The following code would then create a thread and start it running:
+
+     PrimeRun p = new PrimeRun(143);
+     new Thread(p).start();
+
+Java 中线程的分类：一：守护线程，二：用户线程
+
+线程的五种状态：
+
+        新建：当一个 Thread类或其子类的对象被声明并创建时，新生的线程对象处于新建状态
+        就绪：处于新建状态的线程被star()后，将进入线程队列等待CPU时间片，此时它已具备了运行的条件，只是没分配到CPU资源
+        运行：当就绪的线程被调度并获得CPU资源时，便进入运行状态，run()方法定义了线程的操作和功能
+        阻塞：在某种特殊情况下，被人为挂起或执行输入输出操作时，让出CP∪并临时中止自己的执行，进入阻塞状态
+        死亡：线程完成了它的全部工作或线程被提前强制性地中止或出现异常导致结束
+
+
+两种创建线程的方式比较
+* 开发中，优先选择实现Runnable接口
+*   ①实现的方式没有类的单继承性的限制
+*
+*   ②实现的方式更适合处理多个线程有共享数据的情况
+*
+* 联系：class Thread implements Runnable
+* 相同点：两种方式都需要重写run(),将线程要执行的逻辑声明在run()方法中
+
+4:在java 中，我们通过同步机制，来解决线程的安全问题
+
+方式一：同步代码块
+ synchronized (同步监视器){
+ //需要被同步的代码
+ }
+ //说明：1：操作共享数据的代码，即为需要被同步的代码
+        2：共享数据：多个线程共同操作的变量，比如：ticket就是共享数据
+        3：同步监视器，俗称：锁。任何一个类的对象，都可以充当锁
+              要求：多个线程必须要共用同一把锁
+         补充：在实现Runnable接口创建多线程的方式中，我们可以考虑使用this 充电同步监视器
+              在继承Thread类创建多线程的方式中，慎用this充当同步监视器，考虑使用当前类充当同步监视器。
+
+
+
+方式二：同步方法
+         如果操作共享数据的代码完整的声明在方法中，我们不妨将此方法声明同步的
+
+
+
+5：同步的方式，解决了线程安全问题--优势
+    操作同步代码时，只能有一个线程参与，其他线程等待。相当于一个单线程的过程，效率低，--局限性
+ */
+
+说明：在继承Thread 类创建多线程的方式中，慎重this 充当同步监视器，考虑使用当前类充当同步监视器
+
+关于同步方法的总结：
+* 1：同步方法仍然涉及到同步监视器，只是不需要我们显示的声明
+* 2：非静态的同步方法，同步监视器：this
+*    静态的同步方法，同步监视器：当前类的本身
+
+//使用同步机制将单例模式中的懒汉式改写成线程安全的
+//单例的懒汉式实现
+/*
+ *   1：私有化类的构造器
+ *   2:声明当前类对象，未初始化(要求此对象必须声明为静态的)
+ *   3:声明公共的，static的返回类当前类对象的方法
+ * */
+public class BankTest {
+
+}
+
+class Bank {
+    private Bank() {
+
+    }
+
+    private static Bank instance = null;
+
+    public static Bank getInstance() {
+        //方式一：效率稍差
+//        synchronized (Bank.class) {
+//            if(instance==null){
+//                instance=new Bank();
+//            }
+//
+//            return instance;
+        //方式二：效率高
+        if (instance == null) {
+            synchronized (Bank.class) {
+                if (instance == null) {
+                    instance = new Bank();
+
+                }
+            }
+        }
+        return instance;
+    }
+}
+死锁：
+
+死锁的理解：
+    不同的线程分别占用对方需要的同步资源不放弃，都在等待对方放弃自己需要的同步资源，就形成了线程的死锁
+
+说明：
+    出现死锁后，不会出现异常，不会出现提示，只是所的线程都处于阻塞状态，无法继续
+
+我们使用同步时，要避免出现死锁。
+
+解决线程安全问题的方式三：Lock锁 --JDK 5.0新增
+    *1：实例化ReentrantLock
+    *2:调用锁定方法：lock() 方法
+    *3：调用解锁方法：unlock
+
+class Windows implements  Runnable{
+    private int ticket=100;
+
+    //1：实例化ReentrantLock
+    private ReentrantLock lock=new ReentrantLock();
+
+    @Override
+    public void run() {
+
+        while (true){
+
+          try{
+              //2:调用锁定方法：lock() 方法
+              lock.lock();
+              try {
+                  Thread.sleep(100);
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
+              if(ticket >0){
+                  System.out.println(Thread.currentThread().getName()+"，售票，票号为："+ticket);
+                  ticket--;
+
+              }else {
+                  break;
+              }
+          }finally {
+//              /:3：调用解锁方法：unlock
+              lock.unlock();
+
+          }
+        }
+    }
+}
+
+面试题：synchronized 与Lock的异同
+    * 相同点：二者都是解决线程的安全问题
+    * 不同点：synchronized机制在执行完相应的同步代码块以后，自动的释放同步监视器
+    * LOck需要手动的启动同步（lock()），同时结束同步也需要手动的实现（unlock()）
+
+
+
+线程通信：
+
+线程通信：
+
+    涉及到的三个方法：
+    wait(),一旦执行此方法，当前线程处于阻塞状态，并释放同步监视器
+    notify(),一旦执行此方法，就会唤醒被wait的一个线程，如果有多个线程被wait，就唤醒优先级高的那个
+    notifyAll(),一旦执行此方法，就会唤醒所有被wait的一个线程
+
+    说明：
+    1：wait(),notify().notifyAll().三个方法必须使用在同步代码块或同步方法中
+    2：wait(),notify().notifyAll().三个方法调用者必须是同步代码块或同步方法中的同步监视器
+    ，   否则，会出现java.lang.IllegalMonitorStateException 异常
+    3:wait(),notify().notifyAll().三个方法 定义在java.lang.Object类中
+
+
+    面试题：sleep()与wait()方法的异同
+    相同点：一旦执行此方法，都可以使得当前线程处于阻塞状态
+    不同点：1：两个方法声明的位置不同，Thread 类中声明的是sleep(),Object 类中声明的是wait()
+           2:调用的要求不同，sleep()可以在任何需要的场景下调用，wait()必须使用在同步代码块或同步方法中
+           3：关于是否释放同步监视器：如果两方法使用在同步代码块或同步方法中，sleep()不会释放锁，wait()
+            会释放锁
+
+案例一：使用两个线程打印1-100，线程1，线程2，交替打印
+示例代码如下：
+  private int number=1;
+    private  Object o=new Object();
+
+    @Override
+    public void run() {
+        while (true){
+           synchronized (o){
+               o.notify();
+               try {
+                   Thread.sleep(10);
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+
+               if(number<=100){
+                   System.out.println(Thread.currentThread().getName()+":"+number);
+                   number++;
+
+                   try {
+                       //使得调用如下wait()方法的线程进入阻塞状态
+                       o.wait();
+                   } catch (InterruptedException e) {
+                       e.printStackTrace();
+                   }
+               }else {
+                   break;
+               }
+           }
+        }
+
+    }
+
+案例二： 线程通信的应用：经典例题：生产者/消费者问题
+
+    * 生产者(Productor)将产品交给店员(Clerk)，而消费者（Customer）从店员处取走产品，
+    * 店员一次只能持有固定数量的产品（比如：20），如果生产者视图生产更多的产品，店员会叫生产者停一下，
+    * 如果店中有空位放产品了再通知生产者继续生产；
+    * 如果店中没有产品了。
+    * 店员会告诉消费者等一下，
+    * 如果店中有产品了再通知消费者来取走产品
+
+    * 分析：
+
+      是否是多线程问题？是，生产者，消费者
+    * 是否有共享数据问题？是？店员（或产品）
+    * 如何解决线程的安全问题？同步机制，有三种方法
+    * 是否涉及到线程的通信？是
+    *
+    * */
+    public class ProductTest {
+        public static void main(String[] args) {
+            Clerk clerk=new Clerk();
+            Producer producer=new Producer(clerk);
+            producer.setName("生产者1");
+            Customer customer=new Customer(clerk);
+            customer.setName("消费者1");
+            producer.start();
+            customer.start();
+        }
+    }
+    //店员
+    class Clerk{
+        //生产数量
+        private int productCount=0;
+
+      //生产产品
+        public synchronized void produceProduct() {
+            if(productCount<20){
+                productCount++;
+                System.out.println(Thread.currentThread().getName()+"开始生产第"+productCount+"个产品");
+                notify();
+
+            }else {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    //消费产品
+        public synchronized void consumeProduct() {
+            if(productCount>0){
+                System.out.println(Thread.currentThread().getName()+"开始消费第"+productCount+"个产品");
+                productCount--;
+                notify();
+            }else {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    class Producer extends Thread{ //生产者
+        private Clerk clerk;
+       public Producer(Clerk clerk){
+           this.clerk=clerk;
+
+       }
+
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName()+":开始生产产品。。。。");
+            while (true){
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                clerk.produceProduct();
+            }
+        }
+    }
+    class Customer extends  Thread{
+        private Clerk clerk;
+        public Customer(Clerk clerk){
+            this.clerk=clerk;
+        }
+
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName()+"开始消费产品。。。。");
+            while (true){
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                clerk.consumeProduct();
+            }
+        }
+    }
+创建线程的方式三：实现Callable接口 --jdk 5.0新增
+    //实现100以内的偶数，并计算总和
+
+实现步骤：
+
+    1.创建一个实现Callable的实现类
+    2.实现call方法，将此线程需要执行的操作声明在call()中
+    3.创建Callable接口实现类的对象
+    4：将此Callable接口实现类的对象作为传递到FutureTask构造器中，创建FutureTask的对象
+    5：将FutureTask的对象作为参数传递到Thread类的构造器中，创建Thread对象，并调用start()
+    6：获取Callable中call方法的返回值
+/*
+如何理解实现Callable接口的方式创建多线程比实现Runnable接口创建多线程方式更强大？
+1;call()可以有返回值
+2：call()可以抛出异常，被外面的操作捕获，获取异常信息
+3：Callable 是支持泛型的
+
+实例代码如下：
+ public static void main(String[] args) {
+
+     //3.创建Callable接口实现类的对象
+        NumThread num=new NumThread();
+
+        //4.将此Callable接口实现类的对象作为传递到FutureTask构造器中，创建FutureTask的对象
+        FutureTask futureTask=new FutureTask(num);
+
+        //5.将FutureTask的对象作为参数传递到Thread类的构造器中，创建Thread对象，并调用start()
+        Thread thread=new Thread(futureTask);
+        thread.start();
+        try {
+            //6.获取Callable中call方法的返回值
+           Object sum = futureTask.get();   //get()返回值即为FutureTask构造器参数Callable实现类重写的call()的返回值。
+            System.out.println("总和为："+sum);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+//1.创建一个实现Callable的实现类
+class NumThread implements Callable{
+
+    //2.实现call方法，将此线程需要执行的操作声明在call()中
+    @Override
+    public Object call() throws Exception {
+        int sum=0;
+        for (int i = 1; i <=100 ; i++) {
+            if(i%2==0){
+                System.out.println(i);
+                sum+=i;
+            }
+
+        }
+        return sum;
+    }
+}
+创建线程的方式四：线程池
+
+背景：经常创建和销毁、使用量特别大的资源，比如并发情况下的线程对性能影响很大。
+解决方案：
+    提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。
+    可以避免频繁创建销毁、实现重复利用。类似生活中的公共交通工具。
+
+实现方法：
+
+    * 1：提供指定线程数量的线程池
+    * 2：执行指定的线程的操作。需要提供实现Runnable接口或Callable接口实现类的对象
+      3：关闭连接池
+优势：
+    提高响应速度（减少了创建新线程的时间）
+    降低资源消耗（重复利用线程池中线程，不需要每次都创建）
+    便于线程管理
+    corePoolSize：核心池的大小
+    maximumPoolSize：最大线程数
+    keepAliveTime：线程没任务时最多保持多长时间后会终止
+
+实例代码如下：
+ public static void main(String[] args) {
+        //1:提供指定数量的线程池
+        ExecutorService service= Executors.newFixedThreadPool(10);
+//        System.out.println(service.getClass());
+//        ThreadPoolExecutor tp=(ThreadPoolExecutor) service;
+
+        //设置线程池的属性
+//        tp.setCorePoolSize(15);
+//        tp.setKeepAliveTime();
+//2:执行指定线程的操作：需要提供实现Runnable 接口或Callable 接口的实现类的对象
+//        service.submit(); //适合使用Callable
+        service.execute(new NumberThread()); //适合使用Runnable
+        service.execute(new NumberThread1());
+        //3：关闭链接池
+        service.shutdown();
+    }
+}
+class NumberThread implements Runnable{
+
+    @Override
+    public void run() {
+        //打印100以内的偶数
+        for (int i = 0; i <=100; i++) {
+            if(i%2==0)
+            {
+                System.out.println(Thread.currentThread().getName()+":"+i);
+            }
+        }
+    }
+}
+class NumberThread1 implements Runnable{
+
+
+    @Override
+    public void run() {
+        //打印100以内的奇数
+        for (int i = 0; i <=100 ; i++) {
+            if(i %2!=0){
+                System.out.println(Thread.currentThread().getName()+":"+i);
+            }
+
+
+        }
+
+    }
+
+
+/*
+    * String:字符串，使用一对""表示
+    * 1：String 声明为final,不可被继承
+    * 2：String 实现了Serializable 接口，表示字符串是支持序列化的
+    *           实现了Comparable 接口，表示字符串是可以比较大小的
+    * 3：String 内部定义了final char value[]用于存储字符串数据
+    * 4：String:代表不可变的字符序列，简称：不可变性
+    *   体现：1：当对字符串重新赋值时，需要重写指定内存区域赋值，不能使用原有的value 进行赋值，见图字符串1
+    *        2:当对原有的字符串进行连接操作时，也需要重新指定内存区域赋值，不能使用原有的value 进行赋值
+    *        3:当调用String的replace()方法修改指定字符或字符串时，也需要重新指定内存区域赋值，不能使用原有的value 进行赋值
+    *
+    * 5：通过字面量（区别于new ）的方式给一个字符串赋值，此时的字符串值声明在字符串常量池中
+    * 6：字符串常量池中是不会存储相同内容的字符串的
+
+*String 的实例化方式
+    * 方式一：通过字面量的方式：
+     //通过字面量的方式：此时的s1与s2的数据javaEE声明在方法区中的字符串常量池中
+    * 方式二：通过new+构造器的方式
+      //通过new+构造器的方式：此时的s3与s4保存的地址值，是数据在堆空间中开辟空间以后对应的地址值
+    *
+    * 面试题：String s=new String("abc")方式创建了对象，在内存中创建了几个对象？2个
+    * 一个是堆空间中new结构，一个是char[]对应的常量池中的数据："abc"
+
+代码：
+ String s1="javaEE";
+        String s2="hadoop";
+        String s3="javaEEhadoop";
+        String s4="javaEE"+"hadoop";
+        String s5=s1+"hadoop";
+        String s6="javaEE"+s2;
+        String s7=s1+s2;
+        System.out.println(s3 == s4);//true
+        System.out.println(s3 == s5);//false
+        System.out.println(s3 == s6);//false
+        System.out.println(s3 == s7);//false
+        System.out.println(s4 == s5);//false
+        System.out.println(s5 == s7);//false
+        System.out.println(s6 == s7);//false
+
+        String s8=s5.intern(); //返回值得到的s8使用的常量池中已经存在"javaEEhadoop"
+        System.out.println(s3 == s8);//true
+
+*得到结论：
+    * 1：常量与常量的拼接结果是在常量池，且常量池中不会存在相同内容的常量
+    * 2：只要其他有一个是变量，结果就在堆中
+    * 3:如果拼接的结果调用intern()方法，返回值在常量池中
+
+String 常用方法及代码
+ /*
+    *   int length():返回字符串的长度：return value.length
+    *   char charAt(int index)： 返回某索引处的字符 return value[index]
+        boolean isEmpty()：判断是否是空字符串：return value.length == 0
+        String toLowerCase()：使用默认语言环境，将 String 中的所字符转换为小写
+        String toUpperCase()：使用默认语言环境，将 String 中的所字符转换为大写
+        String trim()：返回字符串的副本，忽略前导空白和尾部空白
+        boolean equals(Object obj)：比较字符串的内容是否相同
+        boolean equalsIgnoreCase(String anotherString)：与 equals() 方法类似，忽略大小写
+        String concat(String str)：将指定字符串连接到此字符串的结尾。 等价于用 +
+        int compareTo(String anotherString)：比较两个字符串的大小
+        String substring(int beginIndex)：返回一个新的字符串，它是此字符串的从beginIndex 开始截取到最后的一个子字符串。
+        String substring(int beginIndex, int endIndex) ：返回一个新字符串，它是此字符串从 beginIndex 开始截取到 endIndex (不包含)的一个子字符串。
+
+
+   */
+    @Test
+    public void test1() {
+        String str = "HelloWorld";
+        System.out.println(str.length());//10
+        System.out.println(str.charAt(5)); //w
+        System.out.println(str.isEmpty()); //false
+        String str2 = str.toLowerCase();
+        System.out.println(str);//HelloWorld,str 不可变的，仍为原来的字符串
+        System.out.println(str2);//helloworld
+        System.out.println("****************");
+        String str3 = " he ll o wor ld ";
+        String str4 = str3.trim();
+        System.out.println("-------" + str3 + "---------");
+        System.out.println("-------" + str4 + "---------");
+
+    }
+
+    @Test
+    public void test2() {
+        String str = "HelloWorld";
+        String str2 = "helloworld";
+        System.out.println(str.equals(str2)); //false
+        System.out.println(str.equalsIgnoreCase(str2));//true
+
+        String str3="hello";
+        String str4=str3.concat("world");
+        System.out.println(str4);
+
+        String str5="abc";
+        String str6="ace";
+        System.out.println(str5.compareTo(str6));//比较两个字符串的大小,涉及到字符串排序
+
+        String str7="北京尚硅谷教育";
+
+        //返回一个新的字符串，它是此字符串的从beginIndex 开始截取到最后的一个子字符串。
+        String str8=str7.substring(2);
+        System.out.println(str7);//北京尚硅谷教育
+        System.out.println(str8);//尚硅谷教育
+
+        //返回一个新字符串，它是此字符串从 beginIndex 开始截取到 endIndex (不包含)的一个子字符串。
+        String str9=str7.substring(2,5);
+        System.out.println(str9);//尚硅谷
+
+    }
+    /*
+    *   boolean endsWith(String suffix)：测试此字符串是否以指定的后缀结束
+        boolean startsWith(String prefix)：测试此字符串是否以指定的前缀开始
+        boolean startsWith(String prefix, int toffset)：测试此字符串从指定索引开始的子字符串是否以指定前缀开始
+    * */
+    @Test
+    public void test3(){
+        String str="helloworld";
+
+        //测试此字符串是否以指定的后缀结束
+        boolean str2 = str.endsWith("rld");
+        System.out.println(str2);
+        //测试此字符串是否以指定的前缀开始
+        boolean str3 = str.startsWith("He");
+        System.out.println(str3);
+
+        //测试此字符串从指定索引开始的子字符串是否以指定前缀开始
+        boolean str4 = str.startsWith("o", 4);
+        System.out.println(str4); //true
+
+    }
+
+    /*
+    *
+    *boolean contains(CharSequence s)：当且仅当此字符串包含指定的 char 值序列时，返回 true
+    int indexOf(String str)：返回指定子字符串在此字符串中第一次出现处的索引
+    int indexOf(String str, int fromIndex)：返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始
+    int lastIndexOf(String str)：返回指定子字符串在此字符串中最右边出现处的索引
+    int lastIndexOf(String str, int fromIndex)：返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索
+
+    * indexOf 和 lastIndexOf 方法如果未找到都是返回-1
+    *
+    * 什么情况下，indexOf（str） 与lastIndexOf(str)返回值相同？
+    * 情况一：存在唯一的一个str
+    * 情况二：不存在str
+    *
+
+    * */
+    @Test
+    public void test4(){
+        String str="helloworld";
+        String str2="wo";
+        System.out.println(str.contains(str2));//true
+
+        //返回指定子字符串在此字符串中第一次出现处的索引
+        System.out.println(str.indexOf("lo"));//3
+
+        //返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始
+        System.out.println(str.indexOf("lo", 5));//-1,表示没找到
+
+        //回指定子字符串在此字符串中最右边出现处的索引
+        String str3="hellorworldor";
+        System.out.println(str3.lastIndexOf("or"));//1
+
+        //返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索
+        System.out.println(str3.lastIndexOf("or", 5));//4
+
+    }
+
+
+    /*
+    * 替换：
+    *   String replace(char oldChar, char newChar)：返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所 oldChar 得到的。
+        String replace(CharSequence target, CharSequence replacement)：使用指定的字面值替换序列替换此字符串所匹配字面值目标序列的子字符串。
+        String replaceAll(String regex, String replacement)：使用给定的 replacement 替换此字符串所匹配给定的正则表达式的子字符串。
+        String replaceFirst(String regex, String replacement)：使用给定的 replacement 替换此字符串匹配给定的正则表达式的第一个子字符串。
+      匹配:
+        boolean matches(String regex)：告知此字符串是否匹配给定的正则表达式。
+
+      切片：
+      * String[] split(String regex)：根据给定正则表达式的匹配拆分此字符串。
+        String[] split(String regex, int limit)：根据匹配给定的正则表达式来拆分此字符串，最多不超过limit个，
+        *                                        如果超过了，剩下的全部都放到最后一个元素中。
+    */
+
+    @Test
+    public void test5(){
+        //替换
+        String str="北京尚硅谷教育北京教育";
+        //返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所 oldChar 得到的。
+        String str2 = str.replace('北', '南');
+        System.out.println(str);//北京尚硅谷教育北京教育
+        System.out.println(str2);//南京尚硅谷教育南京教育
+
+        //使用指定的字面值替换序列替换此字符串所匹配字面值目标序列的子字符串
+        String str3=str.replace("北京","上海");
+        System.out.println(str3);//上海尚硅谷教育上海教育
+
+        System.out.println("**********************");
+        String str4="12hello34world5java7891mysql456";
+        //把字符串中的数字替换成"，"
+        String str5 = str4.replaceAll("\\d+", ",");
+        System.out.println(str5);//,hello,world,java,mysql,
+        //如果结果中开头和结尾有"，"的话去掉
+        String str6 = str5.replaceAll("^,|,$", "");
+        System.out.println(str6);//hello,world,java,mysql
+        System.out.println("**********************");
+
+//       匹配:
+//        boolean matches(String regex)：告知此字符串是否匹配给定的正则表达式。
+        String str7="123466789abc";
+        boolean matches1 = str7.matches("\\d+");
+        System.out.println(matches1);
+
+        //判断这是否是一个杭州的固定电话
+        String tel="0571-4534289";
+        boolean tel2 = tel.matches("0571-\\d{7,8}");
+        System.out.println(tel2);
+        System.out.println("*********************");
+
+        // 切片：
+        // String[] split(String regex)：根据给定正则表达式的匹配拆分此字符串。
+        // String[] split(String regex, int limit)：根据匹配给定的正则表达式来拆分此字符串，最多不超过limit个，
+        //        *                                 如果超过了，剩下的全部都放到最后一个元素中。
+
+        String str8="hello|world|java";
+        String [] strs=str8.split("\\|");
+        for (int i = 0; i <strs.length ; i++) {
+            System.out.print(strs[i]+" ");
+
+        }
+        System.out.println();
+        String str9="hello.world.java";
+        String []strs2=str9.split("\\.");
+        for (int i = 0; i < strs2.length; i++) {
+            System.out.print(strs2[i]+" ");
+
+        }
+    }
+ 涉及到String 类与其他结构之间的转换
+ 1） String 与基本数据类型与包装类之间的转换
+      * String -->基本数据类型，包装类：调用包装类的静态方法：parseXxx(str)
+      * 基本数据类型，包装类-->String 类型：调用String重载的valueOf(xxx)
+
+示例代码：
+ public void test1() {
+        String str = "123456";
+        int num = Integer.parseInt(str);
+        System.out.println(num);
+        int num2=123456;
+        String str2 = String.valueOf(num2);
+        System.out.println(str2);
+        //或
+        String str3 =num2+"";
+        System.out.println(str3);
+        System.out.println(str==str3);//false
+
+
+ 2）String 与char[]之间的转换
+    * String --->cha[]:调用String 的toCharArray()
+    * char[]--->String:调用String 的构造器
+
+ 示例代码：
+  public void test2(){
+
+         String str="abcdef";
+         //调用String 的toCharArray()
+         char[] toCharArray = str.toCharArray();
+         for (int i = 0; i < toCharArray.length; i++) {
+             System.out.print(toCharArray[i]+" ");
+
+         }
+         System.out.println();
+
+         char[]arr=new char[]{'h','e','l','l','o'};
+         //char[]--->String:调用String 的构造器
+         String str2 = new String(arr);
+         System.out.println(str2);
+
+     }
+
+
+ 3）String 与byte[]之间的转换
+    * String -->byte[]:调用String的getBytes()
+    * byte[]-->String:调用String的构造器
+    *
+    * 说明：解码时，要求解码使用的字符集与编码时使用的字符集一致，否则会出现乱码
+    *
+    *编码：字符串--》字节
+     解码：字节--》字符串
+
+示例代码：
+ public void test3() throws UnsupportedEncodingException {
+        String str="abcdef";
+        byte[] bytes = str.getBytes();//使用默认的字符集，进行编码
+        System.out.println(Arrays.toString(bytes));
+
+        String str2="abc中国";
+        byte[] gbks = str2.getBytes("gbk");//使用gbk编码集合
+        System.out.println(Arrays.toString(gbks));
+
+        String str3 = new String(bytes);//使用默认的字符集，进行解码
+        System.out.println(str3);
+
+        String str4 = new String(gbks);
+        System.out.println(str4);//会出现乱码，原因：编码集与解码集不一致
+
+        String gbks2 = new String(gbks, "gbk");
+        System.out.println(gbks2);
+
+
+    }
+
+
+*String,StringBuffer,StringBuilder 三者的异同
+
+   相同点：底层使用char[]存储
+   不同点：
+     * String:不可变的字符序列
+     * StringBuffer:可变的字符序列:线程安全的，效率低
+     * StringBuilder:可变的字符序列:线程不安全，效率高
+     *
+     * 源码分析：String str=new String()//char[] value=new char[0];
+     *         String str=new String("abc")//char[] value=new char[]{'a','b','c'}
+     *         StringBuffer sb1=new StringBuffer()//char[] value=new char[16],底层创建了一个长度是16的数组
+     *         sb1.append('a');//value[0]='a';
+     *         sb1.append('b');//value[1]='b';
+     *         StringBuffer sb2=new StringBuffer("abc")//char[] value=new char["abc".length()+16]
+     *
+     * 问题1：  System.out.println(sb2.length()); //3
+     * 问题2：扩容问题：如果要添加的数据底层数组盛装不下了，那就需要扩容底层的数组，默认情况下，扩容为原来容量的2倍+2，
+     *       同时将原有的数组中的 元素复制到新的数组中
+     *
+ 指导意义：开发中建议使用 StringBuffer(int capacity)或StringBuilder(int capacity)
+     *
+ StringBuilder,StringBuffer,String 三者的执行效率
+     * StringBuilder>StringBuffer>String
+   */
+
+String，StringBuffer,StringBuilder之间的转换
+
+String -->StringBuufer,StringBuilder:调用StringBuufer,StringBuilder构造器
+StringBuffer,StringBuilder-->String：①调用String的构造器②调用StringBuffer,StringBuilder的toString()方法
+
+
+ 示例代码：
+    @Test
+    public void test1() {
+
+        String str = new String("def");
+        String str2 = str + "abc";
+        System.out.println(str); //def
+
+        StringBuffer stringBuffer = new StringBuffer("abc");
+        stringBuffer.setCharAt(0, 'm');
+        System.out.println(stringBuffer); //mbc
+
+
+        StringBuffer stringBuffer1=new StringBuffer("abc");
+        System.out.println(stringBuffer1.length());//3
+
+        StringBuffer stringBuffer2=new StringBuffer();
+        System.out.println(stringBuffer2.length());//0
+    }
+
+ StringBuffer 的常用方法：
+    *   StringBuffer append(xxx)：提供了很多的 append() 方法，用于进行字符串拼接
+        StringBuffer delete(int start,int end)：删除指定位置的内容
+        StringBuffer replace(int start, int end, String str)：把[start,end)位置替换为str
+        StringBuffer insert(int offset, xxx)：在指定位置插入xxx
+        StringBuffer reverse() ：把当前字符序列逆转
+
+    @Test
+    public void test2(){
+        StringBuffer s1=new StringBuffer("abc");
+        s1.append(1);
+        s1.append("1");
+        System.out.println(s1);//abc11
+//        s1.delete(1, 3);
+//        System.out.println(s1);//a11
+//        s1.replace(1,3,"hello");
+//        System.out.println(s1);//ahello11
+//        s1.insert(1,false);
+//        System.out.println(s1);//afalsec11
+//        System.out.println(s1.length());//10
+//        s1.reverse();
+//        System.out.println(s1);
+        String str = s1.substring(1, 3);
+        System.out.println(str);
+
+    }
+
+JDK8之前的日期和时间的api测试
+1.System类中的currentTimeMillis()
+示例代码：
+ public void test1(){
+        //获取系统当前时间：System类中的currentTimeMillis()
+        long l = System.currentTimeMillis();
+        //返回当前时间与1970年1月1日0时0分0秒之间以毫秒为单位的时间差。
+        //时间戳
+        System.out.println(l);
+
+    }
+
+2:java.util.Date类
+      *       ---java.sql.Date 类
+      *
+      *
+      * 1：两个构造器的使用
+          *  >构造器一：创建一个对应当前时间的Date对象
+          *  >构造器二：创建指定毫秒数的Date对象
+      * 2：两个方法的使用
+      *       >toString():显示当前的年，月，日，时，分，秒
+      *       >getTime():获取当前Date对象对应的时间戳
+      *
+      * 3:java.sql.Date :对应着数据库中的日期类型的变量
+      *       >如何实例化
+      *
+      *       >util.Date对象--->sql.Date对象
+      *            Date date5=new Date();
+                   java.sql.Date date6=new java.sql.Date(date5.getTime());
+      }
+ 示例代码：
+       public void test2(){
+              //构造器一：创建一个对应当前时间的Date对象
+              Date date = new Date();
+              System.out.println(date.toString());//Tue Apr 05 10:07:32 CST 2022
+              System.out.println(date.getTime());//1649124588465
+
+             //构造器二：创建指定毫秒数的Date对象
+              Date date1 = new Date(1649124588465L);
+              System.out.println(date1.toString());
+
+          //创建java.sql.Date对象
+              java.sql.Date date2 = new java.sql.Date(1649125636025L);
+              System.out.println(date2.toString());
+
+              //如何将java.util.Date对象转换为java.sql.Date对象
+              //方式一：
+      //        Date date3=new java.sql.Date(1649125636025L);
+      //        java.sql.Date date4= (java.sql.Date) date3;
+
+              //方式二：
+              Date date5=new Date();
+              java.sql.Date date6=new java.sql.Date(date5.getTime());
+          }*
+
+jdk 8 之前的日期时间的API测试
+ * 1：System类中currentTimeMillis();
+ * 2:java.util.Date和子类java.sql.Date
+ * 3:SimpleDateFormat
+ * 4:Calendar
+
+SimpleDateFormat的使用：
+    SimpleDateFromat对日期Date类的格式化和解析
+1：两个操作：
+     * 1.1：格式化：日期-->字符串
+
+    ①实例化SimpleDateFormat:使用默认的构造器
+    示例代码：
+
+        SimpleDateFormat sdf = new SimpleDateFormat();
+
+            //格式化：日期--->字符串
+                Date date = new Date();
+        //        System.out.println(date);//Tue Apr 05 23:42:05 CST 2022
+                String format = sdf.format(date);
+                System.out.println(format);//22-4-5 下午11:42
+
+        1.2：解析：格式化的逆过程，字符串-->日期
+     示例代码：
+      //解析：字符串-->日期
+             String str = "22-4-5 下午11:46";
+             Date parse = sdf.parse(str);
+             System.out.println(parse);//Tue Apr 05 23:46:00 CST 2022
+
+
+    //②实例化SimpleDateFormat：自定义
+
+     示例代码：
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+             //格式化：日期--->字符串
+             Date date1 = new Date();
+             String format1 = sdf1.format(date1);
+             System.out.println(format1); //2022-04-05 11:55:34
+
+            //解析:字符串-->日期:
+             // 要求字符串必须是符合SimpleDateFormat识别的格式(通过构造器参数体现),
+             String str2 = "2022-04-05 11:55:34";
+             Date parse1 = sdf1.parse(str2);
+             System.out.println(parse1);//Tue Apr 05 11:55:34 CST 2022
+
+Calendar 日历类的使用
+        //1:实例化
+        //方式一：创建其子类的对象
+
+        //方式二：调用其静态方法getInstance()
+         Calendar calendar = Calendar.getInstance();
+
+       //2:常用方法： get(),set(),add(),
+                    getTime():日历类--->Date,setTime():Date--->日历类
+       示例代码：
+       //
+       //        get()
+               int i =calendar.get(Calendar.DAY_OF_MONTH);
+               System.out.println(i);
+               int i1 = calendar.get(Calendar.DAY_OF_YEAR);
+               System.out.println(i1);
+
+               //set()
+              calendar.set(Calendar.DAY_OF_MONTH,7);
+               System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+
+               //add()
+               calendar.add(Calendar.DAY_OF_MONTH,3);
+               System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+
+               //getTime():日历类--->Date
+               Date time = calendar.getTime();
+               System.out.println(time);
+
+               //setTime():Date--->日历类
+               Date date = new Date();
+               calendar.setTime(date);
+               i=calendar.get(Calendar.DAY_OF_MONTH);
+               System.out.println(i);
+
+           }
+
+ LocalDate,LocalTime,LocalDateTime
+        //now():获取当前日期，时间，日期+时间
+        示例代码：
+              LocalDate localDate = LocalDate.now();
+              LocalTime localTime = LocalTime.now();
+              LocalDateTime localDateTime = LocalDateTime.now();
+
+              System.out.println(localDate);
+              System.out.println(localTime);
+              System.out.println(localDateTime);
+
+        //of():设置指定的年，月，日，时，分，秒，没有偏移量
+        示例代码：
+         LocalDateTime of = LocalDateTime.of(2022, 4, 7, 15, 31, 40);
+                System.out.println(of);
+
+        //getXxx
+        示例代码：
+         LocalDateTime localDateTime1=LocalDateTime.now();
+          System.out.println(localDateTime1.getDayOfMonth());//7
+          System.out.println(localDateTime1.getDayOfWeek());//THURSDAY
+
+         //plusXxx:加
+                 LocalDateTime localDateTime3 = localDateTime1.plusDays(3);
+                 System.out.println(localDateTime1);
+                 System.out.println(localDateTime3);//2022-04-10T16:26:42.941
+
+         //minusXxx:减
+                 LocalDateTime localDateTime4 = localDateTime1.minusDays(5);
+                 System.out.println(localDateTime4);//2022-04-02T16:26:42.941
+
+DateTimeFormatter
+    *① 格式化或解析日期、时间
+    * ② 类似于 SimpleDateFormat
+
+// 方式一：预定义的标准格式。
+        // 如：ISO_LOCAL_DATE_TIME;ISO_LOCAL_DATE;ISO_LOCAL_TIME
+        DateTimeFormatter time = DateTimeFormatter.ISO_DATE_TIME;
+        //格式化：日期--->字符串
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String str= time.format(localDateTime);
+        System.out.println(localDateTime);
+        System.out.println(str);
+
+        //解析：字符串--->日期
+        TemporalAccessor parse = time.parse("2022-04-07T19:50:19.769");
+        System.out.println(parse);
+        System.out.println("***************************");
+
+ //  方式二：
+        // ①本地化相关的格式。如：ofLocalizedDateTime()
+        // FormatStyle.LONG / FormatStyle.MEDIUM / FormatStyle.SHORT :适用于LocalDateTime
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+        //格式化
+        LocalDateTime localDateTime1=LocalDateTime.now();
+        String format = dateTimeFormatter.format(localDateTime1);
+        System.out.println(format);
+
+        // ②本地化相关的格式。如：ofLocalizedDate()
+        // FormatStyle.FULL / FormatStyle.LONG / FormatStyle.MEDIUM / FormatStyle.SHORT : 适用于LocalDate
+
+        DateTimeFormatter dateTimeFormatter1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+        LocalDate localDate=LocalDate.now();
+        //格式化:日期--->字符串
+        String str2 = dateTimeFormatter1.format(localDate);
+        System.out.println(str2);
+
+ //重点： 方式三：自定义的格式。如：ofPattern(“yyyy-MM-dd hh:mm:ss”)
+
+        DateTimeFormatter dateTimeFormatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+        LocalDateTime localDateTime2=LocalDateTime.now();
+        //格式化：日期--->字符串
+        String str3 = dateTimeFormatter2.format(localDateTime2);
+        System.out.println(str3);
+        //解析：字符串-->日期
+        TemporalAccessor parse1 = dateTimeFormatter2.parse("2022-04-07 08:12:04");
+        System.out.println(parse1);
+
+}
+
+一：说明：java中的对象，正常情况下，只能进行比较：==或！=，不能使用>，<
+        但是在开发场景中，我们需要对多个对象进行排序，言外之意，就需要比较对象的大小，
+        如何实现？使用两个接口的任何一个：Comparable,Comparator
+
+二：Comparable接口的使用：
+ /*
+     * Comparable 接口的使用举例:自然排序
+     * 1：如String,包装类等实现了Comparable接口，重写了compareTo(obj)方法，给出了比较两个对象大小的方式
+     * 2：像 String 或包装类重写 compareTo() 方法以后，进行了从小到大的排列
+     * 3：：重写compareTo(obj)的规则：
+
+     *  如果当前对象this大于形参对象obj，则返回正整数，
+     *  如果当前对象this小于形参对象obj，则返回负整数，
+     *  如果当前对象this等于形参对象obj，则返回零
+     *
+     * 4:对于自定义类来说，如果需要排序，我们可以让自定义类实现Comparable接口，重写compareTo(obj)方法
+     *   在compareTo(obj)方法中指明如何排序
+
+示例代码：
+        自定义类：
+          public int compareTo(Object o) {
+
+                if (o instanceof Goods) {
+                    Goods goods = (Goods) o;
+                    if (this.price > goods.price) {
+                        return 1;
+                    } else if (this.price < goods.price) {
+                        return -1;
+                    } else {
+        //                return 0;
+                        return this.name.compareTo(goods.name);
+                    }
+
+                    //方式二：
+        //            return Double.compare(this.price,goods.price);
+
+                }
+                throw new RuntimeException("传入的数据类型不一致");
+            }
+
+
+*
+三：Comparator接口的使用
+
+ /*
+     *Comparator接口的使用：定制排序
+     * 1：背景：
+     * 当元素的类型没有实现java.lang.Comparable接口而又不方便修改代码
+     * 或者实现了java.lang.Comparaable接口的排序规则不适合当前的操作
+     * 那么可以考虑使用Comparator的对象来进行排序
+     * 2：重写compare（Object o1,Object o2）方法，比较o1,与o2的大小：
+     * 如果方法返回正整数，则表示o1大于o2
+     * 如果返回负数，表示o1小于o2
+     * 如果返回0，表示o1等于o2
+
+     * */
+
+ 示例代码：
+         自定义类
+          public void test4() {
+
+                 Goods[] goods = new Goods[6];
+                 goods[0] = new Goods("lenovoMouse", 34);
+                 goods[1] = new Goods("huaweiMouse", 24);
+                 goods[2] = new Goods("xiaomiMouse", 54);
+                 goods[3] = new Goods("dellMouse", 25);
+                 goods[4] = new Goods("hongjiMouse", 24);
+                 goods[5] = new Goods("xiaomiMouse", 64);
+
+                 Arrays.sort(goods, new Comparator() {
+
+                     @Override
+                     public int compare(Object o1, Object o2) {
+
+                         //指明商品比较大小的方式:照产品名称从低到高排序,再照价格从高到低排序
+
+                         if (o1 instanceof Goods && o2 instanceof Goods) {
+                             Goods goods1 = (Goods) o1;
+                             Goods goods2 = (Goods) o2;
+                             if (goods1.getName().equals(goods2.getName())) {
+
+                                 return -Double.compare(goods1.getPrice(), goods2.getPrice());
+
+                             } else {
+                                 return goods1.getName().compareTo(goods2.getName());
+                             }
+                         }
+                         throw new RuntimeException("传入的数据类型不一致！");
+                     }
+                 });
+                 System.out.println(Arrays.toString(goods));
+
+             }
+
+ 一：枚举类的使用：
+ * 1：枚举类的理解：类的对象只有有限个，确定的，我们称此类是枚举类，
+ * 2：当我们需要定义一组常量时，强烈建议使用枚举类
+ * 3：如果枚举类中只有一个对象，则可以作为单例模式的实现方式
+ *
+ * 二：如何定义枚举类
+ * 1：方式一：jdk5.0之前，自定义枚举类
+ 示例代码：
+        class Season{
+             //1:声明Season 对象的属性:private final修饰
+             private final String name;
+             private  final String desc;
+
+             //2：私有化类的构造器,并给对象属性赋值
+
+             private Season(String name,String desc) {
+                 this.name=name;
+                 this.desc=desc;
+             }
+             //3:提供当前枚举类的多个对象
+             public static final Season SPRING=new Season("春天","春暖花开");
+             public static final Season SUMMER=new Season("夏天","夏日炎炎");
+             public static final Season AUTUMN=new Season("秋天","秋高气爽");
+             public static final Season WINTER=new Season("冬天","冬寒夏暖");
+
+             //4:其他需求1：，获取枚举类对象的属性
+
+
+             public String getName() {
+                 return name;
+             }
+
+             public String getDesc() {
+                 return desc;
+             }
+
+
+             //4:其他需求2：，获取枚举类对象的toString（）方法
+             @Override
+             public String toString() {
+                 return "Season{" +
+                         "name='" + name + '\'' +
+                         ", desc='" + desc + '\'' +
+                         '}';
+             }
+
+
+  * 2：方式二：jdk5.0时，可以使用enum关键字定义枚举类
+
+
+    使用enum关键字枚举类
+        /*
+        * 使用enum定义的枚举类默认继承了 java.lang.Enum 类，因此不能再继承其他类
+        * 必须在枚举类的第一行声明枚举类对象
+        *
+        * 实现步骤：
+        * 1:提供当前枚举类的对象，多个对象之间用","隔开，末尾对象“；”结束
+        * 2：声明Season对象的属性:private final修饰
+        * 3：私化类的构造器,并给对象属性赋值
+        * 4：其他需求1：获取枚举类对象的属性
+        *    其他需求2：获取枚举类对象的toString（）方法
+
+        示例代码：
+        interface Info{
+            void  show();
+        }
+        enum Season implements Info{
+
+            //1:提供当前枚举类的对象，多个对象之间用","隔开，末尾对象“；”结束
+            SPRING("春天","春暖花开"){
+                @Override
+                public void show() {
+                    System.out.println("春天在哪里");
+
+                }
+            },
+            SUMMER("夏天","夏日炎炎"){
+                @Override
+                public void show() {
+                    System.out.println("荷塘月色");
+
+                }
+            },
+            AUTUMN("秋天","秋高气爽"){
+                @Override
+                public void show() {
+                    System.out.println("秋天不回来");
+
+                }
+            },
+            WINTER("冬天","冬寒夏暖"){
+                @Override
+                public void show() {
+                    System.out.println("大约在冬季");
+
+                }
+            };
+
+            //2.声明Season对象的属性:private final修饰
+            private final String name;
+            private final String desc;
+
+          //3.私化类的构造器,并给对象属性赋值
+
+            private  Season(String name, String desc) {
+                this.name = name;
+                this.desc = desc;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public String getDesc() {
+                return desc;
+            }
+
+            @Override
+            public String toString() {
+                return "Season{" +
+                        "name='" + name + '\'' +
+                        ", desc='" + desc + '\'' +
+                        '}';
+            }
+
+        //    @Override
+        //    public void show() {
+        //        System.out.println("这是一个季节！");
+        //    }
+        *    。。。
+ *
+ *三：Enum类的常用方法
+ *    ①values()方法：返回枚举类型的对象数组。该方法可以很方便地遍历所有的枚举值。
+      ②valueOf(String str)：可以把一个字符串转为对应的枚举类对象。要求字符串必须是枚举类对象的“名字”.
+ *                         如不是，会有运行时异常 IllegalArgumentException
+      ③toString()：返回当前枚举类对象常量的名称*
+ *
+ 四：使用enum关键字定义的枚举类实现接口的情况*
+   1：实现接口，在enum类中实现抽象方法
+ * 2:让枚举类的对象分别实现接口中的抽象方法
+
+注解：
+1：注解的使用：
+* ① jdk 5.0 新增的功能
+  ② Annotation 其实就是代码里的特殊标记, 这些标记可以在编译, 类加载, 运行时被读取, 并执行相应的处理。
+*               通过使用 Annotation,程序员可以在不改变原逻辑的情况下, 在源文件中嵌入一些补充信息。
+* ④ 在JavaSE中，注解的使用目的比较简单，例如标记过时的功能，忽略警告等。在JavaEE/Android 中注解占据了更重要的角色，
+*               例如用来配置应用程序的任何切面，代替JavaEE旧版中所遗留的繁冗 代码和XML配置等。
+*
+*2. 注解的使用示例
+*   示例一：生成文档相关的注解
+*   示例二：在编译时进行格式检查(JDK内置的个基本注解)
+*   示例三：跟踪代码依赖性，实现替代配置文件功能
+*
+* 3：如何自定义注解：参照 @SuppressWarnings 定义
+*       1:注解声明为：@interface
+*       2:内部定义成员，通常使用value表示
+*       3:可以指定成员的默认值，使用default定义
+*       4:如果自定义注解没成员，表明是一个标识作用。
+*
+     如果注解有成员，在使用注解时，需要指明成员的值
+     * 自定义注解必须配上注解的信息处理流程（使用反射）才有意义
+     * 自定义注解通过都会指明两个元注解：Retention，Target
+     *
+  4:java 中的4种元注解：
+  * 元注解：对现有的注解进行解释说明的注解
+  *    1：@Retention：指定所修饰的 Annotation 的生命周期：SOURCE\CLASS（默认行为）\RUNTIME只有声明为RUNTIME生命周期的注解，
+  *       才能通过反射获取。
+       2：@Target:用于指定被修饰的 Annotation 能用于修饰哪些程序元素
+       *****出现的频率较低*********
+       3：@Documented:表示所修饰的注解在被javadoc解析时，保留下来。
+       4：@Inherited:被它修饰的 Annotation 将具继承性。
+       *
+   5:通过反射获取注解信息
+   *
+   6:jdk8中注解的新特性： 可重复注解、类型注解
+       *可重复注解：
+             ① 在MyAnnotation上声明 @Repeatable，成员值为 MyAnnotations.class
+             ② MyAnnotation的Target和Retention等元注解与MyAnnotations相同。
+             *
+        类型注解：
+            ElementType.TYPE_PARAMETER 表示该注解能写在类型变量的声明语句中（如：泛型声明。）
+            ElementType.TYPE_USE 表示该注解能写在使用类型的任何语句中。
+
+一：集合框架的概述
+* 1：集合，数组都是对多个数据进行存储操作的结构，简称java容器
+*  说明：此时的存储，主要指的是内存层面的存储，不涉及持久化的存储
+* 2：数组在存储多个数据方面的特点
+* 1：一旦初始化以后，其长度就确定了
+* 2：数组一旦定义好，其元素的类型也就确定了，我们也就只能操作指定类型的数据了
+*                 如：String [] arr;int[] arr1;Object[] arr2;
+*
+*2：数组在存储多个数据方面的缺点：
+    * 1：一旦初始化以后，其长度就不可修改
+    * 2：数组中提供的方法非常有限，对于添加，删除，插入数据等操作，非常不便，同时效率不高
+    * 3：获取数组中实际元素的个数需求，数组中没有现成的属性或方法可用
+    * 4：数组中的数据的特点：有序，可重复的，对于无序，不能重复的需求，不能满足
+    *
+    *
+二：集合框架
+*   |---Collection接口：单列集合，用来存储一个一个对象
+*       |--List接口：存储有序，可重复的数据     --动态数组
+*           |--ArrayList,LinkedList,Vector
+*       |--Set接口：存储无序，不可重复的数据    ---集合
+*           |--HashSet,LinkedSet,TreeSet
+*
+*   |---Map 接口：双列集合，用来存储一对（key-value）一对的数据    ---类似函数y=f(x)
+*       |--HashMap,LinkedMap,TreeMap,Hashtable,Properties
+*
+* 三：Collection 接口中方法的使用及示例代码
+   @Test
+    public void test1() {
+        Collection coll = new ArrayList();
+        //1：add(Object e):将元素e到coll集合中
+        coll.add("AA");
+        coll.add("BB");
+        coll.add(123);//自动装箱
+        coll.add(new Date());
+
+        //2：size():获取添加元素的个数
+
+        System.out.println(coll.size());//4
+        // 3：addAll():将coll1集合中的元素添加到当前集合中
+        Collection collection = new ArrayList();
+        collection.add("CC");
+        collection.add(456);
+        coll.addAll(collection);
+        System.out.println(coll.size());
+        System.out.println(coll.toString());
+
+        //4：clear():清空集合中的元素
+        coll.clear();
+
+        //5：isEmpty()判断当前集合是否为空
+        System.out.println(coll.isEmpty());
+    }
+
+    @Test
+    public void test2() {
+        Collection coll = new ArrayList();
+
+        coll.add(123);
+        coll.add(new String("Tom"));
+        coll.add(new Person("Jery", 25));
+        coll.add(456);
+        coll.add(false);
+        // System.out.println(coll.size());
+        //6:contains(Object o):判断当前集合中是否包含obj
+        //我们在判断时会调用obj对象所在类的equals()
+        boolean contains = coll.contains(456);
+        System.out.println(contains);//true
+
+        System.out.println(coll.contains(new String("Tom")));//true-->调用String 重写的的equals()方法
+
+        //自定义的类，若没有重写equals方法，默认调用是Object 的equals,比较的是==，
+        // 若重写，则调用的是重写后的方法，比较的是实体内容
+        System.out.println(coll.contains(new Person("Jery", 25)));//false-->true
+        //7: conatainsAll(Collection coll1):判断形参coll1 中的所有元素是否都在当前集合中
+        Collection coll1 = Arrays.asList(123, 456);
+        boolean b = coll.containsAll(coll1);
+        System.out.println(b); //true
+
+    }
+
+    @Test
+    public void test3() {
+        Collection collection = new ArrayList();
+        collection.add(123);
+        collection.add("456");
+        collection.add(false);
+        collection.add(new String("Tom"));
+        collection.add(new Person("Jery", 28));
+        collection.add(123.8);
+
+        //8：remove(Object o):差集：从当前集合中移除obj元素
+        boolean remove = collection.remove(123.8);
+        System.out.println(remove);
+        System.out.println(collection);
+
+        //9：removeAll(Collection collection1):从当前集合中移除collection1中所有元素
+        Collection collection1 = Arrays.asList(123, "456");
+        boolean b = collection.removeAll(collection1);
+        System.out.println(b);//true
+        System.out.println(collection);
+    }
+
+    @Test
+    public void test4() {
+        Collection collection = new ArrayList();
+        collection.add(123);
+        collection.add(456);
+        collection.add("789");
+        collection.add(new String("Tom"));
+        collection.add(false);
+        collection.add(new Person("Jery", 26));
+
+        Collection collection1 = Arrays.asList(123, 456, 789);
+
+        //10:retainAll(Collection collection1):获取当前集合与collection1集合的交集，并返回给当前集合
+        collection.retainAll(collection1);
+        System.out.println(collection);
+
+        //11:equals(Object obj)
+        Collection collection2 = Arrays.asList(123, 456, "789");
+
+        Collection collection3 = new ArrayList();
+        collection3.add(123);
+        collection3.add(456);
+        collection3.add("789");
+        System.out.println(collection2.equals(collection3));
+
+    }
+
+    @Test
+    public void test5() {
+        Collection collection = new ArrayList();
+        collection.add(123);
+        collection.add(456);
+        collection.add(false);
+        collection.add("789");
+        collection.add(new String("Tom"));
+        collection.add(new Person("Jery", 29));
+        //12:hashCode():返回当前对象的哈希值
+        System.out.println(collection.hashCode());
+
+        //13:集合-->数组:toArray()
+        Object[] objects = collection.toArray();
+        for (int i = 0; i < objects.length; i++) {
+            System.out.print(objects[i]+" ");
+
+        }
+        System.out.println();
+        //14:拓展:数组-->集合: 调用Arrays的静态方法asList()
+        List<String> stringList = Arrays.asList(new String[]{"AA", "BB", "VV"});
+        System.out.println(stringList);
+
+        //注意事项
+        List ints = Arrays.asList(new int[]{133, 456});
+        System.out.println(ints.size());//1,不是2
+        List integerList = Arrays.asList(123, 456);
+        System.out.println(integerList.size());//2
+        System.out.println(integerList);//[123, 456]
+
+        List integerList1 = Arrays.asList(new Integer[]{123, 456});
+        System.out.println(integerList1);//[123, 456]
+        System.out.println(integerList1.size());//2
+
+
+    }
+    //15:iterator():返回Iterator接口的实例，用于遍历集合元素--详见：IteratorTest.java
+
+*
+*   3.1:向Collection接口的实现类的对象中添加数据obj时，要求obj所在类要重写equals()
+
+1；List接口框架：
+*  |---Collection接口：单列集合，用来存储一个一个对象
+ *       |--List接口：存储有序，可重复的数据     --动态数组,替换原有的数组
+ *           |--ArrayList：作为list接口的主要实现类(jdk 1.2)；线程不安全，效率高；底层使用Object[] elementData存储
+ *           |--LinkedList:对于频繁的插入，删除操作，使用此类比ArrayList效率高；底层使用双向链表存储
+ *           |--Vector:作为list接口的古老实现类（jdk 1.0）：线程安全，效率低;底层使用Object[] elementData存储
+ *：
+ * 2：ArrayList 的源码分析：
+ *   jdk 7情况
+ *   ArrayList list=new ArrayLit();//底层创建了长度是10的Object[]数组elementData
+ *            list.add(123);//elementData[0]=new Integer(123)
+ *            ...
+ *            list.add(11);//如果此次添加的导致底层elementData数组容量不够，则扩容，
+ *            默认情况下，扩容为原来的1.5倍，同时需要将原有的数组中的元素复制到新的数组中
+ *
+ *            结论：建议开发使用带参的构造器：ArrayList list=new ArrayList(int initialCapacity)
+ *   jdk 8情况：
+ *   ArrayList list=new ArrayLit();//底层Object[] elementData 初始化为{}，没有创建了长度是10的Object[]数组elementData
+ *             list.ad(123);//第一次调用add()时，底层才创建了长度为10的数组，并将数据123添加到elementData[0]中
+ *             ...
+ *            后续的添加和扩容与jdk7相同
+ *
+ *            结论：jdk7中的ArrayList 的对象的创建类似于单例模式的饿汉式，jdk8中的ArrayList的对象的创建
+ *                  类似于单例模式的懒汉式，延迟了数组的创建，节省了内存
+ *
+ *3：LinkedList
+ *   LinkedList linkedList=new LinkedList();内部声明了Node类型的first和last属性，默认值为null
+ *              linkedList.add(123);//将123封装到Node 中，创建了Node 对象
+ *
+ *              其中，Node定义为：体现为LinkedList的双向链表的说法
+             *    private static class Node<E> {
+                        E item;
+                        Node<E> next;
+                        Node<E> prev;
+
+                        Node(Node<E> prev, E element, Node<E> next) {
+                            this.item = element;
+                            this.next = next;
+                            this.prev = prev;
+                        }
+                    }
+                    *
+  4：Vector的源码分析：jdk7与jdk8中通过Vector()构造器创建对象时，底层都创建了长度为10的数组
+  *                 在扩容方面，默认扩容为原来的数组长度的2倍
+  *
+ * 面试题：ArrayList,LinkList,Vector三者异同：
+ * 相同点：三个类都实现了List接口，存储数据的特点相同：存储有序，可重复的数据
+ * 不同点： |--ArrayList：作为list接口的主要实现类(jdk 1.2)；线程不安全，效率高；底层使用Object[] elementData存储
+ *         |--LinkedList:对于频繁的插入，删除操作，使用此类比ArrayList效率高；底层使用双向链表存储
+ *         |--Vector:作为list接口的古老实现类（jdk 1.0）：线程安全，效率低;底层使用Object[] elementData存储
+
+ * 5：list接口的常用方法
+ *       List除了从 Collection集合继承的方法外，List集合里添加了一些根据索引来操作集合元素的方法。
+
+         void add(int index, Object ele):在index位置插入ele元素
+         boolean addAll(int index, Collection eles):从index位置开始将eles中的所有元素添加进来
+         Object get(int index):获取指定index位置的元素
+         int indexOf(Object obj):返回obj在集合中首次出现的位置
+         int lastIndexOf(Object obj):返回obj在当前集合中末次出现的位置
+         Object remove(int index):移除指定index位置的元素，并返回此元素
+         Object set(int index, Object ele):设置指定index位置的元素为ele
+         List subList(int fromIndex, int toIndex):返回从fromIndex到toIndex位置的左闭右开子集合
+         *
+      常用方法总结：
+      * 增：add(Object e)
+      * 删:remove(int index)/remove(Object o)
+      * 改:set(int index, Object ele)
+      * 查:get(int index)
+      * 插:add(int index, Object ele)
+      * 长度:size()
+      * 遍历:
+          * 1:Iterator迭代器，
+          * 2：foreach,
+          * 3:普通循环
+
+
+示例代码：
+    @Test
+    public void test1() {
+        ArrayList list = new ArrayList();
+        list.add(123);
+        list.add(456);
+        list.add(new Person("Tom", 28));
+        list.add(false);
+        list.add("Jack");
+        list.add(456);
+
+        System.out.println(list);
+        //void add(int index, Object ele):在index位置插入ele元素
+        list.add(1, "BB");
+        System.out.println(list);
+        List list1 = Arrays.asList(1, 2, 3);
+
+        //boolean addAll(int index, Collection eles):从index位置开始将eles中的所有元素添加进来
+        list.addAll(list1);
+        System.out.println(list.size());//9
+
+        // Object get(int index):获取指定index位置的元素
+        System.out.println(list.get(1));//BB
+
+        //int indexOf(Object obj):返回obj在集合中首次出现的位置,如果不存在，返回-1
+        int i = list.indexOf(456);
+        System.out.println(i);//2
+
+        // int lastIndexOf(Object obj):返回obj在当前集合中末次出现的位置
+        int i1 = list.lastIndexOf(456);
+        System.out.println(i1);//6
+
+        // Object remove(int index):移除指定index位置的元素，并返回此元素
+        Object obj = list.remove(4);
+        System.out.println(obj); //false
+        System.out.println(list);
+
+        // Object set(int index, Object ele):设置指定index位置的元素为ele
+        list.set(0, "1234");
+        System.out.println(list);
+
+        //List subList(int fromIndex, int toIndex):返回从fromIndex到toIndex位置的左闭右开子集合
+        List list2 = list.subList(0, 2);
+        System.out.println(list2);//[1234, BB]
+        System.out.println(list);
+        System.out.println("*******************");
+
+        //遍历
+        //方式一：Iterator迭代器
+        Iterator iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+        System.out.println();
+
+        //方式二：foreach
+        for (Object o : list) {
+            System.out.print(o + " ");
+
+        }
+        System.out.println();
+        //方式三：普通for 循环
+        for (int j = 0; j < list.size(); j++) {
+            System.out.print(list.get(j)+" ");
+
+        }
+    }*
+
+ jdk5.0新增了foreach循环，用于遍历集合，数组
+
+ 示例代码：
+  @Test
+     public void test1() {
+         Collection collection = new ArrayList();
+         collection.add(123);
+         collection.add(456);
+         collection.add("Tom");
+         collection.add(new String("Jack"));
+         collection.add(new Person("Jery", 32));
+         collection.add(false);
+
+         //foreach
+         //格式：for(集合元素的类型 局部变量：集合对象)
+         for (Object o : collection) {
+             System.out.println(o);
+
+         }
+     }
+
+
+* 集合元素的遍历操作，使用迭代器Iterator接口
+     *
+     * Iterator对象称为迭代器(设计模式的一种)，主要用于遍历 Collection 集合中的元素。
+     *  GOF给迭代器模式的定义为：提供一种方法访问一个容器(container)对象中各个元素，而又不需暴露该对象的内部细节。
+     *  迭代器模式，就是为容器而生。
+     *
+     * 1:内部的方法：hasNext()和next()
+     * 2:集合对象每次调用iterator()方法都得一个全新的迭代器对象，
+     *      默认游标都在集合的第一个元素之前
+     * 3:Iterator可以删除集合的元素，但是是遍历过程中通过迭代器对象的
+     * remove 方法，不是集合对象的remove方法
+
+ 示例代码：
+ @Test
+    public void test1(){
+        Collection collection=new ArrayList();
+        collection.add(123);
+        collection.add(456);
+        collection.add("789");
+        collection.add(new String("Tom"));
+        collection.add(new Person("Jery",30));
+        collection.add(false);
+
+        Iterator iterator = collection.iterator();
+        //方式一：
+        //next():
+//        System.out.println(iterator.next());//123
+//        System.out.println(iterator.next());//456
+//        System.out.println(iterator.next());//789
+//        System.out.println(iterator.next());//Tom
+//        System.out.println(iterator.next());//Person{name='Jery', age=30}
+//        System.out.println(iterator.next());//false
+//
+//        //报异常:.NoSuchElementException
+//        System.out.println(iterator.next());
+
+        //方式二：不推荐
+        for (int i = 0; i <collection.size() ; i++) {
+            System.out.println(iterator.next());
+
+        }
+        //方式三：推荐
+        //hasNext():判断是否还下一个元素
+        while (iterator.hasNext()){
+
+            //①指针下移 ②将下移以后集合位置上的元素返回
+            System.out.println(iterator.next());
+        }
+    }
+    @Test
+    public void test2(){
+
+        Collection collection=new ArrayList();
+        collection.add(123);
+        collection.add(456);
+        collection.add("Tom");
+        collection.add(new String("Jery"));
+        collection.add(new Person("Jack",31));
+        collection.add(false);
+
+        //删除集合中"Tom"
+        //如果还未调用 next() 或在上一次调用 next() 方法之后已经调用了 remove() 方法，
+        // 再调用 remove 都会报 IllegalStateException。
+        //内部定义了 remove(),可以在遍历的时候，删除集合中的元素。此方法不同于集合直接调用remove()
+        Iterator iterator = collection.iterator();
+       while (iterator.hasNext()){
+           Object obj = iterator.next();
+           if("Tom".equals(obj)){
+               iterator.remove();
+           }
+       }
+       iterator=collection.iterator();
+       while (iterator.hasNext()){
+           System.out.println(iterator.next());
+       }
+
+    }
+
+Set框架结构
+*   |---Collection接口：单列集合，用来存储一个一个对象
+ *       |--Set接口：存储无序，不可重复的数据    ---集合
+ *           |--HashSet：Set接口的主要实现类；线程不安全的；可以存储null值
+                |--LinkedSet：作为HashSet的子类；遍历其内部数据时，可以按照添加的顺序遍历
+                *            对于频繁的操作，LinkedHashSet 效率高于HashSet
+             |-- TreeSet：可以按照添加对象的指定属性，进行排序
+
+* 1： Set接口没有额外定义新的方法，使用的都是Collection 中声明过的方法
+* 2： 要求：向Set 中添加的数据，其所在的类一定要重写hashCode()和equals()
+*     要求：重写的hashCode()和equals()尽可能保持一致性：相等的对象必须具有相等的散列码
+
+
+一：Set:存储无序，不可重复的数据
+    * 以HashSet为例说明：
+    * 1：无序性：不等于随机性，存储的数据在底层数组中并非按照数组索引的顺序添加，而是根据数据的哈希值
+    * 2：不可重复:保证添加的元素按照equals()判断，不能返回true,即：相同元素只能添加一个
+
+
+    二：添加元素的过程：以HashSet为例
+    * 我们向HashSet中添加元素a,首先调用元素a所在类的hashCode（）方法，计算元素a 的哈希值，此
+    * 哈希值接着通过某种算法计算出在HashSet底层数组中的存放位置（即为：索引位置）,判断数组此位置上
+    * 是否已经有元素
+    *   如果此位置没有其他元素，则元素a添加成功  ---》情况一
+    *   如果此位置上有其他元素b(或以链表形式存在的多个元素)，则比较元素a与元素b 的hash值：
+    *       如果hash值不相同，则元素a添加成功  ---》情况二
+    *       如果hash值相同，进而需要调用元素a所在类的equals（）方法：
+    *           equals()返回true，元素a 添加失败
+    *           equals()返回false,则元素a 添加成功  --》情况三
+    *
+    * 对于添加成功的情况2和情况3而言，元素a与已经存在指定位置上数据一链表的形式存储
+    *
+    * HashSet底层：数组+链表的结构
+
+
+示例代码：
+   @Test
+      public void test1() {
+          Set set = new HashSet();
+          set.add(123);
+          set.add(456);
+          set.add("AA");
+          set.add(new User("Tom", 18));
+          set.add(new User("Tom", 18));
+          set.add(129);
+          set.add(456);
+          Iterator iterator = set.iterator();
+          while (iterator.hasNext()) {
+              System.out.println(iterator.next());
+          }
+      }
+
+   //LinkedHashSet的使用
+     //LinkedHashSet 作为HashSet 的子类，再添加数据的同时，每个数据还维护了两个引用，记录此数据的
+     //前一个数据 和后一个数据
+     //优点：对于频繁的操作，LinkedHashSet 效率高于HashSet*
+
+    示例代码：
+       @Test
+         public void test2() {
+             Set set = new LinkedHashSet();
+             set.add(123);
+             set.add(456);
+             set.add("789");
+             set.add(new User("Jery", 12));
+             set.add(new User("Jery", 12));
+             set.add(false);
+             set.add("AA");
+             Iterator iterator = set.iterator();
+             while (iterator.hasNext()) {
+                 System.out.println(iterator.next());
+             }
+         }
+
+ //TreeSet的使用
+     /*
+     1:向TreeSet 中添加数据，要求是相同类的对象
+     2：两种排序方式：自然排序，定制排序
+     3：自然排序：比较两个对象是否相同的标准为：compareTo()返回是0，不再是equals()
+     4: 定制排序：比较两个对象是否相同的标准为：compare(),返回0，不在是equals()
+示例代码：
+@Test
+    public void test3() {
+        TreeSet treeSet = new TreeSet();
+        //举例一：
+//        treeSet.add(123);
+//        treeSet.add(456);
+//        treeSet.add(789);
+//        treeSet.add(-123);
+//        treeSet.add(-456);
+
+        //举例二：
+        treeSet.add(new User("Tom", 15));
+        treeSet.add(new User("Jameson", 18));
+        treeSet.add(new User("Jack", 25));
+        treeSet.add(new User("Jim", 35));
+        treeSet.add(new User("Mark", 5));
+        treeSet.add(new User("Jameson", 15));
+
+
+        Iterator iterator = treeSet.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+//        treeSet.add("789");//添加数据，要求是相同类的对象: ClassCastException
+    }
+
+  @Test
+     public void test4() {
+
+         Comparator comparator = new Comparator() {
+             @Override
+             public int compare(Object o1, Object o2) {
+                 if (o1 instanceof User && o2 instanceof User){
+
+                     return Integer.compare(((User) o1).getAge(),((User) o2).getAge());
+                 }
+                 throw new RuntimeException("输入的数据不合理");
+             }
+         };
+
+         TreeSet treeSet = new TreeSet(comparator);
+         treeSet.add(new User("Tom", 25));
+         treeSet.add(new User("Jack", 28));
+         treeSet.add(new User("Jim", 28));
+         treeSet.add(new User("Jim", 30));
+         treeSet.add(new User("Mark", 17));
+
+         Iterator iterator = treeSet.iterator();
+         while (iterator.hasNext()) {
+             System.out.println(iterator.next());
+         }
+
+     }
+
+*一：
+* |---Map：双列数据，存储key-value对的数据
+*   |---HashMap:作为Map的主要实现类；线程不安全的，效率高；可以存储null的key和value
+*
+*       |---LinkedHashMap:保证在遍历map元素时，可以按照添加的顺序实现遍历（原因：在原有的HashMap 底层结构基础上，
+*                         添加了一对指针，指向前一个和后一个）
+*                         对于频繁的遍历操作，此类执行效率高于HashMap
+*
+*   |---TreeMap：保证按照添加的key-value对进行排序，实现排序遍历，此时考虑key的自然排序或定制排序
+*                底层使用红黑树
+*
+*   |---Hashtable：作为Map的古老实现类；线程安全的，效率低;不能存储null的key和value
+*       |---Properties:常用来处理配置文件.key-value都是String 类型
+*
+*  HashMap的底层：数组+链表（jdk7及之前）
+*               数组+链表+红黑树（jdk 8）
+*
+* 二：map结构的理解
+* map的key:无序，不可重复的，使用Set存储所有的key--->key 所在的类要重写equals()和hashCode()(以HashMap为例)
+* map中的value:无序，可重复的，使用Collection 存储所有的value--<value 所在的类要重写equals()
+* 一个键值对：key-value 构成了一个Entry对象
+* map的entry：无序，不可重复的，使用Set 存储所有的entry
+*
+* 三：HashMap的底层实现原理
+    * HashMap map=new HashMap();
+    * 在实例化以后，底层创建了长度是16 的一维数组Entry[] table
+    * ...可能已经执行过多次put...
+    *  map.put(key1,value1);
+    * 首先，调用key1所在类的hashCode(),计算key1哈希值，此哈希值经过某种算法以后，得到在entry[]的存放位置
+    * 如果此位置上的数据为空，则key1-value1 添加成功   ---情况1
+    * 如果此位置上的数据不为空（此位置存在一个或多个数据（以链表的形式存在）），比较key1和已经存在的一个或多个数据
+    * 的哈希值：
+    *       如果key1的哈希值与已经存在的数据的哈希值都不相同，此时key1-value1 添加成功  ---情况2
+    *       如果key1的哈希值与已经存在的某一个数据（key2-value2）的哈希值相同，继续比较：调用key1 所在类的equals(key2)方法,比较
+    *          如果equals()返回false,则此时key1-value1添加成功   ------情况3
+    *          如果equals()返回true,使用value1替换value2
+    *
+    *   补充：关于情况2和情况3：此时key1-value1和原来的数据以链表的方式存储
+    *
+    * 在不断添加的过程中，会涉及到扩容问题，默认的扩容方式：扩容为原来的2倍，并将原有的数据复制过来
+    *
+   jdk8相较于jdk7在底层实现方面的不同
+    * 1：new HashMap();底层没哟创建一个长度为16的数组
+    * 2:JDK8底层的数组 是:Node[],而非Entry[]
+    * 3:首次调用put()方法时，底层创建长度为16的数组
+    * 4：jdk7底层结构只有：数组+链表，jdk8底层结构：数组+链表+红黑树
+    *    当数组的某一个索引位置上的元素以链表形式存在的数据个数>8且当前数组长度>64,
+    *    此时此索引位置上的所有数据改为使用红黑树存储
+    *
+    *
+ 4  HashMap底层典型属性的属性的说明：
+
+        DEFAULT_INITIAL_CAPACITY : HashMap的默认容量，16
+        DEFAULT_LOAD_FACTOR：HashMap的默认加载因子：0.75
+        threshold：扩容的临界值，= 容量*填充因子：16 * 0.75 => 12
+        TREEIFY_THRESHOLD：Bucket中链表长度大于该默认值，转化为红黑树:JDK 8.0引入
+        MIN_TREEIFY_CAPACITY：桶中的Node被树化时最小的hash表容量:64
+        *
+四：LinkedHashMap的底层实现原理(了解)
+    * LinkedHashMap底层使用的结构与HashMap相同，因为LinkedHashMap继承于HashMap.
+    区别就在于：LinkedHashMap内部提供了Entry，替换HashMap中的Node.
+    与Linkedhash Set类似，LinkedHashMap可以维护Map的迭代顺序：迭代顺序与Key-value对的插入顺序一致
+    *
+        HashMap中内部类Node源码：
+        static class Node<K,V> implements Map.Entry<K,V>{
+            final int hash;
+            final K key;
+            V value;
+            Node<K,V> next;
+        }
+        *
+        LinkedHashM中内部类Entry源码：
+        static class Entry<K,V> extends HashMap.Node<K,V> {
+            Entry<K,V> before, after;//能够记录添加的元素的先后顺序
+            Entry(int hash, K key, V value, Node<K,V> next) {
+                super(hash, key, value, next);
+            }
+        }
+        *
+五：map 中定义的方法
+  ①添加、删除、修改操作：
+
+    Object put(Object key,Object value)：将指定key-value添加到(或修改)当前map对象中
+    void putAll(Map m):将m中的所有key-value对存放到当前map中
+    Object remove(Object key)：移除指定key的key-value对，并返回value
+    void clear()：清空当前map中的所有数据
+  ②元素查询的操作：
+  *
+  * Object get(Object key)：获取指定key对应的value
+    boolean containsKey(Object key)：是否包含指定的key
+    boolean containsValue(Object value)：是否包含指定的value
+    int size()：返回map中key-value对的个数
+    boolean isEmpty()：判断当前map是否为空
+    boolean equals(Object obj)：判断当前map和参数对象obj是否相等
+    *
+  ③元视图操作的方法：
+  *
+    Set keySet()：返回所有key构成的Set集合
+    Collection values()：返回所有value构成的Collection集合
+    Set entrySet()：返回所有key-value对构成的Set集合
+    *
+
+总结：常用方法：
+
+    添加：put(Object key,Object value)
+    删除：remove(Object key)
+    修改：put(Object key,Object value)
+    查询：get(Object key)
+    长度：size()
+    遍历：keySet() / values() / entrySet()
+
+
+常用方法实例代码：
+ @Test
+    public void test1() {
+        HashMap map = new HashMap();
+//        map.put(null,123);
+        map.put(null, null);
+        System.out.println(map);
+
+    }
+
+    @Test
+    public void test2() {
+        Map map = new LinkedHashMap();
+        map.put(123, "AA");
+        map.put(456, "BB");
+        map.put(789, "CC");
+        System.out.println(map);
+    }
+
+
+    /*
+    ①添加、删除、修改操作：
+
+    Object put(Object key,Object value)：将指定key-value添加到(或修改)当前map对象中
+    void putAll(Map m):将m中的所有key-value对存放到当前map中
+    Object remove(Object key)：移除指定key的key-value对，并返回value
+    void clear()：清空当前map中的所有数据
+     */
+
+    @Test
+    public void test3() {
+        Map map = new HashMap();
+        map.put("AA", 123);
+        map.put("BB", 456);
+        map.put("CC", 789);
+        map.put("AA", 12);
+        System.out.println(map);
+
+        Map map1 = new HashMap();
+        map1.put("DD", "father");
+        map1.put("EE", "mother");
+
+        map.putAll(map1);
+        System.out.println(map);
+
+        //remove(Object key)
+        Object dd = map.remove("DD");
+        System.out.println(dd);
+        System.out.println(map);
+
+        //clear():不同于map=null
+        map.clear();
+        System.out.println(map.size());
+
+    }
+
+    @Test
+    public void test4() {
+//        ②元素查询的操作：
+//  *
+//  *     Object get(Object key)：获取指定key对应的value
+//        boolean containsKey(Object key)：是否包含指定的key
+//        boolean containsValue(Object value)：是否包含指定的value
+//        int size()：返回map中key-value对的个数
+//        boolean isEmpty()：判断当前map是否为空
+//        boolean equals(Object obj)：判断当前map和参数对象obj是否相等
+
+        Map map = new HashMap();
+        map.put("AA", 123);
+        map.put("BB", 456);
+        map.put("CC", 789);
+        map.put("DD", 123);
+
+        //Object get(Object key)：获取指定key对应的value
+        System.out.println(map.get("DD"));
+
+        //boolean containsKey(Object key)：是否包含指定的key
+        boolean bb = map.containsKey("BB");
+        System.out.println(bb);//true
+
+        boolean b = map.containsValue(123);
+        System.out.println(b);//true
+
+        map.clear();
+        System.out.println(map.isEmpty());//true
+
+    }
+
+    /*
+    *
+     ③元视图操作的方法：
+  *
+    Set keySet()：返回所有key构成的Set集合
+    Collection values()：返回所有value构成的Collection集合
+    Set entrySet()：返回所有key-value对构成的Set集合
+    *
+    * */
+    @Test
+    public void test5() {
+        Map map = new HashMap();
+        map.put("AA",123);
+        map.put("BB",456);
+        map.put("CC",789);
+        map.put(45,"DD");
+        map.put(null,"EE");
+
+   //Set keySet()：返回所有key构成的Set集合
+        Set set = map.keySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+        System.out.println("*******************");
+
+        //Collection values()：返回所有value构成的Collection集合
+        Collection values = map.values();
+
+        for (Object o:values) {
+            System.out.println(o);
+        }
+        System.out.println("******************");
+
+        // Set entrySet()：返回所有key-value对构成的Set集合
+        Set set1 = map.entrySet();
+        Iterator iterator2 = set1.iterator();
+        while (iterator2.hasNext()){
+            Object obj = iterator2.next();
+            Map.Entry entry=(Map.Entry)obj;
+            System.out.println(entry.getKey()+"-->"+entry.getValue());
+        }
+
+
+    }
+
+* 面试题：
+* 1：HashMap的底层实现原理？
+* 2：HashMap与Hashtable的异同？
+
+
+向TreeMap中添加key-value，要求key必须是由同一个类创建的对象 要照key进行排序：自然排序 、定制排序
+
+示例代码：
+
+    @Test
+    public void test1(){
+        //自然排序：按照姓名从小到大排序,年龄从小到大排列
+        User user=new User("Tom",18);
+        User user1=new User("Jerry",20);
+        User user2=new User("Jack",21);
+        User user3=new User("Mark",16);
+        User user4=new User("Rose",20);
+        TreeMap map=new TreeMap();
+
+        map.put(user,98);
+        map.put(user1,67);
+        map.put(user2,78);
+        map.put(user3,59);
+        map.put(user4,87);
+
+        //自然排序
+        Set set = map.entrySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            Object obj = iterator.next();
+            Map.Entry entry=(Map.Entry)obj;
+            System.out.println(entry.getKey() + "-->" + entry.getValue());
+        }
+    }
+    @Test
+    public void test2(){
+
+        //定制排序：按照年龄大小排
+        TreeMap map=new TreeMap(new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if (o1 instanceof User && o2 instanceof User){
+                    User user=(User) o1;
+                    User user1=(User) o2;
+                    //    按照年龄大小排
+                    return Integer.compare(user.getAge(),user1.getAge());
+                }
+                throw new RuntimeException("输入的数据有误！");
+            }
+        });
+        User user=new User("Tom",18);
+        User user1=new User("Jerry",20);
+        User user2=new User("Jack",21);
+        User user3=new User("Mark",16);
+        User user4=new User("Rose",20);
+        map.put(user,54);
+        map.put(user1,65);
+        map.put(user2,78);
+        map.put(user3,89);
+        map.put(user4,92);
+
+        Set set = map.entrySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            Object obj = iterator.next();
+            Map.Entry entry=(Map.Entry)obj;
+            System.out.println(entry.getKey() + "----->" + entry.getValue());
+        }
+
+    }
+
+//Properties:常用来处理配置文件.key-value都是String 类型
+
+@Test
+    public void test() throws FileNotFoundException {
+        FileInputStream fis = null;
+        try {
+            Properties pro = new Properties();
+            fis = new FileInputStream("E:\\java_code\\SGGJavaCode\\jdbc.properties");
+            pro.load(fis);//加载流对应的文件
+
+            String name = pro.getProperty("name");
+            String password = pro.getProperty("password");
+
+            System.out.println("name:" + name + "," + "password:" + password);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+ Collections:
+ * 作用：Collections是一个操作Set、Lit和Map等集合的工具类
+        Collections中提供了一系列静态的方法对集合元素进行排序、査询和修改等操作，还提供了对集合对象设置不可变、对集合对象实现同步控制等方法
+   常用方法：
+         排序操作：
+         reverse(List)：反转 List 中元素的顺序
+         shuffle(List)：对 List 集合元素进行随机排序
+         sort(List)：根据元素的自然顺序对指定 List 集合元素升序排序
+         sort(List，Comparator)：根据指定的 Comparator 产生的顺序对 List 集合元素进行排序
+         swap(List，int， int)：将指定 list 集合中的 i 处元素和 j 处元素进行交换
+
+         查找、替换：
+         Object max(Collection)：根据元素的自然顺序，返回给定集合中的最大元素
+         Object max(Collection，Comparator)：根据 Comparator 指定的顺序，返回给定集合中的最大元素
+         Object min(Collection)
+         Object min(Collection，Comparator)
+         int frequency(Collection，Object)：返回指定集合中指定元素的出现次数
+         void copy(List dest,List src)：将src中的内容复制到dest中
+         boolean replaceAll(List list，Object oldVal，Object newVal)：使用新值替换 List 对象的所旧值
+         同步控制：
+         Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将指定集合包装成线程同步的集合，
+         从而可以解决多线程并发访问集合时的线程安全问题
+
+
+        示例代码：
+         @Test
+            public void test1() {
+                ArrayList list = new ArrayList();
+                list.add(123);
+                list.add(99);
+                list.add(60);
+                list.add(-10);
+                list.add(0);
+                list.add(50);
+                list.add(123);
+                System.out.println(list);
+                // reverse(List)：反转 List 中元素的顺序
+        //        Collections.reverse(list);
+
+        //       shuffle(List)：对 List 集合元素进行随机排序
+        //        Collections.shuffle(list);
+
+                // sort(List)：根据元素的自然顺序对指定 List 集合元素升序排序
+        //        Collections.sort(list);
+
+                //swap(List，int， int)：将指定 list 集合中的 i 处元素和 j 处元素进行交换
+        //        Collections.swap(list,1,2);
+
+                // int frequency(Collection，Object)：返回指定集合中指定元素的出现次数
+                int frequency = Collections.frequency(list, 123);
+                System.out.println(frequency);
+
+
+        //        System.out.println(list);
+
+  @Test
+    public void test2(){
+        //void copy(List dest,List src)：将src中的内容复制到dest中
+        ArrayList list = new ArrayList();
+        list.add(123);
+        list.add(456);
+        list.add(45);
+        list.add(20);
+        list.add(-20);
+        //会报异常：IndexOutOfBoundsException
+
+//        List  dest=new ArrayList();
+//        Collections.copy(dest,list);
+//        System.out.println(dest);
+
+        List dest = Arrays.asList(new Object[list.size()]);
+        System.out.println(dest.size());
+        Collections.copy(dest,list);
+        System.out.println(dest);
+
+
+    }
+    @Test
+    public void test3(){
+//        Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将指定集合包装成线程同步的集合，
+//        从而可以解决多线程并发访问集合时的线程安全问题
+        ArrayList list = new ArrayList();
+        list.add(123);
+        list.add(456);
+        list.add(45);
+        list.add(20);
+
+
+        List list1 = Collections.synchronizedList(list);
+        System.out.println(list1);
+
+    }
+
+ 泛型的使用
+
+  * 1：jdk5.0新增的特性
+  * 2:在集合中使用泛型：
+  * 总结：
+  * ①集合接口或集合类在jdk5.0 时都修改为带泛型的结构
+  *
+  * ②实例化集合类时，可以指明具体的泛型类型
+  *
+    ③ 指明完以后，在集合类或接口中凡是定义类或接口时，内部结构（比如：方法、构造器、属性等）使用到类的泛型的位置，都指定为实例化的泛型类型。
+    *     比如：add(E e) --->实例化以后：add(Integer e)
+    *
+    ④ 注意点：泛型的类型必须是类，不能是基本数据类型。需要用到基本数据类型的位置，拿包装类替换
+    *
+    ⑤ 如果实例化时，没有指明泛型的类型。默认类型为 java.lang.Object 类型。
+
+   3：如何自定义泛型结构：泛型类，泛型接口；泛型方法
+   注意点：
+         ①泛型类可能有多个参数，此时应将多个参数一起放在尖括号内。比如<E1,E2,E3>
+         ② 泛型类的构造器如下： public GenericClass(){}
+           而下面是错误的： public GenericClass<E>{}
+         ③实例化后，操作原来泛型位置的结构必须与指定的泛型类型一致。
+         ④泛型不同的引用不能相互赋值
+
+     * 异常类不能声明为泛型类
+       静态方法不能使用类的泛型
+       泛型方法：在方法中出现了泛型的结构，泛型参数与类的泛型参数没有任何关系
+       换句话说，泛型方法所属的类是不是泛型类都没有关系
+       泛型方法，可以声明为静态的。原因：泛型参数是在带哦用方法时确定的，并非在实例化类时确定
+
+   4: 泛型在继承方面的体现
+         * 虽然类A是类B的父类，但是G<A>和G<B>二者不具有子父类的关系，二者是并列关系
+         * 补充：类A是类B的父类,A<G>是B<G>的父类
+
+   5:2：通配符的使用
+         * 通配符：？
+         *
+         * 类A是类B 的父类，G<A>和G<B>是没有关系的，二者共同的父类时：G<?>
+
+          有限制条件的通配符的使用
+             * ? extends A:
+             *           G<?extends A>可以作为G<A>和G<B>的父类，其中B是A的子类
+             *
+             * ? super A:
+             *           G<?super>可以作为G<A>和G<B>的父类，其中B是A的父类

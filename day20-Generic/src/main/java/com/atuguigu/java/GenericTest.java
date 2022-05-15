@@ -2,8 +2,6 @@ package com.atuguigu.java;
 
 import org.junit.Test;
 
-import java.util.*;
-
 /*
  * 泛型的使用
  * 1：jdk5.0新增的特性
