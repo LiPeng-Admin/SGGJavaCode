@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="day23-Reflect" />
+        <module name="day24-OtherFeatures" />
         <module name="Project2" />
         <module name="day09" />
         <module name="day08" />
@@ -55,6 +56,7 @@
       <module name="day21-IO" target="1.8" />
       <module name="day22-NetworkProgramming" target="1.8" />
       <module name="day23-Reflect" target="1.8" />
+      <module name="day24-OtherFeatures" target="1.8" />
       <module name="Project2" target="1.8" />
     </bytecodeTargetLevel>
   </component>

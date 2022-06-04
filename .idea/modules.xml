@@ -24,6 +24,7 @@
       <module fileurl="file://$PROJECT_DIR$/day21-IO/day21-IO.iml" filepath="$PROJECT_DIR$/day21-IO/day21-IO.iml" />
       <module fileurl="file://$PROJECT_DIR$/day22-NetworkProgramming/day22-NetworkProgramming.iml" filepath="$PROJECT_DIR$/day22-NetworkProgramming/day22-NetworkProgramming.iml" />
       <module fileurl="file://$PROJECT_DIR$/day23-Reflect/day23-Reflect.iml" filepath="$PROJECT_DIR$/day23-Reflect/day23-Reflect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day24-OtherFeatures/day24-OtherFeatures.iml" filepath="$PROJECT_DIR$/day24-OtherFeatures/day24-OtherFeatures.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sggJavaCode.iml" filepath="$PROJECT_DIR$/.idea/sggJavaCode.iml" />
     </modules>
   </component>
